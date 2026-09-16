@@ -23,6 +23,7 @@ atriði eru í [LEIDBEININGAR.md](LEIDBEININGAR.md).
 - [ ] `dc:type` sem par: `@is` og `@en`
 - [ ] `dc:subject` á öllum sem geta borið það
 - [ ] Staðarreitur (`dc:coverage` eða `dcterms:spatial`) á öllum sem geta borið hann
+- [ ] **Smámyndaslóð** með þar sem mynd er til — bein (`.jpg`/`.png`), opin án innskráningar, aðgreinanleg frá síðuslóðinni með regex
 - [ ] `dc:rights` segir hvað má
 - [ ] `dc:language` með ISO-kóða
 

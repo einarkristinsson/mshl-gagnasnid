@@ -28,6 +28,7 @@ Fjöldi: `1` nákvæmlega eitt · `0..1` núll eða eitt · `1..n` eitt eða fle
 | `dc:title` | **M** | 1 | `xml:lang="is"` | Aðaltitill. Aldrei tómur |
 | `dc:identifier` (slóð) | **M** | 1 | — | Varanleg slóð í upprunakerfi; verður tengillinn heim |
 | `dc:identifier` (auðkenni) | R | 0..1 | — | Safnmark eða OAI-auðkenni, mannlesanlegt |
+| `dc:identifier` (smámynd) | **R** | 0..1 | — | Bein slóð á mynd (`.jpg`/`.png`), opin án innskráningar. Birtist í niðurstöðulistanum. Verður að vera aðgreinanleg frá síðuslóðinni með regex |
 | `dc:type` | **M** | 2 (par) | **bæði** `@is` og `@en` | Hvers konar hlutur. Enska gildið stýrir flokkuninni |
 | `dc:subject` | **M** | 1..n | `@is` (`@en` má fylgja) | Efni. Samleitarlykill #1. Hreint gildi |
 | `dc:subject` (efnisflokkur) | R | 0..n | `@is` | `xsi:type="mshl:flokkur"` — grófa sían, sjá kafla 4 í LEIDBEININGAR |
@@ -65,6 +66,7 @@ stytt á tveimur stöðum.
            xmlns:mshl="https://mshl.is/terms#">
   <dc:identifier>oai:smb.mshl.is:baer:1250</dc:identifier>      <!-- R  auðkenni -->
   <dc:identifier>https://smb.mshl.is/baer/1250</dc:identifier>  <!-- M  tengill heim -->
+  <!-- R  smámynd: bein myndslóð, aðgreinanleg með regex. Sjá kafla um smámyndina -->
   <dc:title xml:lang="is">Drangshlíð</dc:title>                 <!-- M  alltaf @is -->
   <dc:type xml:lang="is">Bær</dc:type>                          <!-- M  parið: @is -->
   <dc:type xml:lang="en">Place</dc:type>                        <!-- M  og @en, sem stýrir -->

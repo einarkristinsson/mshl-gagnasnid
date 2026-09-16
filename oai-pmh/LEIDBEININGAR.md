@@ -97,6 +97,7 @@ settinu fær rangt mengi.
 | `dc:title` | **M** | 1 | `xml:lang="is"`. Aldrei tómur |
 | `dc:identifier` (slóð) | **M** | 1 | varanleg slóð í ykkar kerfi — verður tengillinn „Skoða hjá útgefanda" |
 | `dc:identifier` (auðkenni) | R | 0..1 | safnmark eða OAI-auðkenni, mannlesanlegt |
+| `dc:identifier` (smámynd) | **R** | 0..1 | bein myndslóð — það sem gerir færsluna að mynd en ekki gráum kassa í niðurstöðulistanum |
 | `dc:type` | **M** | 2 | **par**: `@is` og `@en`. Enska gildið stýrir flokkuninni |
 | `dc:subject` | **M** | 1..n | efnisorð, hreint gildi, `@is` ef íslenskt |
 | `dc:coverage` / `dcterms:spatial` | **R** | 0..n | staður, hreint gildi án forskeytis |
@@ -134,6 +135,42 @@ Sömu reglu fylgir nafnfall: **staðanöfn í nefnifalli**. *Skálholt*, ekki
 
 Óvissan er upplýsingar, ekki sóðaskapur — geymið hana, en látið vélræna formið
 fylgja með svo hægt sé að raða og sía.
+
+### 2.4 Smámyndin — hvernig myndin kemst í niðurstöðulistann
+
+Færsla með mynd er margfalt gagnlegri en færsla án hennar, og þetta er sá
+reitur sem oftast gleymist. **Ef þið eigið mynd af hlutnum, sendið slóðina á
+hana með.**
+
+Sarpur gerir þetta og það virkar: **önnur `dc:identifier`-lína með beinni
+myndslóð**, aðgreind frá síðuslóðinni á slóðamynstrinu.
+
+```xml
+<dc:identifier>https://sarpur.is/en/collection/item/1906282/</dc:identifier>
+<dc:identifier>https://sarpur.is/multimedia/1/multimedia-2259821.large.jpg</dc:identifier>
+```
+
+Okkar megin les leitarvísirinn þær í sitt hvorn reitinn með tveimur regex-um
+á sama `dc:identifier`:
+
+| Linking Parameter | Regex | Skilar |
+|---|---|---|
+| **1** — tengill | `https://safn\.is/hlutur/.*` | „Skoða hjá útgefanda" |
+| **2** — smámynd | `https://safn\.is/.*\.jpg` | myndin á spjaldinu |
+
+Þrjú skilyrði, öll einföld:
+
+- **Bein slóð** á myndskrána sjálfa — endar á `.jpg`, `.png` eða `.webp`.
+  Ekki slóð á síðu sem birtir myndina.
+- **Opin** án innskráningar, án `Referer`-kröfu og án tímabundins auðkennis.
+- **Aðgreinanleg með regex** frá síðuslóðinni. Ólíkt slóðamynstur dugar
+  (`/multimedia/` vs `/collection/`), eða bara skráarendingin.
+
+Stærðin skiptir minna máli en aðgengið — leitarvísirinn skalar myndina.
+Ef þið eigið bæði smámynd og fulla mynd, sendið **smámyndina**; hún er það
+sem birtist í listanum og hún hleðst hraðar.
+
+Ef mynd er ekki til er reitnum einfaldlega sleppt. Hann er ráðlagður, ekki skylda.
 
 ### 2.3 Hreinsun við útgáfu — skylda
 
@@ -278,6 +315,7 @@ Færslurnar:
 - [ ] Hnit `POINT(lengd breidd)`, öll innan raunhæfra marka
 - [ ] Staðanöfn í nefnifalli, án forskeytis
 - [ ] Slóðirnar svara 200 — ekki 302 á forsíðu
+- [ ] Smámyndaslóð með þar sem mynd er til — bein, opin, aðgreinanleg með regex
 - [ ] `dc:rights` segir hvað má
 
 ---
