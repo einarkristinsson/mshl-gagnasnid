@@ -172,6 +172,41 @@ sem birtist í listanum og hún hleðst hraðar.
 
 Ef mynd er ekki til er reitnum einfaldlega sleppt. Hann er ráðlagður, ekki skylda.
 
+### 2.5 Staðanöfn — nefnifall, hnit, eða auðkenni
+
+Þetta er reiturinn sem veldur mestum vandræðum í íslenskum gögnum, og
+ástæðan er beyging. Sía er bókstafsjöfnuður: **`Skálholti` sameinast aldrei
+`Skálholt`.** Mælt í leitarvísinum 16.9.2026: `Skálholt` skilar 3.032
+færslum, `Skálholti` 937 — tvö aðskilin mengi um sama stað.
+
+Við biðjum um eitt af þrennu. **Það efsta sem þið getið skilað.**
+
+| | Hvað | Af hverju |
+|---|---|---|
+| **1. Best** | **auðkenni staðarins** — t.d. örnefnanúmer eða ykkar eigið varanlega auðkenni | beyging og stafsetning hætta að skipta máli |
+| **2. Næstbest** | **hnit** `POINT(lengd breidd)` | leysa bæði beygingu OG stafsetningu. Mælt: `Breiðabólstaður` og `Breiðabólsstaður` reyndust **0,00 km** frá hvor öðrum — nafnapörun féll, hnitin ekki |
+| **3. Lágmark** | **nafnið í nefnifalli** — `Þingvellir`, ekki `Þingvöllum` | sameinast öðrum söfnum í síunni |
+
+**Ef heimildin ykkar ber þágufall er það í lagi — skilið því.** Í sögulegum
+texta *er* þágufallið heimildin („prestur á Kaldaðarnesi") og við ætlumst
+ekki til að þið endurskrifið hana. Sendið þá beygðu myndina og **látið
+fylgja hnit eða auðkenni** ef þau eru til.
+
+Okkar megin afbeygjum við það sem við getum: forskrift flettir beygðri mynd
+upp í 11.471 bæjarnafni úr Sögulegu mann- og bæjatali. Mælt á Ævum lærðra
+manna: **7 % pössuðu óafbeygð, 67 % eftir afbeygingu.** Það sem stóð eftir
+var stafsetningarmunur og staðir sem eru ekki bæir — hvorugt leysist með
+fleiri málfræðireglum.
+
+**Sendið hvort tveggja ef þið eigið það:** upprunalegu myndina eins og hún
+stendur í heimildinni, og nefnifallið. Þá glatast ekkert og sían virkar.
+
+```xml
+<dc:coverage xml:lang="is">Kaldaðarnes</dc:coverage>
+<dcterms:spatial xsi:type="dcterms:Point">POINT(-20.925 63.925)</dcterms:spatial>
+<dcterms:bibliographicCitation xml:lang="is">prestur á Kaldaðarnesi</dcterms:bibliographicCitation>
+```
+
 ### 2.3 Hreinsun við útgáfu — skylda
 
 - Aldrei strenginn `None`, `null`, `N/A` eða `-` sem gildi. Sleppið reitnum.
