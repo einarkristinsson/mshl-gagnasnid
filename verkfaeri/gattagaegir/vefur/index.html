@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gáttagægir — OAI-PMH prófun MSHL</title>
+  <link rel="stylesheet" href="/vefur/still.css">
+</head>
+<body>
+  <header class="haus">
+    <div class="innihald">
+      <h1>Gáttagægir</h1>
+      <p class="undirtitill">
+        Prófar OAI-PMH endapunkt gagnaveitu gegn gátlista MSHL fyrir
+        afhendingu í samleit.
+      </p>
+      <p class="tenglar">
+        <a href="https://github.com/einarkristinsson/mshl-gagnasnid/blob/main/oai-pmh/GATLISTI.md" target="_blank" rel="noopener">Gátlisti</a>
+        ·
+        <a href="https://github.com/einarkristinsson/mshl-gagnasnid/blob/main/oai-pmh/LEIDBEININGAR.md" target="_blank" rel="noopener">Leiðbeiningar</a>
+        ·
+        <a href="https://github.com/einarkristinsson/mshl-gagnasnid/blob/main/snidmat/GULLNA-SNIDID.md" target="_blank" rel="noopener">Gullna sniðið</a>
+      </p>
+    </div>
+  </header>
+
+  <main class="innihald">
+    <form id="form" class="form">
+      <label for="slod">Slóð endapunkts (<code>baseURL</code>)</label>
+      <div class="inntakslina">
+        <input id="slod" name="slod" type="url" inputmode="url"
+               placeholder="https://safn.is/oai" autocomplete="off" required>
+        <button id="keyra" type="submit">Keyra athuganir</button>
+        <button id="haetta" type="button" class="aukabutton" hidden>Hætta</button>
+      </div>
+      <details class="stillingar">
+        <summary>Stillingar</summary>
+        <div class="stillingargrid">
+          <label>Síður í göngu (ListRecords)
+            <input id="sidur" type="number" value="3" min="1" max="10"></label>
+          <label>Sýnisfærslur (GetRecord)
+            <input id="syni" type="number" value="10" min="1" max="25"></label>
+          <label>Sett prófuð
+            <input id="sett" type="number" value="5" min="0" max="10"></label>
+          <label class="gatmerki">
+            <input id="slodaprof" type="checkbox" checked>
+            Prófa slóðir og smámyndir (HEAD-beiðnir á vef safnsins)</label>
+        </div>
+      </details>
+      <p class="fyrirvari">
+        Gáttagægir sendir eina beiðni í einu, með auðkennandi User-Agent, og
+        sækir aldrei allt safnið — aðeins lítið sýni.
+      </p>
+    </form>
+
+    <div id="stada" class="statusbar" hidden>
+      <span class="snuningur" aria-hidden="true"></span>
+      <span id="statustexti">Í gangi…</span>
+    </div>
+
+    <div id="banner" class="banner" hidden></div>
+
+    <section id="samantekt" class="samantekt" hidden>
+      <div class="badges" id="badges"></div>
+      <div class="metalina" id="metalina"></div>
+    </section>
+
+    <section id="nidurstodur" class="nidurstodur" aria-live="polite"></section>
+
+    <section id="faerslukafli" class="faerslukafli" hidden>
+      <h2>Færslur í sýni</h2>
+      <p class="smatt">Smelltu á færslu til að lesa reitina — þetta er
+        gagnvirka útgáfan af „opnað tíu færslur og lesið þær“.</p>
+      <table class="faerslutafla">
+        <thead><tr><th>Auðkenni</th><th>Titill</th><th>Uppruni</th>
+          <th>Athugasemdir</th></tr></thead>
+        <tbody id="faerslulikami"></tbody>
+      </table>
+      <div id="faersluspjald" class="faersluspjald" hidden></div>
+    </section>
+
+    <section id="samantektarkafli" class="samantektarkafli" hidden>
+      <h2>Afritanleg samantekt</h2>
+      <div class="samantektarhnappar">
+        <button id="afrita" type="button">Afrita samantekt</button>
+        <button id="saekjajson" type="button" class="aukabutton">Sækja JSON</button>
+      </div>
+      <pre id="samantektartexti" class="samantektartexti"></pre>
+    </section>
+  </main>
+
+  <footer class="fotur innihald">
+    Gáttagægir · Miðstöð stafrænna hugvísinda og lista · hreint python3
+  </footer>
+
+  <script src="/vefur/gaegir.js"></script>
+</body>
+</html>

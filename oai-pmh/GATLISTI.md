@@ -3,6 +3,9 @@
 Til að haka í áður en gagnaveita er afhent. Ítarlegar skýringar á hverju
 atriði eru í [LEIDBEININGAR.md](LEIDBEININGAR.md).
 
+**Gáttagægir keyrir þennan lista sjálfvirkt** — límdu inn slóð endapunktsins
+og fáðu stóðst/villu-skýrslu. Sjá [`../verkfaeri/gattagaegir/`](../verkfaeri/gattagaegir/).
+
 ## Endapunkturinn
 
 - [ ] `Identify` svarar og `baseURL` þar virkar orðrétt

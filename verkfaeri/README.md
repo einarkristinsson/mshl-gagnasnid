@@ -7,6 +7,7 @@ engin ytri söfn, ekkert `pip install`.
 |---|---|
 | [`saekja-oai.py`](saekja-oai.py) | Sækir allt safnið með `ListIdentifiers` + `GetRecord` og skrifar JSONL. **Endurræsanleg** — sleppir því sem þegar er sótt |
 | [`telja-efnisord.py`](telja-efnisord.py) | Telur efnisorð með auðkennum og skrifar TSV með uppsöfnuðu hlutfalli |
+| [`gattagaegir/`](gattagaegir/) | **Gáttagægir** — vefverkfæri sem prófar OAI-PMH endapunkt gegn [gátlistanum](../oai-pmh/GATLISTI.md) og [gullna sniðinu](../snidmat/GULLNA-SNIDID.md). Límdu inn slóð, fáðu stóðst/villu-skýrslu. Sér um gildrurnar úr [LEIDBEININGAR](../oai-pmh/LEIDBEININGAR.md) |
 
 ## Af hverju `ListIdentifiers` + `GetRecord` en ekki `ListRecords`
 
