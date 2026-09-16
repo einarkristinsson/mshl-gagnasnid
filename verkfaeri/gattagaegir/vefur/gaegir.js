@@ -237,6 +237,17 @@
     }
   }
 
+  const endapunktar = $("#endapunktar");
+  if (endapunktar) {
+    endapunktar.addEventListener("change", () => {
+      const val = endapunktar.value;
+      if (val) {
+        $("#slod").value = val;
+        $("#slod").focus();
+      }
+    });
+  }
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const slod = $("#slod").value.trim();

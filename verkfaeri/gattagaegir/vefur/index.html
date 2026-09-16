@@ -26,6 +26,23 @@
 
   <main class="innihald">
     <form id="form" class="form">
+      <label for="endapunktar">Þekktir endapunktar</label>
+      <select id="endapunktar" class="endapunktaval">
+        <option value="">— veldu gagnaveitu —</option>
+        <optgroup label="Gagnaveitur">
+          <option value="https://rosetta-icelandsarpur.ciim.zetcom.group/oai">Sarpur</option>
+          <option value="https://smb.mshl.is/oai/">Sögulegt mann- og bæjatal (SMB)</option>
+          <option value="https://jardir.skjalasafn.is/oai/">Jarðir og fasteignir</option>
+          <option value="https://ismus.is/oai_pmh/">Ísmús og Sagnagrunnur</option>
+          <option value="" disabled>Handrit.is — skilar ekki OAI-PMH</option>
+          <option value="" disabled>Ævir lærðra manna — skilar ekki OAI-PMH</option>
+        </optgroup>
+        <optgroup label="Prófun (hermir)">
+          <option value="http://127.0.0.1:8766/god/oai">Hermir — heill (prófun)</option>
+          <option value="http://127.0.0.1:8766/brotin/oai">Hermir — brotinn (prófun)</option>
+        </optgroup>
+      </select>
+
       <label for="slod">Slóð endapunkts (<code>baseURL</code>)</label>
       <div class="inntakslina">
         <input id="slod" name="slod" type="url" inputmode="url"

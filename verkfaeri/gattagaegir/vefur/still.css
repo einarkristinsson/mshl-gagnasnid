@@ -23,6 +23,9 @@ body {
 .form { background: var(--spjald); border: 1px solid var(--lina);
   border-radius: 12px; padding: 20px; margin: 24px 0; }
 .form label { font-weight: 600; display: block; margin-bottom: 8px; }
+.endapunktaval { display: block; width: 100%; margin-bottom: 16px;
+  padding: 11px 12px; font-size: 16px; background: var(--spjald);
+  border: 1px solid var(--lina); border-radius: 8px; color: var(--texti); }
 .inntakslina { display: flex; gap: 10px; flex-wrap: wrap; }
 #slod { flex: 1 1 340px; padding: 11px 12px; font-size: 16px;
   border: 1px solid var(--lina); border-radius: 8px; }
