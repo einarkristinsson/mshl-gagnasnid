@@ -14,12 +14,9 @@ def markdown(skyrsla):
              % (skyrsla.get("slod"), skyrsla.get("lokid"),
                 skyrsla.get("utgafa")))
     cls = syni.get("completeListSize")
-    L.append("Sýni: %s færslur (%s síður ListRecords + %s GetRecord)%s · "
-             "%s beiðnir"
-             % (syni.get("faerslur"), syni.get("listrecords_sidur"),
-                syni.get("getrecord"),
-                (" · completeListSize %s" % cls) if cls else "",
-                syni.get("beidnir")))
+    L.append("Sýni: %s færslur skoðaðar%s"
+             % (syni.get("faerslur"),
+                (" · alls %s í safni" % cls) if cls else ""))
     L.append("Niðurstaða: %d villur · %d aðvaranir · %d ábendingar · "
              "%d stóðust · %d sleppt"
              % (st.get("villur", 0), st.get("advaranir", 0),

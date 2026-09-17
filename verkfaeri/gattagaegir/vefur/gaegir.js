@@ -80,7 +80,8 @@
     d.innerHTML =
       '<summary><span class="' + merkiklassi(a) + '">' + esc(merkitexti(a)) +
       '</span><span class="radatexti"><div class="radaheiti">' + gildra +
-      esc(a.heiti) + " <small>(" + esc(a.kenni) + ")</small></div>" +
+      esc(a.heiti) + ' <small class="radakodi">(' + esc(a.kenni) +
+      ")</small></div>" +
       '<div class="radaskilabod">' + esc(a.skilabod) + "</div></span></summary>" +
       (smatt ? '<div class="radasmatt">' + smatt + "</div>" : "");
     h.appendChild(d);
@@ -95,11 +96,13 @@
         "sleppt");
     const y = sk.syni || {};
     const idf = sk.identify || {};
-    metalina.textContent =
-      (idf.repositoryName ? idf.repositoryName + " · " : "") +
-      "n = " + y.faerslur + " færslur · " + y.beidnir + " beiðnir" +
-      (y.completeListSize ? " · completeListSize " + y.completeListSize : "") +
-      " · " + (sk.lokid || "");
+    metalina.innerHTML =
+      (idf.repositoryName ? esc(idf.repositoryName) + " · " : "") +
+      "n = " + esc(y.faerslur) + " færslur" +
+      (y.completeListSize ? " · alls " + esc(y.completeListSize) +
+        " í safni" : "") +
+      '<span class="beidnimeta"> · ' + esc(y.beidnir) + " beiðnir</span>" +
+      " · " + esc(sk.lokid || "");
     samantekt.hidden = false;
   }
   function badge(kl, tala, heiti) {
@@ -440,6 +443,16 @@
     });
 
     byggjaVal("");
+  }
+
+  // ---- Tæknilegar upplýsingar: fela bakvinnslu-atriði sjálfgefið ----
+  // Sjálfgefna sýnin er fyrir gagnagjafa: engir innri kóðar, engar
+  // beiðnatölur, engar tilvísanaslóðir. Kveikt = fyrir okkur/villuleit.
+  const taeknihnappur = $("#taeknistillingar");
+  if (taeknihnappur) {
+    taeknihnappur.addEventListener("change", () => {
+      document.body.classList.toggle("syna-taekni", taeknihnappur.checked);
+    });
   }
 
   // ---- Snið og dæmi: sótt úr /api/snid þegar spjaldið er opnað ----

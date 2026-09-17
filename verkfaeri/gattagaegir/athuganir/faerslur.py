@@ -185,25 +185,26 @@ def F06(s):
 
 
 def F07(s):
-    nd = _nd(s, "F07", "Smámyndaslóð: bein, opin, aðgreinanleg", ADVORUN)
+    nd = _nd(s, "F07", "Myndaslóð: bein slóð á mynd, opin", ADVORUN)
     faerslur = _berandi(s)
     if not faerslur:
         return nd.sleppt_("Engar færslur í sýni.")
     med_mynd = [f for f in faerslur if _myndaslodir(f)]
     if not med_mynd:
         nd.alvarleiki = ABENDING
-        return nd.fell_("Engin færsla ber smámyndaslóð — reiturinn sem "
+        return nd.fell_("Engin færsla ber myndaslóð — reiturinn sem "
                         "oftast gleymist. Færsla með mynd er margfalt "
                         "gagnlegri.")
-    # aðgreinanleiki með regex: mynd vs síða
+    # myndaslóðin þarf að vera önnur en síðuslóðin
     allar_myndir = [u for f in med_mynd for u in _myndaslodir(f)]
     allar_sidur = [u for f in faerslur for u in _sidusslodir(f)]
     skorun = [u for u in allar_myndir if u in allar_sidur]
     if skorun:
         nd.baeta(gildi=skorun[0],
-                 skyring="myndslóð er ekki aðgreinanleg frá síðuslóð")
-        return nd.fell_("Myndslóðir eru ekki aðgreinanlegar frá síðuslóðum "
-                        "með regex.")
+                 skyring="myndaslóðin er sú sama og síðuslóðin")
+        return nd.fell_("Myndaslóðin þarf að vera önnur en síðuslóðin — "
+                        "bein slóð á myndskrána sjálfa (t.d. sem endar á "
+                        ".jpg), ekki slóðin á síðuna.")
     # bein + opin (netprófun)
     fell = 0
     skodad = 0
@@ -232,9 +233,9 @@ def F07(s):
                          skyring="tímabundið auðkenni í slóð?")
     if fell:
         nd.alvarleiki = VILLA
-        return nd.fell_("%d af %d smámyndaslóðum eru ekki beinar/opnar."
+        return nd.fell_("%d af %d myndaslóðum eru ekki beinar/opnar."
                         % (fell, skodad), skodad=skodad, fell=fell)
-    return nd.stodst_("%d/%d færslna bera aðgreinanlega smámyndaslóð."
+    return nd.stodst_("%d/%d færslna bera beina myndaslóð."
                       % (len(med_mynd), len(faerslur)))
 
 

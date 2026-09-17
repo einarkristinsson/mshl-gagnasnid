@@ -90,6 +90,14 @@ button:disabled { opacity: 0.5; cursor: default; }
 .badge.stodst { background: var(--gr-bg); color: var(--gr); }
 .badge.sleppt { background: var(--grar-bg); color: var(--grar); }
 .metalina { color: var(--grar); font-size: 14px; }
+.taeknival { display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 10px; color: var(--grar); font-size: 13px; cursor: pointer; }
+.taeknival input { margin: 0; }
+
+/* Bakvinnslu-atriði: falin sjálfgefið (gagnagjafasýn), sýnd í tæknisýn */
+.radakodi, .tilvisun, .beidnimeta { display: none; }
+.syna-taekni .radakodi, .syna-taekni .beidnimeta { display: inline; }
+.syna-taekni .tilvisun { display: block; }
 
 .hopur { background: var(--spjald); border: 1px solid var(--lina);
   border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
