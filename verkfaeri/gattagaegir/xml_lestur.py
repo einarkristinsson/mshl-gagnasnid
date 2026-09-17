@@ -20,6 +20,13 @@ _FORSKEYTI = {
     XSI: "xsi", MSHL: "mshl", XML_NS: "xml",
 }
 
+# Skrá forskeytin svo ET.tostring haldi læsilegum forskeytum (oai_dc:dc)
+# í stað ns0: þegar við raðgreinum hráa færslu. (xml-forskeytið er
+# sérmeðhöndlað af ElementTree og má ekki skrá.)
+for _ns, _pfx in _FORSKEYTI.items():
+    if _ns != XML_NS:
+        ET.register_namespace(_pfx, _ns)
+
 _HTML_MERKI = re.compile(
     r"<!doctype html|<html[\s>]|<b>\s*fatal error|<b>\s*warning|"
     r"stack trace|<br\s*/?>|parse error:",
@@ -53,6 +60,7 @@ class Faersla:
         self.eydd = False
         self.reitir = []
         self.hefur_metadata = False
+        self.hratt_xml = None     # raðgreint <record> XML (oai_dc-forskeyti)
 
     def reitir_heitir(self, nafn):
         return [r for r in self.reitir if r.nafn == nafn]
@@ -147,6 +155,10 @@ def _reitir_ur_dc(dc_el):
 
 def _faersla_ur_record(rec):
     f = Faersla()
+    try:
+        f.hratt_xml = ET.tostring(rec, encoding="unicode")
+    except Exception:
+        f.hratt_xml = None
     haus = rec.find("{%s}header" % OAI)
     if haus is not None:
         f.eydd = haus.get("status") == "deleted"

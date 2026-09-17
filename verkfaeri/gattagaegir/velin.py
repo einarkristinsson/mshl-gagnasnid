@@ -123,6 +123,7 @@ def _faerslur_json(s, nidurstodur):
             "reitir": [{"nafn": r.nafn, "lang": r.lang,
                         "xsi_type": r.xsi_type, "gildi": r.gildi,
                         "eigindir": r.eigindir} for r in f.reitir],
+            "hratt_xml": getattr(f, "hratt_xml", None),
             "athugasemdir": eftir_aud.get(f.audkenni, []),
         })
     return ut

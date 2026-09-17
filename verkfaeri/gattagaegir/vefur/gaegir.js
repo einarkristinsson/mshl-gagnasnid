@@ -147,6 +147,11 @@
         "</td></tr>";
     });
     h += "</tbody></table>";
+    if (f.hratt_xml) {
+      h += '<details class="hratt"><summary>Sýna hrátt XML (oai_dc)</summary>' +
+        '<p class="smatt">Berðu saman við gullna sniðið hér að ofan.</p>' +
+        '<pre class="xmlblokk">' + esc(f.hratt_xml) + "</pre></details>";
+    }
     faersluspjald.innerHTML = h;
     faersluspjald.hidden = false;
     faersluspjald.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -435,6 +440,44 @@
     });
 
     byggjaVal("");
+  }
+
+  // ---- Snið og dæmi: sótt úr /api/snid þegar spjaldið er opnað ----
+  const snidbox = $("#snidbox");
+  let snidSott = false;
+  async function saekjaSnid() {
+    const holf = $("#snidgogn");
+    holf.innerHTML = '<p class="smatt">Sæki…</p>';
+    try {
+      const svar = await fetch("/api/snid");
+      if (!svar.ok) throw new Error("stada " + svar.status);
+      const d = await svar.json();
+      let h = "";
+      if (d.gullna) {
+        h += "<h3>Gullna sniðið — oai_dc <small>(" +
+          esc(d.gullna_heimild) + ")</small></h3>";
+        h += '<pre class="xmlblokk">' + esc(d.gullna) + "</pre>";
+      }
+      if (d.daemi && d.daemi.length) {
+        h += "<h3>Dæmi um gullnar færslur</h3>";
+        d.daemi.forEach((x) => {
+          h += "<h4>" + esc(x.titill) + " <small>(" + esc(x.heimild) +
+            ")</small></h4>";
+          h += '<pre class="xmlblokk">' + esc(x.xml) + "</pre>";
+        });
+      } else {
+        h += '<p class="smatt">Engin sérdæmi enn í snidmat/daemi/.</p>';
+      }
+      holf.innerHTML = h || '<p class="smatt">Ekkert snið fannst.</p>';
+    } catch (e) {
+      holf.innerHTML = '<div class="banner">Villa við að sækja snið: ' +
+        esc(e.message) + "</div>";
+    }
+  }
+  if (snidbox) {
+    snidbox.addEventListener("toggle", () => {
+      if (snidbox.open && !snidSott) { snidSott = true; saekjaSnid(); }
+    });
   }
 
   form.addEventListener("submit", (e) => {

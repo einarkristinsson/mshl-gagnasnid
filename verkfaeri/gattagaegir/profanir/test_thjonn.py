@@ -73,6 +73,24 @@ class ThjonnProf(unittest.TestCase):
             _post(self.b + "/api/profa", {"slod": "ftp://x"})
         self.assertEqual(c.exception.code, 400)
 
+    def test_snid_skilar_gullna(self):
+        st, texti, _ = _get(self.b + "/api/snid")
+        self.assertEqual(st, 200)
+        d = json.loads(texti)
+        self.assertTrue(d["gullna"].strip(), "gullna á ekki að vera tómt")
+        self.assertIn("oai_dc:dc", d["gullna"])
+        self.assertIsInstance(d["daemi"], list)
+
+    def test_faerslur_bera_hratt_xml(self):
+        st, texti, _ = _get(self.b + "/api/profa?slod=" + self.h.base
+                            + "/god/oai&bid_ms=0&sidur=2&syni=4")
+        d = json.loads(texti)
+        faerslur = d.get("faerslur", [])
+        self.assertTrue(faerslur, "engar færslur í skýrslu")
+        medxml = [f for f in faerslur if f.get("hratt_xml")]
+        self.assertTrue(medxml, "engin færsla bar hratt_xml")
+        self.assertIn("oai_dc:dc", medxml[0]["hratt_xml"])
+
 
 if __name__ == "__main__":
     unittest.main()

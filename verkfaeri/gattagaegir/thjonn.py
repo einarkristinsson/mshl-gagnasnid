@@ -9,6 +9,7 @@ Leiðir:
 """
 import json
 import os
+import re
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
@@ -17,6 +18,74 @@ from . import UTGAFA
 from . import velin
 
 VEFUR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "vefur")
+# Rót geymslunnar: skráin er í verkfaeri/gattagaegir/, rótin er þrjú þrep upp.
+ROT = os.path.dirname(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))))
+
+_XML_BLOKK = re.compile(r"```xml\n(.*?)\n```", re.DOTALL)
+
+
+def _lesa_skra(*hlutar):
+    """Les textaskrá undir rótinni; skilar tómum streng ef hún vantar."""
+    try:
+        with open(os.path.join(ROT, *hlutar), encoding="utf-8") as f:
+            return f.read()
+    except OSError:
+        return ""
+
+
+def _xml_ur_markdown(texti, heimild):
+    """Nær ```xml-blokkum úr markdown með fyrirsögn feitletruðu línunnar
+    á undan (t.d. „**1 · Staður** — …")."""
+    ut = []
+    heiti = None
+    innan = False
+    buffer = []
+    for lina in texti.splitlines():
+        strk = lina.strip()
+        if innan:
+            if strk.startswith("```"):
+                innan = False
+                ut.append({"titill": heiti or "Dæmi",
+                           "xml": "\n".join(buffer).strip(),
+                           "heimild": heimild})
+            else:
+                buffer.append(lina)
+        else:
+            if strk.startswith("**"):
+                heiti = strk.replace("**", "").strip()
+            if strk.startswith("```xml"):
+                innan = True
+                buffer = []
+    return ut
+
+
+def _snid_gogn():
+    """Les gullna sniðið og dæmi beint úr repo-skjölunum (skrifvarið)."""
+    gullna = ""
+    for m in _XML_BLOKK.finditer(_lesa_skra("snidmat", "GULLNA-SNIDID.md")):
+        blokk = m.group(1).strip()
+        if "oai_dc:dc" in blokk:
+            gullna = blokk
+            break
+    daemi = []
+    # sjálfstæðar .xml skrár í snidmat/daemi/ (ef einhverjar verða til)
+    try:
+        skrar = sorted(n for n in os.listdir(os.path.join(ROT, "snidmat",
+                                                          "daemi"))
+                       if n.endswith(".xml"))
+    except OSError:
+        skrar = []
+    for n in skrar:
+        daemi.append({"titill": n, "xml": _lesa_skra("snidmat", "daemi", n),
+                      "heimild": "snidmat/daemi/%s" % n})
+    # xml-blokkir úr README (raunfærslur á gullna sniðinu)
+    readme = _lesa_skra("snidmat", "daemi", "README.md")
+    if readme:
+        daemi.extend(_xml_ur_markdown(readme, "snidmat/daemi/README.md"))
+    return {"gullna": gullna,
+            "gullna_heimild": "snidmat/GULLNA-SNIDID.md",
+            "daemi": daemi}
 _STATIC = {
     "still.css": "text/css; charset=utf-8",
     "gaegir.js": "application/javascript; charset=utf-8",
@@ -80,6 +149,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(404, {"villa": "óþekkt skrá"})
         if p.path == "/api/heilsa":
             return self._json(200, {"stada": "ok", "utgafa": UTGAFA})
+        if p.path == "/api/snid":
+            return self._json(200, _snid_gogn())
         if p.path == "/api/profa":
             q = {k: v[0] for k, v in parse_qs(p.query).items()}
             slod = _gild_slod(q.get("slod"))
