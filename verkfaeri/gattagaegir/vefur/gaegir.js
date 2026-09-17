@@ -237,15 +237,204 @@
     }
   }
 
+  // ---- Endapunktastjóri: innbyggðir + „Mínar veitur" (localStorage) ----
+  // Innbyggði listinn er eina uppspretta þekktra veitna. Slóðir eru teknar
+  // orðrétt úr gagnaveitur/*/README.md og verkfaeri/README.md — ekkert er
+  // fundið upp. Handrit.is og Ævir skila ekki OAI-PMH og eru óvirk.
+  const INNBYGGDIR = [
+    { hopur: "Gagnaveitur", nafn: "Sarpur",
+      slod: "https://rosetta-icelandsarpur.ciim.zetcom.group/oai",
+      sidur: 3, syni: 10, sett: 5, slodaprof: true },
+    { hopur: "Gagnaveitur", nafn: "Sögulegt mann- og bæjatal (SMB)",
+      slod: "https://smb.mshl.is/oai/",
+      sidur: 3, syni: 10, sett: 5, slodaprof: true },
+    { hopur: "Gagnaveitur", nafn: "Jarðir og fasteignir",
+      slod: "https://jardir.skjalasafn.is/oai/",
+      sidur: 3, syni: 10, sett: 5, slodaprof: true },
+    { hopur: "Gagnaveitur", nafn: "Ísmús og Sagnagrunnur",
+      slod: "https://ismus.is/oai_pmh/",
+      sidur: 3, syni: 10, sett: 0, slodaprof: true,
+      athugasemd: "Stórt safn og aðeins isebel-snið (engin sett, " +
+        "noSetHierarchy). ListRecords fellur á brotnum færslum uppruna " +
+        "megin; GetRecord-leiðin er notuð við uppskeru." },
+    { hopur: "Gagnaveitur",
+      nafn: "Handrit.is — skilar ekki OAI-PMH", ovirkt: true },
+    { hopur: "Gagnaveitur",
+      nafn: "Ævir lærðra manna — skilar ekki OAI-PMH", ovirkt: true },
+    { hopur: "Prófun (hermir)", nafn: "Hermir — heill (prófun)",
+      slod: "http://127.0.0.1:8766/god/oai",
+      sidur: 3, syni: 10, sett: 5, slodaprof: true },
+    { hopur: "Prófun (hermir)", nafn: "Hermir — brotinn (prófun)",
+      slod: "http://127.0.0.1:8766/brotin/oai",
+      sidur: 3, syni: 10, sett: 5, slodaprof: true },
+  ];
+  const HOPRAD = ["Gagnaveitur", "Mínar veitur", "Prófun (hermir)"];
+  const GEYMSLULYKILL = "gattagaegir.veitur";
+
   const endapunktar = $("#endapunktar");
+  const veituath = $("#veituath");
+  const fjarlaegjaHnappur = $("#fjarlaegja");
+  const stillingaSvid = ["sidur", "syni", "sett"];
+
+  let veitur = [];        // samsettur listi með lykli á hverri veitu
+  let valinLykill = "";
+
+  function gildSlod(s) {
+    try {
+      const u = new URL(String(s || "").trim());
+      return u.protocol === "http:" || u.protocol === "https:";
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function lesaMinar() {
+    try {
+      const g = JSON.parse(localStorage.getItem(GEYMSLULYKILL) || "[]");
+      return Array.isArray(g) ? g : [];
+    } catch (e) {
+      return [];
+    }
+  }
+  function vistaMinar(listi) {
+    try {
+      localStorage.setItem(GEYMSLULYKILL, JSON.stringify(listi));
+    } catch (e) { /* localStorage getur verið lokað — hunsa */ }
+  }
+
+  function byggjaVeitur() {
+    veitur = [];
+    INNBYGGDIR.forEach((v, i) => {
+      veitur.push(Object.assign({ lykill: "innb-" + i, minn: false }, v));
+    });
+    lesaMinar().forEach((v) => {
+      veitur.push(Object.assign({}, v, {
+        lykill: "minn-" + v.id, hopur: "Mínar veitur", minn: true,
+      }));
+    });
+  }
+
+  function byggjaVal(velja) {
+    byggjaVeitur();
+    endapunktar.innerHTML = "";
+    const tomt = document.createElement("option");
+    tomt.value = "";
+    tomt.textContent = "— veldu gagnaveitu —";
+    endapunktar.appendChild(tomt);
+    HOPRAD.forEach((hopur) => {
+      const iHop = veitur.filter((v) => v.hopur === hopur);
+      if (!iHop.length) return;
+      const grp = document.createElement("optgroup");
+      grp.label = hopur;
+      iHop.forEach((v) => {
+        const o = document.createElement("option");
+        o.value = v.ovirkt ? "" : v.lykill;
+        o.textContent = v.nafn;
+        if (v.ovirkt) o.disabled = true;
+        grp.appendChild(o);
+      });
+      endapunktar.appendChild(grp);
+    });
+    endapunktar.value = velja || "";
+    synaValda();
+  }
+
+  function finnaVeitu(lykill) {
+    return veitur.find((v) => v.lykill === lykill) || null;
+  }
+
+  function setjaStillingar(v) {
+    $("#sidur").value = v.sidur != null ? v.sidur : 3;
+    $("#syni").value = v.syni != null ? v.syni : 10;
+    $("#sett").value = v.sett != null ? v.sett : 5;
+    $("#slodaprof").checked = v.slodaprof != null ? !!v.slodaprof : true;
+  }
+
+  function synaValda() {
+    valinLykill = endapunktar.value;
+    const v = finnaVeitu(valinLykill);
+    if (v && v.athugasemd) {
+      veituath.textContent = v.athugasemd;
+      veituath.hidden = false;
+    } else {
+      veituath.hidden = true;
+    }
+    fjarlaegjaHnappur.hidden = !(v && v.minn);
+  }
+
   if (endapunktar) {
     endapunktar.addEventListener("change", () => {
-      const val = endapunktar.value;
-      if (val) {
-        $("#slod").value = val;
+      const v = finnaVeitu(endapunktar.value);
+      if (v && !v.ovirkt) {
+        $("#slod").value = v.slod || "";
+        setjaStillingar(v);
         $("#slod").focus();
       }
+      synaValda();
     });
+
+    // Breytingar á stillingum meðan „mín" veita er valin -> vista þær.
+    function vistaStillingarValinnar() {
+      const v = finnaVeitu(valinLykill);
+      if (!v || !v.minn) return;
+      const minar = lesaMinar();
+      const m = minar.find((x) => ("minn-" + x.id) === valinLykill);
+      if (!m) return;
+      m.sidur = +$("#sidur").value;
+      m.syni = +$("#syni").value;
+      m.sett = +$("#sett").value;
+      m.slodaprof = $("#slodaprof").checked;
+      vistaMinar(minar);
+    }
+    stillingaSvid.forEach((s) =>
+      $("#" + s).addEventListener("change", vistaStillingarValinnar));
+    $("#slodaprof").addEventListener("change", vistaStillingarValinnar);
+
+    // Bæta við nýrri veitu.
+    $("#baeta-vid").addEventListener("click", () => {
+      const villa = $("#baeta-villa");
+      const nafn = $("#ny-nafn").value.trim();
+      const slod = $("#ny-slod").value.trim();
+      if (!nafn) {
+        villa.textContent = "Nafn vantar.";
+        villa.hidden = false;
+        return;
+      }
+      if (!gildSlod(slod)) {
+        villa.textContent = "Ógild slóð — verður að byrja á http:// eða https://";
+        villa.hidden = false;
+        return;
+      }
+      villa.hidden = true;
+      const minar = lesaMinar();
+      const id = String(Date.now()) + "-" +
+        Math.random().toString(36).slice(2, 7);
+      minar.push({
+        id: id, nafn: nafn, slod: slod,
+        sidur: +$("#ny-sidur").value, syni: +$("#ny-syni").value,
+        sett: +$("#ny-sett").value, slodaprof: $("#ny-slodaprof").checked,
+        athugasemd: $("#ny-ath").value.trim() || undefined,
+      });
+      vistaMinar(minar);
+      byggjaVal("minn-" + id);
+      // beina inn í formið strax
+      const v = finnaVeitu("minn-" + id);
+      if (v) { $("#slod").value = v.slod; setjaStillingar(v); }
+      $("#ny-nafn").value = "";
+      $("#ny-slod").value = "";
+      $("#ny-ath").value = "";
+    });
+
+    // Fjarlægja valda „mína" veitu.
+    fjarlaegjaHnappur.addEventListener("click", () => {
+      const v = finnaVeitu(valinLykill);
+      if (!v || !v.minn) return;
+      const minar = lesaMinar().filter((x) => ("minn-" + x.id) !== valinLykill);
+      vistaMinar(minar);
+      byggjaVal("");
+    });
+
+    byggjaVal("");
   }
 
   form.addEventListener("submit", (e) => {

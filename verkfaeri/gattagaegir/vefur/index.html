@@ -29,19 +29,12 @@
       <label for="endapunktar">Þekktir endapunktar</label>
       <select id="endapunktar" class="endapunktaval">
         <option value="">— veldu gagnaveitu —</option>
-        <optgroup label="Gagnaveitur">
-          <option value="https://rosetta-icelandsarpur.ciim.zetcom.group/oai">Sarpur</option>
-          <option value="https://smb.mshl.is/oai/">Sögulegt mann- og bæjatal (SMB)</option>
-          <option value="https://jardir.skjalasafn.is/oai/">Jarðir og fasteignir</option>
-          <option value="https://ismus.is/oai_pmh/">Ísmús og Sagnagrunnur</option>
-          <option value="" disabled>Handrit.is — skilar ekki OAI-PMH</option>
-          <option value="" disabled>Ævir lærðra manna — skilar ekki OAI-PMH</option>
-        </optgroup>
-        <optgroup label="Prófun (hermir)">
-          <option value="http://127.0.0.1:8766/god/oai">Hermir — heill (prófun)</option>
-          <option value="http://127.0.0.1:8766/brotin/oai">Hermir — brotinn (prófun)</option>
-        </optgroup>
       </select>
+      <div class="veitulina">
+        <p id="veituath" class="veituath" hidden></p>
+        <button id="fjarlaegja" type="button" class="aukabutton smabutton"
+                hidden>Fjarlægja valda veitu</button>
+      </div>
 
       <label for="slod">Slóð endapunkts (<code>baseURL</code>)</label>
       <div class="inntakslina">
@@ -63,6 +56,35 @@
             <input id="slodaprof" type="checkbox" checked>
             Prófa slóðir og smámyndir (HEAD-beiðnir á vef safnsins)</label>
         </div>
+      </details>
+      <details class="baeta">
+        <summary>Bæta við veitu</summary>
+        <div class="baetagrid">
+          <label>Nafn
+            <input id="ny-nafn" type="text" placeholder="Mitt safn"
+                   autocomplete="off"></label>
+          <label>Slóð (<code>baseURL</code>)
+            <input id="ny-slod" type="url" inputmode="url"
+                   placeholder="https://safn.is/oai" autocomplete="off"></label>
+          <label>Síður í göngu
+            <input id="ny-sidur" type="number" value="3" min="1" max="10"></label>
+          <label>Sýnisfærslur
+            <input id="ny-syni" type="number" value="10" min="1" max="25"></label>
+          <label>Sett prófuð
+            <input id="ny-sett" type="number" value="5" min="0" max="10"></label>
+          <label>Athugasemd (valfrjálst)
+            <input id="ny-ath" type="text" placeholder="stutt minnispunktur"
+                   autocomplete="off"></label>
+          <label class="gatmerki">
+            <input id="ny-slodaprof" type="checkbox" checked>
+            Prófa slóðir og smámyndir</label>
+        </div>
+        <div class="baetahnappar">
+          <button id="baeta-vid" type="button">Bæta við veitu</button>
+          <span id="baeta-villa" class="baeta-villa" hidden></span>
+        </div>
+        <p class="smatt">Veitur sem þú bætir við eru vistaðar í vafranum þínum
+          (localStorage) og lifa endurhleðslu. Þær sendast hvergi.</p>
       </details>
       <p class="fyrirvari">
         Gáttagægir sendir eina beiðni í einu, með auðkennandi User-Agent, og

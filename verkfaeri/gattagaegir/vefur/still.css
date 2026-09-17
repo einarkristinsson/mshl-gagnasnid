@@ -23,9 +23,14 @@ body {
 .form { background: var(--spjald); border: 1px solid var(--lina);
   border-radius: 12px; padding: 20px; margin: 24px 0; }
 .form label { font-weight: 600; display: block; margin-bottom: 8px; }
-.endapunktaval { display: block; width: 100%; margin-bottom: 16px;
+.endapunktaval { display: block; width: 100%; margin-bottom: 8px;
   padding: 11px 12px; font-size: 16px; background: var(--spjald);
   border: 1px solid var(--lina); border-radius: 8px; color: var(--texti); }
+.veitulina { display: flex; align-items: center; gap: 12px;
+  flex-wrap: wrap; margin-bottom: 16px; min-height: 4px; }
+.veituath { color: var(--bl); background: var(--bl-bg); border-radius: 8px;
+  padding: 8px 12px; font-size: 13px; margin: 0; flex: 1 1 240px; }
+.smabutton { padding: 7px 12px; font-size: 13px; }
 .inntakslina { display: flex; gap: 10px; flex-wrap: wrap; }
 #slod { flex: 1 1 340px; padding: 11px 12px; font-size: 16px;
   border: 1px solid var(--lina); border-radius: 8px; }
@@ -45,6 +50,23 @@ button:disabled { opacity: 0.5; cursor: default; }
 .gatmerki { display: flex; align-items: center; gap: 8px; }
 .gatmerki input { margin-top: 0; }
 .fyrirvari { color: var(--grar); font-size: 13px; margin: 14px 0 0; }
+
+.baeta { margin-top: 14px; }
+.baeta summary { cursor: pointer; color: var(--grar); font-weight: 600; }
+.baetagrid { display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 12px; margin-top: 12px; }
+.baetagrid label { font-weight: 400; font-size: 14px; }
+.baetagrid input[type=text], .baetagrid input[type=url] { width: 100%;
+  padding: 8px; border: 1px solid var(--lina); border-radius: 6px;
+  margin-top: 4px; display: block; font-size: 14px; }
+.baetagrid input[type=number] { width: 80px; padding: 6px;
+  border: 1px solid var(--lina); border-radius: 6px; margin-top: 4px;
+  display: block; }
+.baetagrid .gatmerki { grid-column: 1 / -1; }
+.baetahnappar { display: flex; align-items: center; gap: 12px;
+  margin-top: 12px; flex-wrap: wrap; }
+.baeta-villa { color: var(--ra); background: var(--ra-bg); border-radius: 8px;
+  padding: 6px 12px; font-size: 13px; font-weight: 600; }
 
 .statusbar { display: flex; align-items: center; gap: 12px;
   background: var(--spjald); border: 1px solid var(--lina);
@@ -124,4 +146,5 @@ button:disabled { opacity: 0.5; cursor: default; }
 
 @media (max-width: 560px) {
   .stillingargrid { grid-template-columns: 1fr; }
+  .baetagrid { grid-template-columns: 1fr; }
 }
