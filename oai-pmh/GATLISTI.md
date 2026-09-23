@@ -43,7 +43,7 @@ og fáðu stóðst/villu-skýrslu. Sjá [`../verkfaeri/gattagaegir/`](../verkfae
 ## Gildin sjálf
 
 - [ ] Dagsetningar á EDTF (`1887` eða `1703/1910`)
-- [ ] Staðanöfn í **nefnifalli** (`Skálholt`, ekki `Skálholti`)
+- [ ] Staðanöfn í **nefnifalli** (`Skálholt`, ekki `Skálholti`) — eða **hnit/auðkenni** með ef heimildin ber beygða mynd
 - [ ] Engin forskeyti í gildum (`Rangárvallasýsla`, ekki `Sýsla: Rangárvallasýsla`)
 - [ ] Hnit á sniðinu `POINT(lengd breidd)` — á Íslandi er lengd neikvæð
 - [ ] Öll hnit innan raunhæfra marka
