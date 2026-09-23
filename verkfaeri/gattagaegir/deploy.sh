@@ -26,6 +26,32 @@ echo "Verkefni: $VERKEFNI · svæði: $SVAEDI · þjónusta: $NAFN"
 gcloud services enable run.googleapis.com cloudbuild.googleapis.com \
   artifactregistry.googleapis.com --project "$VERKEFNI"
 
+# Geymslan sem „deploy --source" setur myndina í. Stofnuð hér, ekki látin
+# gcloud um það, því heimildin á Artifact Registry er ekki komin í gegn fyrstu
+# sekúndurnar eftir að kveikt er á þjónustunni: mælt 23.9 — PERMISSION_DENIED
+# strax á eftir enable, sama skipun gekk tveimur mínútum síðar. Reynt þar til
+# hún svarar, mest tvær mínútur.
+GEYMSLA="cloud-run-source-deploy"
+for i in $(seq 1 12); do
+  if gcloud artifacts repositories describe "$GEYMSLA" --location "$SVAEDI" \
+       --project "$VERKEFNI" >/dev/null 2>&1; then break; fi
+  if gcloud artifacts repositories create "$GEYMSLA" --repository-format docker \
+       --location "$SVAEDI" --project "$VERKEFNI" >/dev/null 2>&1; then
+    echo "Geymsla $GEYMSLA stofnuð í $SVAEDI"; break
+  fi
+  echo "  bíð eftir Artifact Registry-heimild ($i/12) …"; sleep 10
+done
+
+# Cloud Build byggir myndina sem sjálfgefni Compute-þjónustureikningurinn, og
+# í nýjum verkefnum (frá 2024) hefur hann engin hlutverk. Skjölin
+# (docs.cloud.google.com/run/docs/deploying-source-code) segja roles/run.builder.
+# Mælt 23.9: án þess fellur byggingin á „default service account is missing
+# required IAM permissions". Endurtekin veiting er skaðlaus.
+NUMER="$(gcloud projects describe "$VERKEFNI" --format 'value(projectNumber)')"
+gcloud projects add-iam-policy-binding "$VERKEFNI" \
+  --member "serviceAccount:${NUMER}-compute@developer.gserviceaccount.com" \
+  --role roles/run.builder --condition None >/dev/null
+
 gcloud run deploy "$NAFN" \
   --source "$ROT" \
   --project "$VERKEFNI" \
