@@ -83,6 +83,35 @@ class GildiProf(unittest.TestCase):
             '<dc:coverage>Sýsla: Rangárvallasýsla</dc:coverage>'))
         self.assertEqual(G.G04(s).stada, FELL)
 
+    def test_G05_thagufall_an_fylgdar(self):
+        s = _samhengi(_record(
+            '<dc:title>A</dc:title>'
+            '<dcterms:spatial>Kaldaðarnesi</dcterms:spatial>'))
+        n = G.G05(s)
+        self.assertEqual(n.stada, FELL)
+        self.assertIn("POINT", n.lagfaering)
+
+    def test_G05_thagufall_med_hnitum(self):
+        s = _samhengi(_record(
+            '<dc:title>A</dc:title>'
+            '<dc:coverage>Kaldaðarnesi</dc:coverage>'
+            '<dcterms:spatial xsi:type="dcterms:Point">'
+            'POINT(-20.9 63.9)</dcterms:spatial>'))
+        self.assertEqual(G.G05(s).stada, STODST)
+
+    def test_G05_thagufall_med_audkenni(self):
+        s = _samhengi(_record(
+            '<dc:title>A</dc:title>'
+            '<dcterms:spatial xml:lang="is" mshl:id="ornefni:1234">'
+            'Kaldaðarnesi</dcterms:spatial>'))
+        self.assertEqual(G.G05(s).stada, STODST)
+
+    def test_G05_nefnifall_stenst(self):
+        s = _samhengi(_record(
+            '<dc:title>A</dc:title>'
+            '<dc:coverage>Skálholt</dc:coverage>'))
+        self.assertEqual(G.G05(s).stada, STODST)
+
 
 if __name__ == "__main__":
     unittest.main()

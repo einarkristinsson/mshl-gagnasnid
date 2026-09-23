@@ -64,7 +64,7 @@ Athuganirnar eru í fjórum hópum, eins og gátlistinn:
 | **Endapunkturinn** | Identify svarar · baseURL virkar orðrétt · GET **og** POST · adminEmail · `oai_dc` auglýst · `resumptionToken` og talan stemmir · `from`/`until` sía · sett ekki tóm og leka ekki · villur koma sem OAI-kóðar · ein skemmd færsla fellir ekki heildina |
 | **Færslurnar** | `dc:title` · slóð sem svarar 200 · `dc:type` par (@is/@en) · `dc:subject` · staðarreitur · smámyndaslóð (bein, opin, aðgreinanleg) · `dc:rights` · `dc:language` · engir eigin reitir í `oai_dc` |
 | **Hreinlæti** | gilt XML · UTF-8 án BOM · engin stýritákn · jafnvægi í CDATA · engin `None`/tóm gildi · engin færsla með tómu `oai_dc:dc` · hreinn texti (ekkert HTML) |
-| **Gildin** | dagsetningar á EDTF · `POINT(lengd breidd)` innan Íslands · engin forskeyti í gildum · nefnifall staðanafna (ágiskun) · varanleg auðkenni efnisorða · hlutverk fylgi fólki |
+| **Gildin** | dagsetningar á EDTF · `POINT(lengd breidd)` innan Íslands · engin forskeyti í gildum · staðanöfn í nefnifalli, eða beygð mynd með hnitum/auðkenni · varanleg auðkenni efnisorða · hlutverk fylgi fólki |
 
 Alvarleiki: **villa** (skylda/staðfest gildra), **aðvörun** (ráðlagt),
 **ábending** (valkvæmt eða vélræn ágiskun).

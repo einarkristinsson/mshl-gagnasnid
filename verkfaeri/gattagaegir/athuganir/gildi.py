@@ -153,32 +153,78 @@ def G04(s):
     return nd.stodst_("Engin forskeyti í gildum samleitarreita.")
 
 
+def _er_hnit(r):
+    return r.xsi_type == "dcterms:Point" or (r.gildi or "").startswith("POINT")
+
+
+def _stadarnofn(f):
+    """Nafnareitir staðar, ekki hnitareiturinn."""
+    return [r for r in f.reitir
+            if r.nafn in ("dcterms:spatial", "dc:coverage")
+            and r.gildi and not _er_hnit(r)]
+
+
+def _hefur_hnit(f):
+    return any(_er_hnit(r) for r in f.reitir)
+
+
+def _hefur_stadaraudkenni(f):
+    """Varanlegt auðkenni á staðarreit (mshl:id), eins og á efnisorðum."""
+    for r in _stadarnofn(f):
+        if any(k in ("mshl:id", "id") for k in r.eigindir):
+            return True
+    return False
+
+
+def _thagufallsmynd(gildi):
+    """Skilar nefnifallsendingu ef gildið lítur út eins og þágufall."""
+    lag = gildi.casefold()
+    if lag in _NEFNIFALL_UNDANTEKNING:
+        return None
+    for endir, nefni in _THAGUFALL:
+        if lag.endswith(endir):
+            return nefni
+    return None
+
+
 def G05(s):
-    nd = _nd(s, "G05", "Staðanöfn í nefnifalli (vélræn ágiskun)", ABENDING)
+    """Þrepaskipt beiðni úr LEIDBEININGAR 2.5.
+
+    Beygð mynd er í lagi þegar hnit eða varanlegt auðkenni fylgja færslunni.
+    Án hvors tveggja er lágmarkið nafn í nefnifalli. Ágiskunin er vélræn.
+    """
+    nd = _nd(s, "G05", "Staðanöfn: nefnifall, hnit eða auðkenni", ABENDING)
     faerslur = _berandi(s)
     if not faerslur:
         return nd.sleppt_("Engar færslur í sýni.")
-    grunur = 0
+    an_fylgdar = 0
+    med_fylgd = 0
     for f in faerslur:
-        for nafn in ("dcterms:spatial", "dc:coverage"):
-            for r in f.reitir_heitir(nafn):
-                if r.xsi_type == "dcterms:Point" or not r.gildi:
-                    continue
-                lag = r.gildi.casefold()
-                if lag in _NEFNIFALL_UNDANTEKNING:
-                    continue
-                for endir, nefni in _THAGUFALL:
-                    if lag.endswith(endir):
-                        grunur += 1
-                        nd.baeta(audkenni=f.audkenni, reitur=nafn,
-                                 gildi=r.gildi,
-                                 skyring="lítur út eins og þágufall (→ …%s?)"
-                                         % nefni)
-                        break
-    if grunur:
-        return nd.fell_("%d staðanöfn líta út eins og þágufall — vélræn "
-                        "ágiskun, mannleg yfirferð þarf." % grunur,
-                        fell=grunur)
+        fylgir = _hefur_hnit(f) or _hefur_stadaraudkenni(f)
+        for r in _stadarnofn(f):
+            nefni = _thagufallsmynd(r.gildi)
+            if not nefni:
+                continue
+            if fylgir:
+                med_fylgd += 1
+                continue
+            an_fylgdar += 1
+            nd.baeta(audkenni=f.audkenni, reitur=r.nafn, gildi=r.gildi,
+                     skyring="lítur út eins og þágufall (→ …%s?) og hvorki "
+                             "hnit né auðkenni fylgja" % nefni)
+    if an_fylgdar:
+        return nd.fell_(
+            "%d staðanöfn líta út eins og þágufall og hvorki hnit né "
+            "auðkenni fylgja færslunni." % an_fylgdar,
+            lagfaering="Ef heimildin ber þágufall, sendið það og látið "
+                       "POINT(lengd breidd) eða varanlegt auðkenni "
+                       "(mshl:id) fylgja. Annars skilið nafninu í "
+                       "nefnifalli.",
+            fell=an_fylgdar)
+    if med_fylgd:
+        return nd.stodst_(
+            "%d beygð staðanöfn fylgja hnitum eða auðkenni — það er í lagi."
+            % med_fylgd)
     return nd.stodst_("Engin augljós þágufallsmynd í staðanöfnum.")
 
 

@@ -348,7 +348,7 @@ Færslurnar:
 - [ ] Engin `None`, engir tómir reitir, engin stýritákn
 - [ ] Dagsetningar á EDTF
 - [ ] Hnit `POINT(lengd breidd)`, öll innan raunhæfra marka
-- [ ] Staðanöfn í nefnifalli, án forskeytis
+- [ ] Staðanöfn í nefnifalli — eða beygð mynd með hnitum eða auðkenni. Án forskeytis
 - [ ] Slóðirnar svara 200 — ekki 302 á forsíðu
 - [ ] Smámyndaslóð með þar sem mynd er til — bein, opin, aðgreinanleg með regex
 - [ ] `dc:rights` segir hvað má
