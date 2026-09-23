@@ -129,13 +129,13 @@ def _faerslur_json(s, nidurstodur):
     return ut
 
 
-def keyra(slod, stillingar=None, stopp=None, netfang=None):
+def keyra(slod, stillingar=None, stopp=None, netfang=None, vorn=None):
     """Aðalgangvirkið. Skilar rennsli (generator) af atburðum."""
     stillingar = dict({"sidur": 3, "syni": 10, "sett": 5,
                        "slodaprof": True, "bid_ms": 250}, **(stillingar or {}))
     ua = notandastrengur(netfang)
     bid = stillingar.get("bid_ms", 250) / 1000.0
-    sk = Saekjari(slod, ua, bid=bid, stopp=stopp)
+    sk = Saekjari(slod, ua, bid=bid, stopp=stopp, vorn=vorn)
     s = Samhengi(slod, sk, stillingar, stopp)
     kenni = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     byrjad = _nuna()
@@ -232,10 +232,10 @@ def _byggja_skyrslu(s, nidurstodur, kenni, slod, byrjad, t0, faerslur_json):
     return skyrsla
 
 
-def keyra_allt(slod, stillingar=None, stopp=None, netfang=None):
+def keyra_allt(slod, stillingar=None, stopp=None, netfang=None, vorn=None):
     """Þægindafall: keyrir allt og skilar lokaskýrslunni (dict)."""
     skyrsla = None
-    for atburd in keyra(slod, stillingar, stopp, netfang):
+    for atburd in keyra(slod, stillingar, stopp, netfang, vorn=vorn):
         if atburd["tegund"] == "lok":
             skyrsla = atburd["skyrsla"]
     return skyrsla

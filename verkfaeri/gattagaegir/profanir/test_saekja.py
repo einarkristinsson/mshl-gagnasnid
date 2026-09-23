@@ -35,5 +35,27 @@ class SaekjariProf(unittest.TestCase):
             self.assertIn("image/png", svar.haus("content-type"))
 
 
+
+class SaekjariMedVornProf(unittest.TestCase):
+    def test_vorn_stoppar_innri_slod_adur_en_hun_fer_ut(self):
+        from ..vorn import athuga
+        with Hermistjori() as h:
+            sk = Saekjari(h.base + "/god/oai", notandastrengur(), bid=0,
+                          vorn=athuga)
+            svar = sk.oai("Identify")
+            self.assertFalse(svar.nadist)
+            self.assertTrue(svar.hafnad, svar.villa)  # stöðvuð, ekki send
+            self.assertEqual(sk.beidnir, [])  # engin beiðni skráð sem send
+
+    def test_vorn_stoppar_lika_staka_slod(self):
+        from ..vorn import athuga
+        with Hermistjori() as h:
+            sk = Saekjari(h.base + "/god/oai", notandastrengur(), bid=0,
+                          vorn=athuga)
+            svar = sk.profa_slod(h.base + "/god/myndir/1.png", "HEAD")
+            self.assertFalse(svar.nadist)
+            self.assertTrue(svar.hafnad, svar.villa)  # stöðvuð, ekki send
+
+
 if __name__ == "__main__":
     unittest.main()

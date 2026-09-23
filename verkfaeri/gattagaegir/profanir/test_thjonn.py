@@ -92,5 +92,41 @@ class ThjonnProf(unittest.TestCase):
         self.assertIn("oai_dc:dc", medxml[0]["hratt_xml"])
 
 
+
+class OpinnThjonnProf(unittest.TestCase):
+    """Opna útgáfan (skýið): vörnin er á og heilsan segir frá því."""
+
+    def setUp(self):
+        self.h = Hermistjori().__enter__()
+        self.thj = bua_thjon(0, opin=True)
+        self.port = self.thj.server_address[1]
+        threading.Thread(target=self.thj.serve_forever, daemon=True).start()
+        time.sleep(0.1)
+        self.b = "http://127.0.0.1:%d" % self.port
+
+    def tearDown(self):
+        self.thj.shutdown()
+        self.h.__exit__()
+
+    def test_heilsa_segir_opin(self):
+        st, texti, _ = _get(self.b + "/api/heilsa")
+        self.assertEqual(st, 200)
+        self.assertTrue(json.loads(texti).get("opin"))
+
+    def test_innri_slod_er_stoppud_i_straumnum(self):
+        st, texti = _post(self.b + "/api/profa",
+                          {"slod": self.h.base + "/god/oai",
+                           "stillingar": {"sidur": 1, "syni": 1, "sett": 0}})
+        self.assertEqual(st, 200)
+        atburdir = [json.loads(l) for l in texti.splitlines() if l.strip()]
+        villur = [a for a in atburdir if a.get("tegund") == "villa"]
+        self.assertTrue(villur, "engin villa í straumnum")
+        self.assertIn("ekki leyf", villur[0]["skilabod"].lower())
+        # og ekkert var sótt af herminum
+        beidnir = [a for a in atburdir if a.get("tegund") == "beidni"
+                   and a.get("nadist")]
+        self.assertEqual(beidnir, [])
+
+
 if __name__ == "__main__":
     unittest.main()

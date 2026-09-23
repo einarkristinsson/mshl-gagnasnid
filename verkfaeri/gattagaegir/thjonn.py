@@ -16,6 +16,7 @@ from urllib.parse import urlparse, parse_qs
 
 from . import UTGAFA
 from . import velin
+from .vorn import athuga as _vorn_athuga
 
 VEFUR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "vefur")
 # Rót geymslunnar: skráin er í verkfaeri/gattagaegir/, rótin er þrjú þrep upp.
@@ -148,7 +149,8 @@ class Handler(BaseHTTPRequestHandler):
                 return self._skra(nafn, _STATIC[nafn])
             return self._json(404, {"villa": "óþekkt skrá"})
         if p.path == "/api/heilsa":
-            return self._json(200, {"stada": "ok", "utgafa": UTGAFA})
+            return self._json(200, {"stada": "ok", "utgafa": UTGAFA,
+                                    "opin": self._opin()})
         if p.path == "/api/snid":
             return self._json(200, _snid_gogn())
         if p.path == "/api/profa":
@@ -158,7 +160,7 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json(400, {"villa": "ógild slóð"})
             still = _hreinsa_stillingar(q)
             with _SAMTIMIS:
-                skyrsla = velin.keyra_allt(slod, still)
+                skyrsla = velin.keyra_allt(slod, still, vorn=self._vorn())
             return self._json(200, skyrsla or {"villa": "engin skýrsla"})
         return self._json(404, {"villa": "ekki fundið"})
 
@@ -189,7 +191,8 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         with _SAMTIMIS:
             try:
-                for atburd in velin.keyra(slod, still, stopp):
+                for atburd in velin.keyra(slod, still, stopp,
+                                          vorn=self._vorn()):
                     lina = json.dumps(atburd, ensure_ascii=False) + "\n"
                     self.wfile.write(lina.encode("utf-8"))
                     self.wfile.flush()
@@ -208,6 +211,16 @@ class Handler(BaseHTTPRequestHandler):
     def log_message(self, *a):
         pass
 
+    # Opin útgáfa (skýið): vörnin stöðvar slóðir inn á innra net.
+    def _opin(self):
+        return bool(getattr(self.server, "opin", False))
 
-def bua_til(port=8765, host="127.0.0.1"):
-    return ThreadingHTTPServer((host, port), Handler)
+    def _vorn(self):
+        return _vorn_athuga if self._opin() else None
+
+
+def bua_til(port=8765, host="127.0.0.1", opin=False):
+    """opin=True þegar þjónninn er aðgengilegur öðrum en eigin vél."""
+    thj = ThreadingHTTPServer((host, port), Handler)
+    thj.opin = opin
+    return thj

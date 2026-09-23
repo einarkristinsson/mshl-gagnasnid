@@ -2,10 +2,15 @@
 
   python3 -m verkfaeri.gattagaegir                 # ræsir vefþjón (8765)
   python3 -m verkfaeri.gattagaegir --med-hermi     # + hermir (8766)
+  python3 -m verkfaeri.gattagaegir --opinn         # opin útgáfa: vörn á
   python3 -m verkfaeri.gattagaegir profa <slod>    # keyrir í skel, prentar
+
+Í skýinu (Cloud Run o.þ.h.) þarf engin rök: PORT kemur úr umhverfinu og
+GATTAGAEGIR_OPINN=1 kveikir á vörninni. Rök í skel vinna yfir umhverfið.
 """
 import argparse
 import json
+import os
 import sys
 import threading
 
@@ -34,8 +39,9 @@ def _thjonn(a):
         threading.Thread(target=hermir.serve_forever, daemon=True).start()
         print("Hermir:  http://%s:%d/god/oai  ·  http://%s:%d/brotin/oai"
               % (a.host, a.hermi_port, a.host, a.hermi_port))
-    thj = bua_til_thjon(a.port, a.host)
-    print("Gáttagægir %s á http://%s:%d" % (UTGAFA, a.host, a.port))
+    thj = bua_til_thjon(a.port, a.host, opin=a.opinn)
+    print("Gáttagægir %s á http://%s:%d%s"
+          % (UTGAFA, a.host, a.port, "  (opin — vörn á)" if a.opinn else ""))
     try:
         thj.serve_forever()
     except KeyboardInterrupt:
@@ -43,11 +49,21 @@ def _thjonn(a):
     return 0
 
 
-def main(argv=None):
+def lesa_rok(argv=None, umhverfi=None):
+    """Les rök úr skel og umhverfi. Skel vinnur yfir umhverfi."""
+    u = os.environ if umhverfi is None else umhverfi
+    try:
+        port_sjalfgefid = int(u.get("PORT", 8765))
+    except ValueError:
+        port_sjalfgefid = 8765
+    host_sjalfgefid = "0.0.0.0" if "PORT" in u else "127.0.0.1"
     p = argparse.ArgumentParser(prog="gattagaegir",
                                description="OAI-PMH prófun fyrir MSHL")
-    p.add_argument("--host", default="127.0.0.1")
-    p.add_argument("--port", type=int, default=8765)
+    p.add_argument("--host", default=host_sjalfgefid)
+    p.add_argument("--port", type=int, default=port_sjalfgefid)
+    p.add_argument("--opinn", action="store_true",
+                   default=u.get("GATTAGAEGIR_OPINN") == "1",
+                   help="opin útgáfa: hafna slóðum inn á innra net")
     p.add_argument("--med-hermi", action="store_true",
                    help="ræsa staðbundinn OAI-hermi samhliða")
     p.add_argument("--hermi-port", type=int, default=8766)
@@ -61,7 +77,11 @@ def main(argv=None):
     pr.add_argument("--engin-slodaprof", action="store_true")
     pr.add_argument("--bid", type=float, default=0.25)
     pr.add_argument("--netfang", default=None)
-    a = p.parse_args(argv)
+    return p.parse_args(argv)
+
+
+def main(argv=None):
+    a = lesa_rok(argv)
     if a.skipun == "profa":
         return _profa(a)
     return _thjonn(a)

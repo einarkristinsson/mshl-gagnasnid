@@ -29,8 +29,31 @@ python3 -m verkfaeri.gattagaegir profa https://safn.is/oai
 python3 -m verkfaeri.gattagaegir profa https://safn.is/oai --json
 ```
 
-Valkostir: `--port`, `--host`, `--netfang <þitt@netfang>` (fer í User-Agent),
-`--sidur`, `--syni`, `--sett`, `--bid`, `--engin-slodaprof`.
+Valkostir: `--port`, `--host`, `--opinn`, `--netfang <þitt@netfang>` (fer í
+User-Agent), `--sidur`, `--syni`, `--sett`, `--bid`, `--engin-slodaprof`.
+
+## Í skýinu
+
+Sama tól, aðgengilegt gagnaveitum án Python á eigin vél. Keyrt á Cloud Run
+(Google Cloud) í `europe-west4`, innan EES. Tólið geymir engin gögn — það
+sækir lítið sýni af endapunkti gestsins og skilar skýrslu.
+
+```bash
+docker build -t gattagaegir .          # Dockerfile er í rót safnsins
+docker run --rm -p 8080:8080 gattagaegir
+./verkfaeri/gattagaegir/deploy.sh      # í loftið — sjá skrána um forsendur
+```
+
+**Opin útgáfa er með vörn** (`--opinn`, eða `GATTAGAEGIR_OPINN=1` í umhverfi,
+sem Dockerfile setur): slóðir sem vísa inn á innra net, á `127.0.0.1` eða á
+lýsigagnaþjónustu skýsins (`169.254.169.254`) eru stöðvaðar **áður** en beiðnin
+fer út — líka þegar 301 vísar þangað. Aðeins http/https á gáttum 80, 443,
+8080 og 8000. Skýringin birtist í skýrslunni sem „Náðist ekki í þjóninn: …".
+Hermis-flýtihnapparnir hverfa í opinni útgáfu, því hermirinn er á eigin vél.
+Sjá `vorn.py` og `profanir/test_vorn.py`.
+
+Í skýinu er `PORT` lesið úr umhverfinu og þjónninn bindur `0.0.0.0`; rök í skel
+vinna yfir umhverfið (`__main__.lesa_rok`).
 
 ## Hvað er prófað
 
@@ -59,6 +82,8 @@ tapar meginmáli í 301" sést.
 | Skrá | Hlutverk |
 |---|---|
 | `thjonn.py` | stdlib vefþjónn: static síða + NDJSON API (`/api/profa`) |
+| `vorn.py` | vörn opnu útgáfunnar: hafnar slóðum inn á innra net |
+| `deploy.sh` | Cloud Run — sjá „Í skýinu" |
 | `vefur/` | ein síða: `index.html`, `still.css`, `gaegir.js` |
 | `velin.py` | raðar athugunum, sækir sýnið, streymir niðurstöðum |
 | `saekja.py` | kurteis OAI-biðill (GET/POST, bið, engar sjálfvirkar beiningar) |

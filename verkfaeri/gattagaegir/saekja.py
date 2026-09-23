@@ -16,6 +16,8 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+from .vorn import Hafnad
+
 HAMARK_LESA = 20 * 1024 * 1024  # 20 MB þak á svar
 BID_SJALFGEFIN = 0.25            # kurteisishlé milli beiðna, sekúndur
 TIMALOK = 30                     # sekúndur á hverja beiðni
@@ -56,6 +58,7 @@ class Svar:
         self.ms = 0                # svartími í millisekúndum
         self.beint = []            # keðja beininga sem sást
         self.villa = None          # netvilla (strengur) ef ekki náðist í þjón
+        self.hafnad = False        # vörnin stöðvaði beiðnina áður en hún fór út
 
     @property
     def nadist(self):
@@ -79,12 +82,13 @@ class Saekjari:
     """Sækir OAI-verb og stakar slóðir af einum endapunkti, kurteislega."""
 
     def __init__(self, baseurl, ua, bid=BID_SJALFGEFIN, timalok=TIMALOK,
-                 stopp=None):
+                 stopp=None, vorn=None):
         self.baseurl = baseurl
         self.ua = ua
         self.bid = bid
         self.timalok = timalok
         self.stopp = stopp
+        self.vorn = vorn        # t.d. vorn.athuga í opinni útgáfu; None á eigin vél
         self._opnari = urllib.request.build_opener(_EngarBeinar)
         self._fyrsta = True
         self.beidnir = []   # skrá yfir allar beiðnir (til skýrslu)
@@ -127,6 +131,16 @@ class Saekjari:
 
     def _saekja(self, slod, adferd, gogn=None, elta=False, hopp=3):
         """Sækir slóð með endurtekningum og (valkvæmri) beiningu."""
+        if self.vorn is not None:
+            # Athugað við hvert hopp, líka beiningar — 301 má ekki
+            # vísa inn á innra net frekar en upphafsslóðin.
+            try:
+                self.vorn(slod)
+            except Hafnad as e:
+                svar = Svar(slod, adferd)
+                svar.villa = str(e)
+                svar.hafnad = True
+                return svar
         self._hle()
         bidir = [1.5, 3.0, 4.5]
         sidast = None
@@ -176,12 +190,14 @@ class Saekjari:
             skil = "&" if ("?" in self.baseurl) else "?"
             svar = self._saekja(self.baseurl + skil + strengur, "GET",
                                 elta=elta)
-        self.beidnir.append("%s %s verb=%s"
-                            % (adferd, self.baseurl, verb))
+        if not svar.hafnad:
+            self.beidnir.append("%s %s verb=%s"
+                                % (adferd, self.baseurl, verb))
         return svar
 
     def profa_slod(self, url, adferd="HEAD"):
         """Prófar staka slóð (færsluslóð eða smámynd) án þess að elta."""
         svar = self._saekja(url, adferd, elta=False)
-        self.beidnir.append("%s %s" % (adferd, url))
+        if not svar.hafnad:
+            self.beidnir.append("%s %s" % (adferd, url))
         return svar

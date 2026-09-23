@@ -278,6 +278,9 @@
   ];
   const HOPRAD = ["Gagnaveitur", "Mínar veitur", "Prófun (hermir)"];
   const GEYMSLULYKILL = "gattagaegir.veitur";
+  // Opin útgáfa (skýið): hermirinn er á 127.0.0.1 og nær aldrei þangað —
+  // /api/heilsa segir til um það og þá er hópurinn ekki sýndur.
+  let opin = false;
 
   const endapunktar = $("#endapunktar");
   const veituath = $("#veituath");
@@ -313,6 +316,7 @@
   function byggjaVeitur() {
     veitur = [];
     INNBYGGDIR.forEach((v, i) => {
+      if (opin && v.hopur === "Prófun (hermir)") return;
       veitur.push(Object.assign({ lykill: "innb-" + i, minn: false }, v));
     });
     lesaMinar().forEach((v) => {
@@ -443,6 +447,9 @@
     });
 
     byggjaVal("");
+    fetch("/api/heilsa").then((r) => r.json()).then((h) => {
+      if (h && h.opin) { opin = true; byggjaVal(valinLykill); }
+    }).catch(() => { /* heilsan er valkvæm */ });
   }
 
   // ---- Tæknilegar upplýsingar: fela bakvinnslu-atriði sjálfgefið ----
