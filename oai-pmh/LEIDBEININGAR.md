@@ -7,9 +7,9 @@
 leitanlegt í samleit með öðrum íslenskum söfnum. Það lýsir tvennu: hvernig
 afhendingin á að virka (OAI-PMH) og hvaða reitir þurfa að fylgja (Dublin Core).
 
-Allt sem hér stendur er mælt á raungögnum úr fimm íslenskum gagnaveitum —
-ekkert er tilgáta um hvað gæti farið úrskeiðis. Gildrurnar sem eru merktar
-🔴 hafa allar komið upp í alvöru.
+Allt sem hér er sýnt kemur úr þeim OAI veitum sem þegar eru aðgengilegar—
+Hættur sem eru merktar
+🔴 hafa gerst.
 
 ---
 
