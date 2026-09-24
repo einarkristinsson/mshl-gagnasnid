@@ -265,6 +265,12 @@
       athugasemd: "Stórt safn og aðeins isebel-snið (engin sett, " +
         "noSetHierarchy). ListRecords fellur á brotnum færslum uppruna " +
         "megin; GetRecord-leiðin er notuð við uppskeru." },
+    { hopur: "Gagnaveitur", nafn: "Tímarit.is (Landsbókasafn)",
+      slod: "https://timarit.is/oai",
+      sidur: 2, syni: 5, sett: 0, slodaprof: true,
+      athugasemd: "Endapunkturinn er ÁN skástriks — /oai/ skilar 404, " +
+        "öfugt við SMB. Identify auglýsir http://, ekki https. Aðeins " +
+        "oai_dc, engin sett. Mælt 24.9.2026." },
     { hopur: "Gagnaveitur",
       nafn: "Handrit.is — skilar ekki OAI-PMH", ovirkt: true },
     { hopur: "Gagnaveitur",
