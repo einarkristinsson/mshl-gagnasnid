@@ -3,7 +3,7 @@
 **Vefverkfæri sem prófar OAI-PMH endapunkt gagnaveitu gegn gátlista MSHL
 fyrir afhendingu í samleit.**
 
-Límdu inn slóð endapunktsins (`baseURL`), smelltu á **Prófa**, og
+Límdu inn slóð endapunktsins (`baseURL`), smelltu á **Sækja**, og
 fáðu stóðst/villu-skýrslu sem speglar [`../../oai-pmh/GATLISTI.md`](../../oai-pmh/GATLISTI.md)
 og [`../../snidmat/GULLNA-SNIDID.md`](../../snidmat/GULLNA-SNIDID.md) — reitur
 fyrir reit, með gildrunum úr [`../../oai-pmh/LEIDBEININGAR.md`](../../oai-pmh/LEIDBEININGAR.md).

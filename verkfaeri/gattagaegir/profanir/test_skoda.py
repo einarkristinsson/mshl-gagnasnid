@@ -76,3 +76,37 @@ class SkodaProf(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SkyringarProf(unittest.TestCase):
+    """Skýringar Skoðarans fylgja svarinu: hvað vantar, hvað villan þýðir."""
+
+    def setUp(self):
+        self.h = Hermistjori().__enter__()
+
+    def tearDown(self):
+        self.h.__exit__()
+
+    def test_brotinn_identify_ber_tvo_atridi(self):
+        u = skoda(self.h.base + "/brotin/oai", "Identify", bid=0)
+        idn = u["skyringar"]["identify"]
+        vantar = [a["svid"] for a in idn if a["stada"] == "vantar"]
+        advorun = [a["svid"] for a in idn if a["stada"] == "aðvörun"]
+        self.assertIn("adminEmail", vantar)
+        self.assertIn("baseURL", advorun)
+        self.assertEqual(u["skyringar"]["atridi_a_eftir"], 2)
+
+    def test_godur_identify_vantar_engan_skyldureit(self):
+        u = skoda(self.h.base + "/god/oai", "Identify", bid=0)
+        idn = u["skyringar"]["identify"]
+        self.assertEqual([a["svid"] for a in idn if a["stada"] == "vantar"], [])
+        # hermirinn auglýsir /god/oai án skástriks → ein aðvörun, ekkert vantar
+        self.assertLessEqual(u["skyringar"]["atridi_a_eftir"], 1)
+
+    def test_oai_villa_faer_skyringu(self):
+        u = skoda(self.h.base + "/god/oai", "GetRecord",
+                  {"metadataPrefix": "oai_dc", "identifier": "finnst-ekki"}, bid=0)
+        sk = u["skyringar"]["oai"]
+        self.assertEqual(sk["kodi"], "idDoesNotExist")
+        self.assertTrue(sk.get("hvad") or sk.get("heiti"))
+        self.assertTrue(u["skyringar"]["spec"].startswith("https://www.openarchives.org/"))

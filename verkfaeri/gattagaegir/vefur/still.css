@@ -9,6 +9,9 @@
   --spjald: #fffaf0;
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --sans: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+  /* Hnappar: alltaf sans og aldrei feitletraðir. */
+  --hnappaletur: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
 }
 * { box-sizing: border-box; }
 /* hidden-eigindið verður að vinna yfir display:flex á stikum og köflum */
@@ -23,10 +26,14 @@ body {
 .merkirod { display: flex; align-items: center; gap: 8px; margin: 0 0 10px;
   font-size: 13px; letter-spacing: 0.04em; color: var(--grar);
   text-transform: uppercase; font-weight: 600; }
-.trogmerki { display: block; }
+.trogmerki { display: block; height: 40px; width: auto; }
+.merkitengill { display: inline-flex; align-items: center; gap: 8px;
+  color: inherit; text-decoration: none; }
+.merkitengill:hover .merkiheiti, .merkitengill:hover { text-decoration: underline; }
 .merkiheiti { color: var(--texti); }
 .merkjaskil { color: var(--lina); }
-.haus h1 { margin: 0 0 6px; font-size: 30px; font-weight: 600; }
+.haus h1 { margin: 0 0 2px; font-size: 30px; font-weight: 600; }
+.undirheiti { margin: 0 0 10px; color: var(--grar); font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase; }
 .undirtitill { margin: 0 0 8px; color: var(--texti); max-width: 700px; }
 .undirtitill.smatt { color: var(--grar); font-size: 15px; }
 .tenglar a { color: var(--bl); text-decoration: none; }
@@ -48,7 +55,8 @@ body {
   font-family: var(--mono); background: var(--spjald); color: var(--texti);
   border: 1px solid var(--lina); border-radius: 8px; }
 button { background: var(--bl); color: #fff; border: 0; border-radius: 8px;
-  padding: 11px 18px; font-size: 15px; font-weight: 600; cursor: pointer; }
+  padding: 11px 18px; font-size: 15px; font-weight: 400;
+  font-family: var(--hnappaletur); cursor: pointer; }
 button:hover { filter: brightness(1.05); }
 button:disabled { opacity: 0.5; cursor: default; }
 .aukabutton { background: var(--grar-bg); color: var(--texti); }
@@ -187,3 +195,45 @@ button:disabled { opacity: 0.5; cursor: default; }
   .stillingargrid { grid-template-columns: 1fr; }
   .baetagrid { grid-template-columns: 1fr; }
 }
+
+/* ---- Samskiptareglan: ein beiðni í einu ---- */
+.samskiptakafli { margin: 24px 0 0; }
+.samskiptainnihald { margin-top: 12px; }
+.skodagrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px 12px;
+  margin: 0 0 12px; }
+.skodagrid label { font-weight: 400; font-size: 14px; }
+.skodagrid label span[lang="en"] { color: var(--grar); font-size: 0.85em; }
+.skodagrid input, .skodagrid select { width: 100%; padding: 7px 9px; margin-top: 4px;
+  display: block; border: 1px solid var(--lina); border-radius: 6px;
+  background: var(--spjald); color: var(--texti); font-family: var(--mono);
+  font-size: 13px; }
+.skodagrid label.dauf { opacity: 0.45; }
+.verb { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.verb button { background: var(--spjald); color: var(--texti);
+  border: 1px solid var(--lina); font-family: var(--hnappaletur); font-size: 14px;
+  font-weight: 400; padding: 7px 12px; border-radius: 6px; }
+.verb button[aria-pressed="true"] { background: var(--bl); color: #fff; border-color: var(--bl); }
+.skhnappar { align-items: center; }
+.hjalp { width: 26px; height: 26px; padding: 0; border-radius: 50%; font-size: 13px;
+  background: var(--spjald); color: var(--texti); border: 1px solid var(--lina); }
+.hjalp[aria-expanded="true"] { background: var(--bl); color: #fff; border-color: var(--bl); }
+.skspjald { background: var(--gu-bg); border: 1px solid var(--lina); border-radius: 10px;
+  padding: 12px 14px; margin: 14px 0 10px; }
+.skspjald h3 { margin: 0 0 8px; font-size: 16px; }
+.skspjald table { border-collapse: collapse; width: 100%; font-size: 14px;
+  background: var(--spjald); }
+.skspjald th, .skspjald td { border: 1px solid var(--lina); padding: 6px 10px;
+  text-align: left; vertical-align: top; }
+.skspjald th { background: var(--grar-bg); }
+.skspjald td.lykill { font-family: var(--mono); font-size: 13px; white-space: nowrap; }
+.skspjald tr.vantar td { background: var(--ra-bg); color: var(--ra); font-weight: 600; }
+.skspjald tr.advorun td { background: var(--gu-bg); }
+.skspjald tr.smellanleg { cursor: pointer; }
+.skspjald tr.smellanleg:hover td { background: var(--grar-bg); }
+.skspjald .spec { display: inline-block; margin-top: 8px; color: var(--bl); font-size: 14px; }
+.skspjald .mynstur { margin: 10px 0 0; padding: 8px 12px; background: var(--spjald);
+  border-left: 3px solid var(--ra); font-size: 14px; }
+.skstada { font-family: var(--mono); font-size: 13px; color: var(--texti); margin: 0 0 8px; }
+.skstada b { margin-right: 4px; }
+.skstada span { margin-right: 14px; }
+@media (max-width: 760px) { .skodagrid { grid-template-columns: 1fr 1fr; } }

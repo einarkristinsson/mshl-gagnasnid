@@ -3,21 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gáttagægir — OAI-prófun fyrir Sagnatrogið</title>
+  <title>Gáttagægir — MSHL gagnagáttir</title>
   <link rel="stylesheet" href="/vefur/still.css">
+  <link rel="icon" type="image/png" href="/vefur/favicon.png">
 </head>
 <body>
   <header class="haus">
     <div class="innihald">
       <p class="merkirod">
-        <img class="trogmerki" src="/vefur/trog.svg" width="28" height="28" alt="">
-        <span class="merkiheiti">Trog</span>
+        <a class="merkitengill" href="https://gegnir-psb.primo.exlibrisgroup.com/nde/home?vid=354ILC_NETWORK:MSHL_SAGNATROG_LIGHT_UNION&amp;lang=is"
+           target="_blank" rel="noopener" title="Opna Sagnatrogið á Leitir">
+          <img class="trogmerki" src="/vefur/sagnatrog.png" height="40" alt="Sagnatrogið">
+          <span class="merkiheiti">Sagnatrog</span>
+        </a>
         <span class="merkjaskil" aria-hidden="true">·</span>
-        <span>Leitir</span>
+        <a class="merkitengill" href="https://mshl.is" target="_blank" rel="noopener">MSHL</a>
         <span class="merkjaskil" aria-hidden="true">·</span>
-        <span>MSHL</span>
+        <a class="merkitengill" href="https://leitir.is" target="_blank" rel="noopener">Leitir</a>
       </p>
       <h1>Gáttagægir</h1>
+      <p class="undirheiti">MSHL gagnagáttir</p>
       <p class="undirtitill">
         Þessi síða er til að <strong>flýta fyrir uppsetningu á OAI-gagnagáttum
         og gagnaskrám</strong> sem eiga að rata í Sagnatrogið á Leitir. Hér má
@@ -36,7 +41,7 @@
         ·
         <a href="https://github.com/einarkristinsson/mshl-gagnasnid/blob/main/oai-pmh/LEIDBEININGAR.md" target="_blank" rel="noopener">Leiðbeiningar</a>
         ·
-        <a href="https://github.com/einarkristinsson/mshl-gagnasnid/blob/main/snidmat/GULLNA-SNIDID.md" target="_blank" rel="noopener">Gullna sniðið</a>
+        <a href="https://github.com/einarkristinsson/mshl-gagnasnid/blob/main/snidmat/GULLNA-SNIDID.md" target="_blank" rel="noopener">Gullna sniðmátið</a>
       </p>
     </div>
   </header>
@@ -57,7 +62,7 @@
       <div class="inntakslina">
         <input id="slod" name="slod" type="url" inputmode="url"
                placeholder="https://safn.is/oai" autocomplete="off" required>
-        <button id="keyra" type="submit">Prófa</button>
+        <button id="keyra" type="submit">Sækja</button>
         <button id="haetta" type="button" class="aukabutton" hidden>Hætta</button>
       </div>
       <details class="stillingar">
@@ -109,20 +114,67 @@
       </p>
     </form>
 
+    <section class="samskiptakafli">
+      <details id="samskipti" class="snid" open>
+        <summary>Samskiptareglan <span lang="en">(OAI-PMH protocol validation)</span></summary>
+        <div class="samskiptainnihald">
+          <div class="skodagrid">
+            <label>Snið <span lang="en">(metadataPrefix)</span>
+              <select id="sk-prefix"><option value="oai_dc">oai_dc</option></select></label>
+            <label id="sk-id-label">Auðkenni <span lang="en">(identifier)</span>
+              <input id="sk-id" type="text" placeholder="oai:safn.is:hlutur:1" autocomplete="off"></label>
+            <label id="sk-set-label">Sett <span lang="en">(set)</span>
+              <input id="sk-set" type="text" placeholder="t.d. type:baer" autocomplete="off"></label>
+            <label id="sk-token-label">Framhaldslykill <span lang="en">(resumptionToken)</span>
+              <input id="sk-token" type="text" autocomplete="off"></label>
+          </div>
+          <div class="verb" role="group" aria-label="Aðgerð">
+            <button type="button" data-verb="Identify" aria-pressed="true">Identify</button>
+            <button type="button" data-verb="ListMetadataFormats" aria-pressed="false">ListMetadataFormats</button>
+            <button type="button" data-verb="ListSets" aria-pressed="false">ListSets</button>
+            <button type="button" data-verb="GetRecord" aria-pressed="false">GetRecord</button>
+            <button type="button" data-verb="ListRecords" aria-pressed="false">ListRecords</button>
+            <button type="button" data-verb="ListIdentifiers" aria-pressed="false">ListIdentifiers</button>
+          </div>
+          <div class="inntakslina skhnappar">
+            <button id="sk-saekja" type="button">Sækja</button>
+            <button id="sk-naesta" type="button" class="aukabutton" disabled>Næsta síða</button>
+            <label class="gatmerki"><input id="sk-elta" type="checkbox"> Fylgja tilvísunum (301)</label>
+            <button id="sk-hjalp" type="button" class="hjalp" aria-expanded="false"
+                    aria-controls="sk-hjalp-texti" title="Hvað þýðir þetta?">?</button>
+          </div>
+          <p id="sk-hjalp-texti" class="smatt" hidden>Slökkt sjálfgefið, svo 301 með
+            tómu meginmáli sjáist eins og það er. Kveiktu til að fylgja beiningunni
+            og sjá svarið á endastöðinni.</p>
+          <div id="sk-nidurstada" hidden>
+            <div id="sk-spjald" class="skspjald"></div>
+            <p id="sk-stada" class="skstada"></p>
+            <div class="inntakslina">
+              <button id="sk-afrita" type="button" class="aukabutton">Afrita</button>
+            </div>
+            <details class="hratt" id="sk-hratt">
+              <summary>Hrátt svar (XML)</summary>
+              <pre id="sk-xml" class="xmlblokk"></pre>
+            </details>
+          </div>
+        </div>
+      </details>
+    </section>
+
     <section class="snidkafli">
       <details id="snidbox" class="snid">
         <summary>Snið og dæmi</summary>
         <div class="snidinnihald">
           <p class="snidtenglar">
             Heimildir:
-            <a href="https://github.com/einarkristinsson/mshl-gagnasnid/blob/main/oai-pmh/GATLISTI.md" target="_blank" rel="noopener">GATLISTI</a>
+            <a href="https://github.com/einarkristinsson/mshl-gagnasnid/blob/main/oai-pmh/GATLISTI.md" target="_blank" rel="noopener">Gátlisti</a>
             ·
-            <a href="https://github.com/einarkristinsson/mshl-gagnasnid/blob/main/oai-pmh/LEIDBEININGAR.md" target="_blank" rel="noopener">LEIDBEININGAR</a>
+            <a href="https://github.com/einarkristinsson/mshl-gagnasnid/blob/main/oai-pmh/LEIDBEININGAR.md" target="_blank" rel="noopener">Leiðbeiningar</a>
             ·
-            <a href="https://github.com/einarkristinsson/mshl-gagnasnid/blob/main/snidmat/GULLNA-SNIDID.md" target="_blank" rel="noopener">GULLNA-SNIDID</a>
+            <a href="https://github.com/einarkristinsson/mshl-gagnasnid/blob/main/snidmat/GULLNA-SNIDID.md" target="_blank" rel="noopener">Gullna sniðmátið</a>
           </p>
           <div id="snidgogn"><p class="smatt">Opnaðu til að sækja
-            gullna sniðið og dæmi úr repo-inu…</p></div>
+            gullna sniðmátið og dæmi úr safninu…</p></div>
         </div>
       </details>
     </section>

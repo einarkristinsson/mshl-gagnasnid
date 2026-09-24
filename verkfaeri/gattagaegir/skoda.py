@@ -9,6 +9,7 @@ kurteisishlé, engin sjálfvirk beining nema beðið sé um hana, og vörnin
 (vorn.py) í opinni útgáfu.
 """
 from . import notandastrengur
+from . import skyringar
 from . import xml_lestur as xl
 from .saekja import Saekjari
 
@@ -59,8 +60,32 @@ def _snid(skjal):
     return ut
 
 
+def _skyringar(ut):
+    """Mannamál úr skyringar.py: hvað vantar, hvað villan þýðir, hvað á að gera.
+    Sama þekking og OAI Skoðarinn notar — flutt hingað óbreytt."""
+    sk = {"spec": skyringar.SPEC, "http": skyringar.http_stada(ut["stada"]),
+          "oai": None, "mynstur": [], "identify": [], "atridi_a_eftir": 0}
+    if ut["xml"]:
+        sk["mynstur"] = skyringar.finna_mynstur(ut["xml"], ut["stada"])
+    if ut["oai_villa"]:
+        e = skyringar.oai_villa(ut["oai_villa"]["kodi"]) or {}
+        sk["oai"] = dict(e, kodi=ut["oai_villa"]["kodi"],
+                         texti=ut["oai_villa"]["texti"])
+    if ut["verb"] == "Identify" and ut["gilt_xml"] and ut["xml"]:
+        sk["identify"] = skyringar.skoda_identify(ut["xml"])
+        sk["atridi_a_eftir"] = sum(1 for a in sk["identify"]
+                                   if a["stada"] != "í lagi")
+    return sk
+
+
 def skoda(slod, verb, rok=None, bid=0.25, netfang=None, vorn=None, elta=True):
     """Ein OAI-beiðni. Skilar JSON-hæfri orðabók, aldrei kastar."""
+    ut = _skoda(slod, verb, rok, bid, netfang, vorn, elta)
+    ut["skyringar"] = _skyringar(ut)
+    return ut
+
+
+def _skoda(slod, verb, rok, bid, netfang, vorn, elta):
     ut = {"verb": verb, "slod": slod, "stada": None, "content_type": None,
           "ms": 0, "baeti": 0, "beint": [], "nadist": False, "hafnad": False,
           "villa": None, "gilt_xml": False, "xml_villa": None,

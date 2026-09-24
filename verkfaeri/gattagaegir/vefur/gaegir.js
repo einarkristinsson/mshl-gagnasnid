@@ -152,7 +152,7 @@
     h += "</tbody></table>";
     if (f.hratt_xml) {
       h += '<details class="hratt"><summary>Sýna hrátt XML (oai_dc)</summary>' +
-        '<p class="smatt">Berðu saman við gullna sniðið hér að ofan.</p>' +
+        '<p class="smatt">Berðu saman við gullna sniðmátið hér að ofan.</p>' +
         '<pre class="xmlblokk">' + esc(f.hratt_xml) + "</pre></details>";
     }
     faersluspjald.innerHTML = h;
@@ -474,7 +474,7 @@
       const d = await svar.json();
       let h = "";
       if (d.gullna) {
-        h += "<h3>Gullna sniðið — oai_dc <small>(" +
+        h += "<h3>Gullna sniðmátið — oai_dc <small>(" +
           esc(d.gullna_heimild) + ")</small></h3>";
         h += '<pre class="xmlblokk">' + esc(d.gullna) + "</pre>";
       }
@@ -539,4 +539,201 @@
     a.click();
     URL.revokeObjectURL(a.href);
   });
+
+  // ================= Samskiptareglan: ein beiðni í einu =================
+  // Sama Veita/Grunnslóð og gátlistinn. Þáttað svar með skýringum Skoðarans.
+  const skPrefix = $("#sk-prefix");
+  const skSaekja = $("#sk-saekja");
+  const skNaesta = $("#sk-naesta");
+  const skNidur = $("#sk-nidurstada");
+  const skSpjald = $("#sk-spjald");
+  const DOMUR = {
+    ok: "ok", oai_villa: "OAI-villa", html_ekki_xml: "HTML, ekki XML",
+    ogilt_xml: "ógilt XML", nadist_ekki: "náðist ekki", villa: "villa",
+  };
+  const LISTAR = ["ListIdentifiers", "ListRecords"];
+  let skVerb = "Identify";
+  let skToken = null;
+  let skXml = "";
+
+  function skSynaReiti() {
+    $("#sk-id-label").classList.toggle("dauf", skVerb !== "GetRecord");
+    $("#sk-set-label").classList.toggle("dauf", !LISTAR.includes(skVerb));
+    $("#sk-token-label").classList.toggle("dauf", !LISTAR.includes(skVerb));
+    skPrefix.parentElement.classList.toggle("dauf",
+      ["Identify", "ListMetadataFormats", "ListSets"].includes(skVerb));
+  }
+  function veljaVerb(v) {
+    skVerb = v;
+    document.querySelectorAll(".verb button").forEach((b) => {
+      b.setAttribute("aria-pressed", b.dataset.verb === v ? "true" : "false");
+    });
+    skSynaReiti();
+  }
+  document.querySelectorAll(".verb button").forEach((b) => {
+    b.addEventListener("click", () => veljaVerb(b.dataset.verb));
+  });
+  $("#sk-hjalp").addEventListener("click", () => {
+    const b = $("#sk-hjalp"), t = $("#sk-hjalp-texti");
+    const opid = b.getAttribute("aria-expanded") === "true";
+    b.setAttribute("aria-expanded", opid ? "false" : "true");
+    t.hidden = opid;
+  });
+
+  function skRok(medToken) {
+    if (medToken && skToken) return { resumptionToken: skToken };
+    const t = $("#sk-token").value.trim();
+    if (t && LISTAR.includes(skVerb)) return { resumptionToken: t };
+    const rok = {};
+    if (!["Identify", "ListMetadataFormats", "ListSets"].includes(skVerb)) rok.metadataPrefix = skPrefix.value;
+    if (skVerb === "GetRecord") rok.identifier = $("#sk-id").value.trim();
+    if (LISTAR.includes(skVerb) && $("#sk-set").value.trim()) rok.set = $("#sk-set").value.trim();
+    return rok;
+  }
+
+  function skTafla(hausar, radir, smellur, klassar) {
+    const t = document.createElement("table");
+    if (hausar) t.innerHTML = "<thead><tr>" + hausar.map((h) => "<th>" + esc(h) + "</th>").join("") + "</tr></thead>";
+    const tb = document.createElement("tbody");
+    radir.forEach((r, i) => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = r.map((c, j) => "<td" + (j === 0 ? " class=\"lykill\"" : "") + ">" + c + "</td>").join("");
+      if (klassar && klassar[i]) tr.className = klassar[i];
+      if (smellur) { tr.classList.add("smellanleg"); tr.addEventListener("click", () => smellur(i)); }
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb);
+    return t;
+  }
+
+  function skReitatafla(f) {
+    return skTafla(["Reitur", "Gildi", "Eigindir"], (f.reitir || []).map((r) => [
+      esc(r.nafn), esc(r.gildi),
+      esc([r.lang ? "@" + r.lang : "", r.xsi_type ? "xsi:type=" + r.xsi_type : "",
+        ...Object.entries(r.eigindir || {}).map(([k, v]) => k + "=" + v)].filter(Boolean).join(" · ")),
+    ]));
+  }
+
+  function skSpjaldTeikna(u) {
+    skSpjald.innerHTML = "";
+    const th = u.thattad || {};
+    const sk = u.skyringar || {};
+    const h3 = document.createElement("h3");
+    skSpjald.appendChild(h3);
+
+    if (u.domur === "oai_villa") {
+      const o = sk.oai || {};
+      h3.textContent = u.verb + " — OAI-villa: " + (u.oai_villa ? u.oai_villa.kodi : "");
+      skSpjald.insertAdjacentHTML("beforeend",
+        "<p><strong>" + esc(o.heiti || "") + "</strong> " + esc(o.hvad || u.oai_villa.texti || "") + "</p>" +
+        (o.gera ? "<p><em>Hvað á að gera:</em> " + esc(o.gera) + "</p>" : "") +
+        (o.maelt ? "<p class=\"smatt\">Mælt: " + esc(o.maelt) + "</p>" : ""));
+    } else if (u.domur !== "ok") {
+      h3.textContent = u.verb + " — " + (DOMUR[u.domur] || u.domur);
+      if (u.xml_villa) skSpjald.insertAdjacentHTML("beforeend", "<p>XML-villa á línu " + esc(u.xml_villa.lina) + ": " + esc(u.xml_villa.texti) + "</p><pre class=\"xmlblokk\">" + esc(u.xml_villa.utdrattur || "") + "</pre>");
+      else if (u.villa) skSpjald.insertAdjacentHTML("beforeend", "<p>" + esc(u.villa) + "</p>");
+    } else if (u.verb === "Identify") {
+      const idn = sk.identify || [];
+      const n = sk.atridi_a_eftir || 0;
+      h3.textContent = "Identify — " + (n ? n + (n === 1 ? " atriði á eftir" : " atriði á eftir") : "allt í lagi");
+      skSpjald.appendChild(skTafla(null, idn.map((a) => [esc(a.svid),
+        (a.stada === "vantar" ? "VANTAR — " : "") + esc(a.texti)]), null,
+        idn.map((a) => a.stada === "vantar" ? "vantar" : a.stada === "aðvörun" ? "advorun" : "")));
+      skSpjald.insertAdjacentHTML("beforeend", "<a class=\"spec\" href=\"" + esc(sk.spec + "#Identify") + "\" target=\"_blank\" rel=\"noopener\">Staðallinn um Identify →</a>");
+    } else if (u.verb === "ListMetadataFormats") {
+      const snid = th.snid || [];
+      h3.textContent = "ListMetadataFormats — " + snid.length + " snið" + (snid.some((s) => s.prefix === "oai_dc") ? "" : ", oai_dc VANTAR");
+      skSpjald.appendChild(skTafla(["metadataPrefix", "Skema", "Nafnrými"],
+        snid.map((s) => [esc(s.prefix), esc(s.schema), esc(s.namespace)]),
+        (i) => { skPrefix.value = snid[i].prefix; }));
+      // fellilistinn fyllist af því sem veitan auglýsir
+      const val = skPrefix.value;
+      skPrefix.innerHTML = "";
+      (snid.length ? snid.map((s) => s.prefix) : ["oai_dc"]).forEach((pfx) => {
+        const o = document.createElement("option"); o.value = pfx; o.textContent = pfx; skPrefix.appendChild(o);
+      });
+      skPrefix.value = snid.some((s) => s.prefix === val) ? val : skPrefix.options[0].value;
+      skSpjald.insertAdjacentHTML("beforeend", "<p class=\"smatt\">Smelltu á snið til að velja það.</p><a class=\"spec\" href=\"" + esc(sk.spec + "#ListMetadataFormats") + "\" target=\"_blank\" rel=\"noopener\">Staðallinn um ListMetadataFormats →</a>");
+    } else if (u.verb === "ListSets") {
+      const sett = th.sett || [];
+      h3.textContent = "ListSets — " + (sett.length ? sett.length + " sett" : "engin sett auglýst");
+      if (sett.length) {
+        skSpjald.appendChild(skTafla(["setSpec", "Heiti"], sett.map((s) => [esc(s.spec), esc(s.nafn)]),
+          (i) => { $("#sk-set").value = sett[i].spec; veljaVerb("ListIdentifiers"); }));
+        skSpjald.insertAdjacentHTML("beforeend", "<p class=\"smatt\">Smelltu á sett til að fletta hausunum í því.</p>");
+      }
+      skSpjald.insertAdjacentHTML("beforeend", "<a class=\"spec\" href=\"" + esc(sk.spec + "#ListSets") + "\" target=\"_blank\" rel=\"noopener\">Staðallinn um ListSets →</a>");
+    } else if (u.verb === "ListIdentifiers") {
+      const h = th.hausar || [];
+      h3.textContent = "ListIdentifiers — " + h.length + " hausar á síðunni" + (th.completeListSize != null ? " af " + th.completeListSize : "");
+      skSpjald.appendChild(skTafla(["Auðkenni", "Dagstimpill", "Sett"],
+        h.map((x) => [esc(x.audkenni) + (x.eydd ? " (eydd)" : ""), esc(x.dagstimpill), esc((x.sett || []).join(", "))]),
+        (i) => { $("#sk-id").value = h[i].audkenni; veljaVerb("GetRecord"); }));
+      skSpjald.insertAdjacentHTML("beforeend", "<p class=\"smatt\">Smelltu á auðkenni til að sækja færsluna.</p>");
+    } else {
+      const f = th.faerslur || [];
+      h3.textContent = u.verb + " — " + f.length + (f.length === 1 ? " færsla" : " færslur") + (th.completeListSize != null ? " á síðunni af " + th.completeListSize : "");
+      f.forEach((fa) => {
+        const titill = (fa.reitir || []).find((r) => r.nafn === "dc:title");
+        const d = document.createElement("details");
+        d.className = "rada";
+        d.innerHTML = "<summary><span class=\"radaheiti\">" + esc(titill ? titill.gildi : "(án titils)") + "</span> <span class=\"smatt\">" + esc(fa.audkenni) + "</span></summary>";
+        d.appendChild(skReitatafla(fa));
+        if (f.length === 1) d.open = true;
+        skSpjald.appendChild(d);
+      });
+    }
+    if ("token" in th) {
+      skSpjald.insertAdjacentHTML("beforeend", "<p class=\"smatt\">" + (th.token
+        ? "resumptionToken: " + esc(th.token) + (th.cursor != null ? " · cursor " + esc(th.cursor) : "")
+        : "Engin fleiri síður.") + "</p>");
+    }
+    (sk.mynstur || []).forEach((m) => {
+      skSpjald.insertAdjacentHTML("beforeend", "<div class=\"mynstur\"><strong>" + esc(m.heiti) + "</strong> " + esc(m.hvad) +
+        (m.gera ? "<br><em>Hvað á að gera:</em> " + esc(m.gera) : "") + (m.maelt ? "<br><span class=\"smatt\">Mælt: " + esc(m.maelt) + "</span>" : "") + "</div>");
+    });
+  }
+
+  async function skBeidni(medToken) {
+    const slod = $("#slod").value.trim();
+    if (!gildSlod(slod)) { $("#slod").reportValidity(); return; }
+    skSaekja.disabled = true; skNaesta.disabled = true;
+    skNidur.hidden = false;
+    skSpjald.innerHTML = "<h3>Sæki " + esc(skVerb) + "…</h3>";
+    $("#sk-stada").textContent = "";
+    try {
+      const svar = await fetch("/api/skoda", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slod, verb: skVerb, rok: skRok(medToken), elta: $("#sk-elta").checked }),
+      });
+      const u = await svar.json();
+      if (!svar.ok) throw new Error(u.villa || ("HTTP " + svar.status));
+      skSpjaldTeikna(u);
+      const http = (u.skyringar && u.skyringar.http) || null;
+      $("#sk-stada").innerHTML =
+        (u.stada != null ? "<span><b>HTTP</b>" + esc(u.stada) + "</span>" : "") +
+        (u.content_type ? "<span><b>Content-Type</b>" + esc(u.content_type) + "</span>" : "") +
+        "<span><b>bæti</b>" + esc(u.baeti) + "</span><span><b>ms</b>" + esc(u.ms) + "</span>" +
+        "<span><b>verdict</b>" + esc(DOMUR[u.domur] || u.domur) + "</span>" +
+        ((u.beint || []).length ? "<span><b>beining</b>" + esc(u.beint.join(" → ")) + "</span>" : "") +
+        (http && http.hvad ? "<br><span class=\"smatt\">" + esc(http.hvad) + "</span>" : "");
+      skXml = u.xml || "";
+      $("#sk-xml").textContent = skXml;
+      $("#sk-hratt").hidden = !skXml;
+      skToken = (u.thattad && u.thattad.token) || null;
+      skNaesta.disabled = !skToken;
+    } catch (e) {
+      skSpjald.innerHTML = "<h3>Villa</h3><p>" + esc(e.message) + "</p>";
+      $("#sk-hratt").hidden = true;
+    } finally {
+      skSaekja.disabled = false;
+    }
+  }
+  skSaekja.addEventListener("click", () => skBeidni(false));
+  skNaesta.addEventListener("click", () => skBeidni(true));
+  $("#sk-afrita").addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(skXml); $("#sk-afrita").textContent = "Afritað ✓";
+      setTimeout(() => ($("#sk-afrita").textContent = "Afrita"), 1500); } catch (e) { /* hunsa */ }
+  });
+  veljaVerb("Identify");
 })();

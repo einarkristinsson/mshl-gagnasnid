@@ -93,6 +93,8 @@ _STATIC = {
     "still.css": "text/css; charset=utf-8",
     "gaegir.js": "application/javascript; charset=utf-8",
     "trog.svg": "image/svg+xml",
+    "sagnatrog.png": "image/png",
+    "favicon.png": "image/png",
 }
 _SAMTIMIS = threading.BoundedSemaphore(2)
 
