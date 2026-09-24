@@ -27,3 +27,13 @@ class RokProf(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class AframsendingRokProf(unittest.TestCase):
+    def test_umhverfi_gefur_aframsendingar(self):
+        a = lesa_rok([], umhverfi={"AFRAMSENDING": "sagnatrog.kann.is=https://trog.example/a; annad.kann.is=https://b.example/"})
+        self.assertEqual(a.aframsending, {"sagnatrog.kann.is": "https://trog.example/a",
+                                          "annad.kann.is": "https://b.example/"})
+
+    def test_engin_aframsending_sjalfgefid(self):
+        self.assertEqual(lesa_rok([], umhverfi={}).aframsending, {})

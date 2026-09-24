@@ -39,7 +39,9 @@ def _thjonn(a):
         threading.Thread(target=hermir.serve_forever, daemon=True).start()
         print("Hermir:  http://%s:%d/god/oai  ·  http://%s:%d/brotin/oai"
               % (a.host, a.hermi_port, a.host, a.hermi_port))
-    thj = bua_til_thjon(a.port, a.host, opin=a.opinn)
+    thj = bua_til_thjon(a.port, a.host, opin=a.opinn, aframsending=a.aframsending)
+    for h, slod in a.aframsending.items():
+        print("Áframsending: %s → %s" % (h, slod))
     print("Gáttagægir %s á http://%s:%d%s"
           % (UTGAFA, a.host, a.port, "  (opin — vörn á)" if a.opinn else ""))
     try:
@@ -66,6 +68,14 @@ def lesa_rok(argv=None, umhverfi=None):
                    help="opin útgáfa: hafna slóðum inn á innra net")
     p.add_argument("--med-hermi", action="store_true",
                    help="ræsa staðbundinn OAI-hermi samhliða")
+    # AFRAMSENDING="sagnatrog.kann.is=https://…; annad.is=https://…"
+    afr = {}
+    for hluti in (u.get("AFRAMSENDING") or "").split(";"):
+        if "=" in hluti:
+            h, _, slod = hluti.partition("=")
+            if h.strip() and slod.strip():
+                afr[h.strip().lower()] = slod.strip()
+    p.set_defaults(aframsending=afr)
     p.add_argument("--hermi-port", type=int, default=8766)
     und = p.add_subparsers(dest="skipun")
     pr = und.add_parser("profa", help="keyra í skel og prenta samantekt")

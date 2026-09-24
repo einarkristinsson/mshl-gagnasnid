@@ -144,8 +144,21 @@ class Handler(BaseHTTPRequestHandler):
         self._send(kodi, "application/json; charset=utf-8",
                    json.dumps(hlutur, ensure_ascii=False).encode("utf-8"))
 
+    def _aframsending(self):
+        """sagnatrog.kann.is o.fl. vísa á sömu þjónustu: 302 á trogið."""
+        kort = getattr(self.server, "aframsending", None) or {}
+        hysill = (self.headers.get("Host") or "").split(":")[0].strip().lower()
+        return kort.get(hysill)
+
     def do_GET(self):
         p = urlparse(self.path)
+        slod = self._aframsending()
+        if slod:
+            self.send_response(302)
+            self.send_header("Location", slod)
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return
         if p.path == "/":
             return self._skra("index.html", "text/html; charset=utf-8")
         if p.path.startswith("/vefur/"):
@@ -234,8 +247,10 @@ class Handler(BaseHTTPRequestHandler):
         return _vorn_athuga if self._opin() else None
 
 
-def bua_til(port=8765, host="127.0.0.1", opin=False):
-    """opin=True þegar þjónninn er aðgengilegur öðrum en eigin vél."""
+def bua_til(port=8765, host="127.0.0.1", opin=False, aframsending=None):
+    """opin=True þegar þjónninn er aðgengilegur öðrum en eigin vél.
+    aframsending: {hýsilheiti: slóð} — beiðnir með því Host-hausi fá 302."""
     thj = ThreadingHTTPServer((host, port), Handler)
     thj.opin = opin
+    thj.aframsending = {k.lower(): v for k, v in (aframsending or {}).items()}
     return thj

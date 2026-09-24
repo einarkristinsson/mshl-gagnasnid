@@ -12,6 +12,7 @@ COPY snidmat/ snidmat/
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     GATTAGAEGIR_OPINN=1 \
+    AFRAMSENDING="sagnatrog.kann.is=https://gegnir-psb.primo.exlibrisgroup.com/nde/home?vid=354ILC_NETWORK:MSHL_SAGNATROG_LEITIR_UNION&lang=is" \
     PORT=8080
 EXPOSE 8080
 

@@ -166,3 +166,41 @@ class SkodaApiProf(unittest.TestCase):
         with self.assertRaises(urllib.error.HTTPError) as cm:
             urllib.request.urlopen(beidni, timeout=10)
         self.assertEqual(cm.exception.code, 400)
+
+
+class AframsendingProf(unittest.TestCase):
+    """sagnatrog.kann.is vísar á sömu þjónustu og áframsendir á trogið á Leitir."""
+
+    def setUp(self):
+        self.thj = bua_thjon(0, aframsending={"sagnatrog.kann.is": "https://trog.example/nde/home"})
+        self.port = self.thj.server_address[1]
+        threading.Thread(target=self.thj.serve_forever, daemon=True).start()
+        time.sleep(0.1)
+        self.b = "http://127.0.0.1:%d" % self.port
+
+    def tearDown(self):
+        self.thj.shutdown()
+
+    def _get_med_host(self, host, slod="/"):
+        beidni = urllib.request.Request(self.b + slod, headers={"Host": host})
+        opn = urllib.request.build_opener(_EngarBeiningar)
+        try:
+            with opn.open(beidni, timeout=10) as r:
+                return r.status, r.headers.get("Location")
+        except urllib.error.HTTPError as e:
+            return e.code, e.headers.get("Location")
+
+    def test_aframsendingarhysill_faer_302(self):
+        st, loc = self._get_med_host("sagnatrog.kann.is")
+        self.assertEqual(st, 302)
+        self.assertEqual(loc, "https://trog.example/nde/home")
+
+    def test_adrir_hyslar_fa_siduna(self):
+        st, loc = self._get_med_host("gattagaegir-mshl.kann.is")
+        self.assertEqual(st, 200)
+        self.assertIsNone(loc)
+
+
+class _EngarBeiningar(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, *a, **k):
+        return None
