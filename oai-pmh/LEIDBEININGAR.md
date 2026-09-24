@@ -7,9 +7,9 @@
 leitanlegt í samleit með öðrum íslenskum söfnum. Það lýsir tvennu: hvernig
 afhendingin á að virka (OAI-PMH) og hvaða reitir þurfa að fylgja (Dublin Core).
 
-Allt sem hér stendur er mælt á raungögnum úr fimm íslenskum gagnaveitum —
-ekkert er tilgáta um hvað gæti farið úrskeiðis. Gildrurnar sem eru merktar
-🔴 hafa allar komið upp í alvöru.
+Allt sem hér er sýnt kemur úr þeim OAI veitum sem þegar eru aðgengilegar—
+Frávik merkt:
+🔴 hafa gerst.
 
 ---
 
@@ -49,7 +49,7 @@ milli safna, en „Skarðsá" sem staður og „Draugar" sem efni eru það. Án
 | `from` / `until` sía raunverulega | biðja um eina sekúndu og sjá hvort talan lækkar |
 | Villur koma sem OAI-villukóðar | `badVerb`, `idDoesNotExist` — ekki HTML |
 
-### 1.2 Gildrurnar — allar mældar í raunkerfum
+### 1.2 Frávik — allar mældar í raunkerfum
 
 🔴 **Ein skemmd færsla fellir alla uppskeruna.**
 Færsla með ólokuðu `CDATA` eða stýritákni felldi `ListRecords` í miðri annarri
