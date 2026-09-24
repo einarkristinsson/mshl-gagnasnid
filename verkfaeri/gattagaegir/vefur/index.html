@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gáttagægir — OAI-PMH prófun MSHL</title>
+  <title>Gáttagægir — OAI-prófun fyrir Sagnatrogið</title>
   <link rel="stylesheet" href="/vefur/still.css">
 </head>
 <body>
@@ -11,10 +11,19 @@
     <div class="innihald">
       <h1>Gáttagægir</h1>
       <p class="undirtitill">
-        Prófar OAI-PMH endapunkt gagnaveitu gegn gátlista MSHL fyrir
-        afhendingu í samleit.
+        Þessi síða er til að <strong>flýta fyrir uppsetningu á OAI-gagnagáttum
+        og gagnaskrám</strong> sem eiga að rata í Sagnatrogið á Leitir. Hér má
+        prófa endapunkt, bera hann við sniðmátið og sjá hvað þarf að laga —
+        áður en nokkuð er sent.
+      </p>
+      <p class="undirtitill smatt">
+        Þrennt í einu: staðfesta OAI/DC-uppsetningu gagnaveitu, sýna hvað er
+        þegar til og hvernig það lítur út, og hjálpa til við sameiginlega
+        sniðmátið.
       </p>
       <p class="tenglar">
+        <a href="https://www.openarchives.org/OAI/openarchivesprotocol.html" target="_blank" rel="noopener">OAI-PMH 2.0 staðallinn</a>
+        ·
         <a href="https://github.com/einarkristinsson/mshl-gagnasnid/blob/main/oai-pmh/GATLISTI.md" target="_blank" rel="noopener">Gátlisti</a>
         ·
         <a href="https://github.com/einarkristinsson/mshl-gagnasnid/blob/main/oai-pmh/LEIDBEININGAR.md" target="_blank" rel="noopener">Leiðbeiningar</a>
@@ -26,9 +35,9 @@
 
   <main class="innihald">
     <form id="form" class="form">
-      <label for="endapunktar">Þekktir endapunktar</label>
+      <label for="endapunktar">Veita <span lang="en">(provider)</span></label>
       <select id="endapunktar" class="endapunktaval">
-        <option value="">— veldu gagnaveitu —</option>
+        <option value="">— veldu veitu —</option>
       </select>
       <div class="veitulina">
         <p id="veituath" class="veituath" hidden></p>
@@ -36,11 +45,11 @@
                 hidden>Fjarlægja valda veitu</button>
       </div>
 
-      <label for="slod">Slóð endapunkts (<code>baseURL</code>)</label>
+      <label for="slod">Grunnslóð (<code>baseURL</code>)</label>
       <div class="inntakslina">
         <input id="slod" name="slod" type="url" inputmode="url"
                placeholder="https://safn.is/oai" autocomplete="off" required>
-        <button id="keyra" type="submit">Keyra athuganir</button>
+        <button id="keyra" type="submit">Prófa</button>
         <button id="haetta" type="button" class="aukabutton" hidden>Hætta</button>
       </div>
       <details class="stillingar">
@@ -50,7 +59,7 @@
             <input id="sidur" type="number" value="3" min="1" max="10"></label>
           <label>Sýnisfærslur (GetRecord)
             <input id="syni" type="number" value="10" min="1" max="25"></label>
-          <label>Sett prófuð
+          <label>Gagnasett prófuð <span lang="en">(sets)</span>
             <input id="sett" type="number" value="5" min="0" max="10"></label>
           <label class="gatmerki">
             <input id="slodaprof" type="checkbox" checked>
@@ -63,14 +72,14 @@
           <label>Nafn
             <input id="ny-nafn" type="text" placeholder="Mitt safn"
                    autocomplete="off"></label>
-          <label>Slóð (<code>baseURL</code>)
+          <label>Grunnslóð (<code>baseURL</code>)
             <input id="ny-slod" type="url" inputmode="url"
                    placeholder="https://safn.is/oai" autocomplete="off"></label>
           <label>Síður í göngu
             <input id="ny-sidur" type="number" value="3" min="1" max="10"></label>
           <label>Sýnisfærslur
             <input id="ny-syni" type="number" value="10" min="1" max="25"></label>
-          <label>Sett prófuð
+          <label>Gagnasett prófuð
             <input id="ny-sett" type="number" value="5" min="0" max="10"></label>
           <label>Athugasemd (valfrjálst)
             <input id="ny-ath" type="text" placeholder="stutt minnispunktur"
@@ -87,8 +96,8 @@
           (localStorage) og lifa endurhleðslu. Þær sendast hvergi.</p>
       </details>
       <p class="fyrirvari">
-        Gáttagægir sendir eina beiðni í einu, með auðkennandi User-Agent, og
-        sækir aldrei allt safnið — aðeins lítið sýni.
+        Ein beiðni í einu, með auðkennandi <span lang="en">User-Agent</span>,
+        og aldrei allt safnið — bara lítið sýni.
       </p>
     </form>
 
@@ -122,15 +131,14 @@
       <div class="metalina" id="metalina"></div>
       <label class="taeknival">
         <input id="taeknistillingar" type="checkbox">
-        Sýna tæknilegar upplýsingar (kóðar, beiðnir, tilvísanir)</label>
+        Tæknilegar upplýsingar (kóðar, beiðnir, tilvísanir í staðalinn)</label>
     </section>
 
     <section id="nidurstodur" class="nidurstodur" aria-live="polite"></section>
 
     <section id="faerslukafli" class="faerslukafli" hidden>
-      <h2>Færslur í sýni</h2>
-      <p class="smatt">Smelltu á færslu til að lesa reitina — þetta er
-        gagnvirka útgáfan af „opnað tíu færslur og lesið þær“.</p>
+      <h2>Sýni</h2>
+      <p class="smatt">Smelltu á færslu til að lesa reitina.</p>
       <table class="faerslutafla">
         <thead><tr><th>Auðkenni</th><th>Titill</th><th>Uppruni</th>
           <th>Athugasemdir</th></tr></thead>
@@ -140,9 +148,9 @@
     </section>
 
     <section id="samantektarkafli" class="samantektarkafli" hidden>
-      <h2>Afritanleg samantekt</h2>
+      <h2>Samantekt</h2>
       <div class="samantektarhnappar">
-        <button id="afrita" type="button">Afrita samantekt</button>
+        <button id="afrita" type="button">Afrita</button>
         <button id="saekjajson" type="button" class="aukabutton">Sækja JSON</button>
       </div>
       <pre id="samantektartexti" class="samantektartexti"></pre>
@@ -150,7 +158,7 @@
   </main>
 
   <footer class="fotur innihald">
-    Gáttagægir · Miðstöð stafrænna hugvísinda og lista · hreint python3
+    Gáttagægir · Sagnatrogið · Miðstöð stafrænna hugvísinda og lista
   </footer>
 
   <script src="/vefur/gaegir.js"></script>

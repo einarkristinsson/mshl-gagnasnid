@@ -3,7 +3,7 @@
 **Vefverkfæri sem prófar OAI-PMH endapunkt gagnaveitu gegn gátlista MSHL
 fyrir afhendingu í samleit.**
 
-Límdu inn slóð endapunktsins (`baseURL`), smelltu á **Keyra athuganir**, og
+Límdu inn slóð endapunktsins (`baseURL`), smelltu á **Prófa**, og
 fáðu stóðst/villu-skýrslu sem speglar [`../../oai-pmh/GATLISTI.md`](../../oai-pmh/GATLISTI.md)
 og [`../../snidmat/GULLNA-SNIDID.md`](../../snidmat/GULLNA-SNIDID.md) — reitur
 fyrir reit, með gildrunum úr [`../../oai-pmh/LEIDBEININGAR.md`](../../oai-pmh/LEIDBEININGAR.md).
@@ -61,9 +61,9 @@ Athuganirnar eru í fjórum hópum, eins og gátlistinn:
 
 | Hópur | Dæmi um athuganir |
 |---|---|
-| **Endapunkturinn** | Identify svarar · baseURL virkar orðrétt · GET **og** POST · adminEmail · `oai_dc` auglýst · `resumptionToken` og talan stemmir · `from`/`until` sía · sett ekki tóm og leka ekki · villur koma sem OAI-kóðar · ein skemmd færsla fellir ekki heildina |
-| **Færslurnar** | `dc:title` · slóð sem svarar 200 · `dc:type` par (@is/@en) · `dc:subject` · staðarreitur · smámyndaslóð (bein, opin, aðgreinanleg) · `dc:rights` · `dc:language` · engir eigin reitir í `oai_dc` |
-| **Hreinlæti** | gilt XML · UTF-8 án BOM · engin stýritákn · jafnvægi í CDATA · engin `None`/tóm gildi · engin færsla með tómu `oai_dc:dc` · hreinn texti (ekkert HTML) |
+| **Endapunktur** | Identify svarar · baseURL virkar orðrétt · GET **og** POST · adminEmail · `oai_dc` auglýst · `resumptionToken` og talan stemmir · `from`/`until` sía · sett ekki tóm og leka ekki · villur koma sem OAI-kóðar · ein skemmd færsla fellir ekki heildina |
+| **Færslur** | `dc:title` · slóð sem svarar 200 · `dc:type` par (@is/@en) · `dc:subject` · staðarreitur · smámyndaslóð (bein, opin, aðgreinanleg) · `dc:rights` · `dc:language` · engir eigin reitir í `oai_dc` |
+| **Hreinleiki** | gilt XML · UTF-8 án BOM · engin stýritákn · jafnvægi í CDATA · engin `None`/tóm gildi · engin færsla með tómu `oai_dc:dc` · hreinn texti (ekkert HTML) |
 | **Gildin** | dagsetningar á EDTF · `POINT(lengd breidd)` innan Íslands · engin forskeyti í gildum · staðanöfn í nefnifalli, eða beygð mynd með hnitum/auðkenni · varanleg auðkenni efnisorða · hlutverk fylgi fólki |
 
 Alvarleiki: **villa** (skylda/staðfest gildra), **aðvörun** (ráðlagt),

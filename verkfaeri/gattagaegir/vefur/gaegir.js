@@ -17,8 +17,8 @@
   const samantektarkafli = $("#samantektarkafli");
   const samantektartexti = $("#samantektartexti");
 
-  const HOPHEITI = { endapunktur: "Endapunkturinn", faerslur: "Færslurnar",
-    hreinlaeti: "Hreinlæti", gildi: "Gildin sjálf" };
+  const HOPHEITI = { endapunktur: "Endapunktur", faerslur: "Færslur",
+    hreinlaeti: "Hreinleiki", gildi: "Gildi" };
   const STADATXT = { stodst: "Stóðst", sleppt: "Sleppt" };
   const ALVTXT = { villa: "Villa", advorun: "Aðvörun", abending: "Ábending" };
 
@@ -519,7 +519,7 @@
     try {
       await navigator.clipboard.writeText(t);
       $("#afrita").textContent = "Afritað ✓";
-      setTimeout(() => ($("#afrita").textContent = "Afrita samantekt"), 1500);
+      setTimeout(() => ($("#afrita").textContent = "Afrita"), 1500);
     } catch (e) {
       const r = document.createRange();
       r.selectNode(samantektartexti);

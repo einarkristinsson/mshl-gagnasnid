@@ -1,4 +1,4 @@
-"""Hreinlætisathuganir — það sem sniðið krefst umfram staðlað XML."""
+"""Hreinleikaathuganir — það sem sniðið krefst umfram staðlað XML."""
 import re
 
 from .. import xml_lestur as xl

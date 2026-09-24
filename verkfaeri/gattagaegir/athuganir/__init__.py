@@ -24,10 +24,10 @@ HREINLAETI = "hreinlaeti"
 GILDI = "gildi"
 
 HOPHEITI = {
-    ENDAPUNKTUR: "Endapunkturinn",
-    FAERSLUR: "Færslurnar",
-    HREINLAETI: "Hreinlæti",
-    GILDI: "Gildin sjálf",
+    ENDAPUNKTUR: "Endapunktur",
+    FAERSLUR: "Færslur",
+    HREINLAETI: "Hreinleiki",
+    GILDI: "Gildi",
 }
 
 

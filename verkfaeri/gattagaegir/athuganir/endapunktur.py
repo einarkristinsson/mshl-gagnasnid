@@ -294,7 +294,7 @@ def E14(s):
 
 
 def E15(s):
-    nd = _nd(s, "E15", "Sett leka ekki hvert í annað", VILLA, gildra=True)
+    nd = _nd(s, "E15", "Gagnasett (OAI set) skila aðeins eigin færslum", VILLA, gildra=True)
     sk = s.svor.get("listsets")
     if sk is None or not sk.gilt:
         return nd.sleppt_("Engin sett til að prófa leka á.")

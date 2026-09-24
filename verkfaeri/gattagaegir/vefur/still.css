@@ -1,23 +1,27 @@
 :root {
-  --gr: #1f7a3d; --gr-bg: #e6f4ea;
-  --ra: #b3261e; --ra-bg: #fce8e6;
-  --gu: #a15c00; --gu-bg: #fdf0d5;
-  --bl: #1b5fb0; --bl-bg: #e6eef8;
-  --grar: #5f6368; --grar-bg: #eceef0;
-  --lina: #d8dbe0; --texti: #1a1c1e; --bak: #f6f7f9;
-  --spjald: #ffffff;
+  /* Sama litróf og OAI Skoðarinn og Sagnatrogið: pergament og blek. */
+  --gr: #1d5c38; --gr-bg: #e4efe6;
+  --ra: #8b1e1e; --ra-bg: #f8e4e0;
+  --gu: #7a4b00; --gu-bg: #f4e6c4;
+  --bl: #5c3d2e; --bl-bg: #efe4d0;
+  --grar: #6b5d4e; --grar-bg: #efe4d0;
+  --lina: #d4c4ae; --texti: #2a2118; --bak: #f4ecdb;
+  --spjald: #fffaf0;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --sans: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
 }
 * { box-sizing: border-box; }
 body {
   margin: 0; background: var(--bak); color: var(--texti);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif; line-height: 1.5;
+  font-family: var(--sans); line-height: 1.5;
 }
 .innihald { max-width: 900px; margin: 0 auto; padding: 0 20px; }
-.haus { background: #12321f; color: #fff; padding: 28px 0 22px; }
-.haus h1 { margin: 0 0 4px; font-size: 30px; letter-spacing: -0.5px; }
-.undirtitill { margin: 0 0 8px; color: #cfe6d7; max-width: 640px; }
-.tenglar a { color: #a9d9bb; text-decoration: none; }
+.haus { background: var(--bak); color: var(--texti); padding: 24px 0 14px;
+  border-bottom: 1px solid var(--lina); }
+.haus h1 { margin: 0 0 6px; font-size: 30px; font-weight: 600; }
+.undirtitill { margin: 0 0 8px; color: var(--texti); max-width: 700px; }
+.undirtitill.smatt { color: var(--grar); font-size: 15px; }
+.tenglar a { color: var(--bl); text-decoration: none; }
 .tenglar a:hover { text-decoration: underline; }
 
 .form { background: var(--spjald); border: 1px solid var(--lina);
@@ -32,13 +36,14 @@ body {
   padding: 8px 12px; font-size: 13px; margin: 0; flex: 1 1 240px; }
 .smabutton { padding: 7px 12px; font-size: 13px; }
 .inntakslina { display: flex; gap: 10px; flex-wrap: wrap; }
-#slod { flex: 1 1 340px; padding: 11px 12px; font-size: 16px;
+#slod { flex: 1 1 340px; padding: 11px 12px; font-size: 15px;
+  font-family: var(--mono); background: var(--spjald); color: var(--texti);
   border: 1px solid var(--lina); border-radius: 8px; }
-button { background: var(--gr); color: #fff; border: 0; border-radius: 8px;
+button { background: var(--bl); color: #fff; border: 0; border-radius: 8px;
   padding: 11px 18px; font-size: 15px; font-weight: 600; cursor: pointer; }
 button:hover { filter: brightness(1.05); }
 button:disabled { opacity: 0.5; cursor: default; }
-.aukabutton { background: #e7e9ec; color: var(--texti); }
+.aukabutton { background: var(--grar-bg); color: var(--texti); }
 .stillingar { margin-top: 14px; }
 .stillingar summary { cursor: pointer; color: var(--grar); font-weight: 600; }
 .stillingargrid { display: grid; grid-template-columns: repeat(2, 1fr);
@@ -72,7 +77,7 @@ button:disabled { opacity: 0.5; cursor: default; }
   background: var(--spjald); border: 1px solid var(--lina);
   border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; }
 .snuningur { width: 18px; height: 18px; border: 3px solid var(--lina);
-  border-top-color: var(--gr); border-radius: 50%;
+  border-top-color: var(--bl); border-radius: 50%;
   animation: snua 0.8s linear infinite; }
 @keyframes snua { to { transform: rotate(360deg); } }
 
@@ -102,7 +107,7 @@ button:disabled { opacity: 0.5; cursor: default; }
 .hopur { background: var(--spjald); border: 1px solid var(--lina);
   border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
 .hopur > h2 { margin: 0; padding: 14px 18px; font-size: 18px;
-  border-bottom: 1px solid var(--lina); background: #fbfbfc; }
+  border-bottom: 1px solid var(--lina); background: var(--grar-bg); }
 .rada { border-bottom: 1px solid var(--lina); }
 .rada:last-child { border-bottom: 0; }
 .rada > summary { list-style: none; cursor: pointer; padding: 12px 18px;
@@ -124,7 +129,7 @@ button:disabled { opacity: 0.5; cursor: default; }
   margin: 8px 0; font-size: 13px; }
 .radasmatt th, .radasmatt td { border: 1px solid var(--lina);
   padding: 5px 8px; text-align: left; vertical-align: top; }
-.radasmatt th { background: #fafafa; }
+.radasmatt th { background: var(--grar-bg); }
 .lagfaering { background: var(--gr-bg); border-radius: 8px;
   padding: 8px 12px; margin-top: 8px; }
 .tilvisun a { color: var(--bl); }
@@ -136,7 +141,7 @@ button:disabled { opacity: 0.5; cursor: default; }
 .faerslutafla th, .faerslutafla td { border: 1px solid var(--lina);
   padding: 8px 10px; text-align: left; }
 .faerslutafla tbody tr { cursor: pointer; }
-.faerslutafla tbody tr:hover { background: var(--gr-bg); }
+.faerslutafla tbody tr:hover { background: var(--grar-bg); }
 .merkitala { background: var(--ra-bg); color: var(--ra); border-radius: 6px;
   padding: 1px 8px; font-weight: 700; font-size: 12px; }
 .faersluspjald { background: var(--spjald); border: 1px solid var(--lina);
@@ -157,15 +162,17 @@ button:disabled { opacity: 0.5; cursor: default; }
   font-weight: 400; }
 .snidtenglar { font-size: 14px; margin: 8px 0 0; }
 .snidtenglar a { color: var(--bl); }
-.xmlblokk { background: #0f1720; color: #d7e2ea; padding: 14px;
-  border-radius: 10px; overflow: auto; font-size: 12.5px; line-height: 1.5;
+.xmlblokk { background: var(--spjald); color: var(--texti); padding: 14px;
+  border: 1px solid var(--lina); border-radius: 10px; overflow: auto;
+  font-family: var(--mono); font-size: 12.5px; line-height: 1.5;
   white-space: pre; }
 .hratt { margin-top: 12px; }
 .hratt > summary { cursor: pointer; color: var(--bl); font-weight: 600; }
 
 .samantektarhnappar { display: flex; gap: 10px; margin-bottom: 10px; }
-.samantektartexti { background: #0f1720; color: #d7e2ea; padding: 16px;
-  border-radius: 10px; overflow: auto; font-size: 13px; line-height: 1.45; }
+.samantektartexti { background: var(--spjald); color: var(--texti); padding: 16px;
+  border: 1px solid var(--lina); border-radius: 10px; overflow: auto;
+  font-family: var(--mono); font-size: 13px; line-height: 1.45; }
 .fotur { color: var(--grar); font-size: 13px; padding: 24px 20px 40px; }
 
 @media (max-width: 560px) {

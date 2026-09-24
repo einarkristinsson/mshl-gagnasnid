@@ -6,7 +6,7 @@ atriði eru í [LEIDBEININGAR.md](LEIDBEININGAR.md).
 **Gáttagægir keyrir þennan lista sjálfvirkt** — límdu inn slóð endapunktsins
 og fáðu stóðst/villu-skýrslu. Sjá [`../verkfaeri/gattagaegir/`](../verkfaeri/gattagaegir/).
 
-## Endapunkturinn
+## Endapunktur
 
 - [ ] `Identify` svarar og `baseURL` þar virkar orðrétt
 - [ ] `adminEmail` er til staðar
@@ -19,7 +19,7 @@ og fáðu stóðst/villu-skýrslu. Sjá [`../verkfaeri/gattagaegir/`](../verkfae
 - [ ] Auglýst sett eru ekki tóm og leka ekki hvert í annað
 - [ ] Villur koma sem OAI-villukóðar, ekki HTML eða PHP-villa
 
-## Færslurnar
+## Færslur
 
 - [ ] `dc:title` á öllum, aldrei tómur
 - [ ] `dc:identifier` með varanlegri slóð sem svarar 200 (ekki 302 á forsíðu)
@@ -30,7 +30,7 @@ og fáðu stóðst/villu-skýrslu. Sjá [`../verkfaeri/gattagaegir/`](../verkfae
 - [ ] `dc:rights` segir hvað má
 - [ ] `dc:language` með ISO-kóða
 
-## Hreinlæti
+## Hreinleiki
 
 - [ ] Engin `None`, `null`, `N/A` eða `-` sem gildi — reitnum sleppt í staðinn
 - [ ] Engir tómir reitir
@@ -40,7 +40,7 @@ og fáðu stóðst/villu-skýrslu. Sjá [`../verkfaeri/gattagaegir/`](../verkfae
 - [ ] UTF-8, engin BOM
 - [ ] Skráin er gilt XML — keyrð gegnum `xmllint --noout`
 
-## Gildin sjálf
+## Gildi
 
 - [ ] Dagsetningar á EDTF (`1887` eða `1703/1910`)
 - [ ] Staðanöfn í **nefnifalli** (`Skálholt`, ekki `Skálholti`) — eða **hnit/auðkenni** með ef heimildin ber beygða mynd
