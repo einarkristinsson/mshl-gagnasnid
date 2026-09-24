@@ -6,6 +6,7 @@ Leiðir:
   GET  /api/heilsa       -> {"stada":"ok"}
   POST /api/profa        -> NDJSON straumur af atburðum
   GET  /api/profa?slod=  -> full skýrsla sem JSON (buffrað, fyrir curl)
+  POST /api/skoda        -> ein OAI-beiðni, þáttuð og hrá (flettihlutinn)
 """
 import json
 import os
@@ -16,6 +17,7 @@ from urllib.parse import urlparse, parse_qs
 
 from . import UTGAFA
 from . import velin
+from . import skoda as skodari
 from .vorn import athuga as _vorn_athuga
 
 VEFUR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "vefur")
@@ -90,6 +92,7 @@ def _snid_gogn():
 _STATIC = {
     "still.css": "text/css; charset=utf-8",
     "gaegir.js": "application/javascript; charset=utf-8",
+    "trog.svg": "image/svg+xml",
 }
 _SAMTIMIS = threading.BoundedSemaphore(2)
 
@@ -169,7 +172,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         p = urlparse(self.path)
-        if p.path != "/api/profa":
+        if p.path not in ("/api/profa", "/api/skoda"):
             return self._json(404, {"villa": "ekki fundið"})
         try:
             lengd = int(self.headers.get("Content-Length", 0) or 0)
@@ -179,6 +182,16 @@ class Handler(BaseHTTPRequestHandler):
         slod = _gild_slod(beidni.get("slod"))
         if not slod:
             return self._json(400, {"villa": "ógild slóð (http/https)"})
+        if p.path == "/api/skoda":
+            rok = beidni.get("rok") or {}
+            if not isinstance(rok, dict):
+                return self._json(400, {"villa": "rok á að vera hlutur"})
+            with _SAMTIMIS:
+                ut = skodari.skoda(slod, str(beidni.get("verb") or ""),
+                                   {k: str(v) for k, v in rok.items()},
+                                   vorn=self._vorn(),
+                                   elta=bool(beidni.get("elta", True)))
+            return self._json(200, ut)
         still = _hreinsa_stillingar(beidni.get("stillingar"))
         self._streyma(slod, still)
 

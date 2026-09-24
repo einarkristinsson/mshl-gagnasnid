@@ -9,6 +9,14 @@
 <body>
   <header class="haus">
     <div class="innihald">
+      <p class="merkirod">
+        <img class="trogmerki" src="/vefur/trog.svg" width="28" height="28" alt="">
+        <span class="merkiheiti">Trog</span>
+        <span class="merkjaskil" aria-hidden="true">·</span>
+        <span>Leitir</span>
+        <span class="merkjaskil" aria-hidden="true">·</span>
+        <span>MSHL</span>
+      </p>
       <h1>Gáttagægir</h1>
       <p class="undirtitill">
         Þessi síða er til að <strong>flýta fyrir uppsetningu á OAI-gagnagáttum
@@ -49,6 +57,17 @@
       <div class="inntakslina">
         <input id="slod" name="slod" type="url" inputmode="url"
                placeholder="https://safn.is/oai" autocomplete="off" required>
+      </div>
+
+      <div class="flipar" role="tablist" aria-label="Hlutar">
+        <button type="button" role="tab" data-flipi="profa" aria-selected="true">Prófa <span lang="en">(validate)</span></button>
+        <button type="button" role="tab" data-flipi="skoda" aria-selected="false">Skoða <span lang="en">(browse)</span></button>
+      </div>
+
+      <div id="flipi-profa" class="flipi" role="tabpanel">
+      <p class="flipalysing">Keyrir gátlistann gegn veitunni: nokkrar beiðnir,
+        lítið sýni, stóðst/villu-skýrsla.</p>
+      <div class="inntakslina">
         <button id="keyra" type="submit">Prófa</button>
         <button id="haetta" type="button" class="aukabutton" hidden>Hætta</button>
       </div>
@@ -95,6 +114,41 @@
         <p class="smatt">Veitur sem þú bætir við eru vistaðar í vafranum þínum
           (localStorage) og lifa endurhleðslu. Þær sendast hvergi.</p>
       </details>
+      </div>
+
+      <div id="flipi-skoda" class="flipi" role="tabpanel" hidden>
+      <p class="flipalysing">Ein beiðni í einu. Sjáðu settin, sniðin og
+        færslurnar eins og veitan skilar þeim — þáttað og hrátt.</p>
+      <div class="verb" role="group" aria-label="Aðgerð">
+        <button type="button" data-verb="Identify" aria-pressed="true">Identify</button>
+        <button type="button" data-verb="ListMetadataFormats" aria-pressed="false">ListMetadataFormats</button>
+        <button type="button" data-verb="ListSets" aria-pressed="false">ListSets</button>
+        <button type="button" data-verb="ListIdentifiers" aria-pressed="false">ListIdentifiers</button>
+        <button type="button" data-verb="ListRecords" aria-pressed="false">ListRecords</button>
+        <button type="button" data-verb="GetRecord" aria-pressed="false">GetRecord</button>
+      </div>
+      <p id="verblysing" class="smatt"></p>
+      <div class="skodagrid">
+        <label>Snið <span lang="en">(metadataPrefix)</span>
+          <input id="sk-prefix" type="text" value="oai_dc" autocomplete="off"></label>
+        <label>Sett <span lang="en">(set)</span>
+          <input id="sk-set" type="text" placeholder="t.d. type:baer" autocomplete="off"></label>
+        <label>Auðkenni <span lang="en">(identifier)</span>
+          <input id="sk-id" type="text" placeholder="oai:safn.is:hlutur:1" autocomplete="off"></label>
+        <label>Frá <span lang="en">(from)</span>
+          <input id="sk-from" type="text" placeholder="2024-01-01" autocomplete="off"></label>
+        <label>Til <span lang="en">(until)</span>
+          <input id="sk-until" type="text" placeholder="2024-12-31" autocomplete="off"></label>
+        <label>Framhaldslykill <span lang="en">(resumptionToken)</span>
+          <input id="sk-token" type="text" autocomplete="off"></label>
+      </div>
+      <div class="inntakslina">
+        <button id="sk-saekja" type="button">Sækja</button>
+        <button id="sk-naesta" type="button" class="aukabutton" disabled>Næsta síða</button>
+        <label class="gatmerki smatt"><input id="sk-elta" type="checkbox" checked>
+          Fylgja tilvísunum (301)</label>
+      </div>
+      </div>
       <p class="fyrirvari">
         Ein beiðni í einu, með auðkennandi <span lang="en">User-Agent</span>,
         og aldrei allt safnið — bara lítið sýni.
@@ -147,6 +201,15 @@
       <div id="faersluspjald" class="faersluspjald" hidden></div>
     </section>
 
+    <section id="sk-nidurstada" class="sknidurstada" hidden>
+      <div id="sk-stada" class="skstada"></div>
+      <div id="sk-thattad" class="skthattad"></div>
+      <details class="hratt" id="sk-hratt">
+        <summary>Hrátt svar (XML)</summary>
+        <pre id="sk-xml" class="xmlblokk"></pre>
+      </details>
+    </section>
+
     <section id="samantektarkafli" class="samantektarkafli" hidden>
       <h2>Samantekt</h2>
       <div class="samantektarhnappar">
@@ -154,6 +217,27 @@
         <button id="saekjajson" type="button" class="aukabutton">Sækja JSON</button>
       </div>
       <pre id="samantektartexti" class="samantektartexti"></pre>
+    </section>
+    <section class="skjolun">
+      <h2>Skjölun</h2>
+      <p>Afhendingin fylgir <a href="https://www.openarchives.org/OAI/openarchivesprotocol.html" target="_blank" rel="noopener">OAI-PMH 2.0</a>.
+        Endapunktur verður að svara öllum sex aðgerðunum. Smelltu á aðgerð til að
+        prófa hana í Skoða-hlutanum.</p>
+      <table class="verbtafla">
+        <thead><tr><th>Aðgerð</th><th>Hverju hún skilar</th><th></th></tr></thead>
+        <tbody>
+          <tr><td><code>Identify</code></td><td>hver veitan er: nafn, <code>baseURL</code>, <code>adminEmail</code>, elsti dagstimpill</td><td><a href="#skoda" data-skoda-verb="Identify">prófa</a></td></tr>
+          <tr><td><code>ListMetadataFormats</code></td><td>hvaða snið eru í boði — <code>oai_dc</code> er skylda</td><td><a href="#skoda" data-skoda-verb="ListMetadataFormats">prófa</a></td></tr>
+          <tr><td><code>ListSets</code></td><td>hvaða gagnasett (<code>set</code>) má sækja sér</td><td><a href="#skoda" data-skoda-verb="ListSets">prófa</a></td></tr>
+          <tr><td><code>ListIdentifiers</code></td><td>hausar allra færslna, síða fyrir síðu</td><td><a href="#skoda" data-skoda-verb="ListIdentifiers">prófa</a></td></tr>
+          <tr><td><code>ListRecords</code></td><td>færslurnar sjálfar, síða fyrir síðu</td><td><a href="#skoda" data-skoda-verb="ListRecords">prófa</a></td></tr>
+          <tr><td><code>GetRecord</code></td><td>ein færsla eftir auðkenni</td><td><a href="#skoda" data-skoda-verb="GetRecord">prófa</a></td></tr>
+        </tbody>
+      </table>
+      <p class="smatt">Hvað á að vera í færslunum, reitur fyrir reit:
+        <a href="https://github.com/einarkristinsson/mshl-gagnasnid/blob/main/oai-pmh/LEIDBEININGAR.md" target="_blank" rel="noopener">Leiðbeiningar</a> ·
+        <a href="https://github.com/einarkristinsson/mshl-gagnasnid/blob/main/oai-pmh/GATLISTI.md" target="_blank" rel="noopener">Gátlisti</a> ·
+        <a href="https://github.com/einarkristinsson/mshl-gagnasnid/blob/main/snidmat/GULLNA-SNIDID.md" target="_blank" rel="noopener">Gullna sniðið</a></p>
     </section>
   </main>
 

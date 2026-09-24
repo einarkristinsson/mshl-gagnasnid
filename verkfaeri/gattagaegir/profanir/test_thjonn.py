@@ -42,6 +42,10 @@ class ThjonnProf(unittest.TestCase):
         st, _t, hausar = _get(self.b + "/vefur/still.css")
         self.assertEqual(st, 200)
         self.assertIn("text/css", hausar.get("Content-Type"))
+        st, trog, hausar = _get(self.b + "/vefur/trog.svg")
+        self.assertEqual(st, 200)
+        self.assertIn("image/svg", hausar.get("Content-Type"))
+        self.assertIn("<svg", trog)
 
     def test_hvitlisti_lokar(self):
         with self.assertRaises(urllib.error.HTTPError) as c:
@@ -130,3 +134,35 @@ class OpinnThjonnProf(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SkodaApiProf(unittest.TestCase):
+    """POST /api/skoda — flettihlutinn yfir HTTP."""
+
+    def setUp(self):
+        self.h = Hermistjori().__enter__()
+        self.thj = bua_thjon(0)
+        self.port = self.thj.server_address[1]
+        threading.Thread(target=self.thj.serve_forever, daemon=True).start()
+        time.sleep(0.1)
+        self.b = "http://127.0.0.1:%d" % self.port
+
+    def tearDown(self):
+        self.thj.shutdown()
+        self.h.__exit__()
+
+    def test_skoda_skilar_thattadri_nidurstodu(self):
+        st, texti = _post(self.b + "/api/skoda",
+                          {"slod": self.h.base + "/god/oai", "verb": "ListSets"})
+        self.assertEqual(st, 200)
+        u = json.loads(texti)
+        self.assertEqual(u["domur"], "ok")
+        self.assertTrue(u["thattad"]["sett"])
+
+    def test_skoda_hafnar_ogildri_slod(self):
+        beidni = urllib.request.Request(
+            self.b + "/api/skoda", data=json.dumps({"slod": "ftp://x", "verb": "Identify"}).encode(),
+            method="POST", headers={"Content-Type": "application/json"})
+        with self.assertRaises(urllib.error.HTTPError) as cm:
+            urllib.request.urlopen(beidni, timeout=10)
+        self.assertEqual(cm.exception.code, 400)

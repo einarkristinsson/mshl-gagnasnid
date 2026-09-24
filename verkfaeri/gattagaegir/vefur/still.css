@@ -20,6 +20,12 @@ body {
 .innihald { max-width: 900px; margin: 0 auto; padding: 0 20px; }
 .haus { background: var(--bak); color: var(--texti); padding: 24px 0 14px;
   border-bottom: 1px solid var(--lina); }
+.merkirod { display: flex; align-items: center; gap: 8px; margin: 0 0 10px;
+  font-size: 13px; letter-spacing: 0.04em; color: var(--grar);
+  text-transform: uppercase; font-weight: 600; }
+.trogmerki { display: block; }
+.merkiheiti { color: var(--texti); }
+.merkjaskil { color: var(--lina); }
 .haus h1 { margin: 0 0 6px; font-size: 30px; font-weight: 600; }
 .undirtitill { margin: 0 0 8px; color: var(--texti); max-width: 700px; }
 .undirtitill.smatt { color: var(--grar); font-size: 15px; }
@@ -181,3 +187,58 @@ button:disabled { opacity: 0.5; cursor: default; }
   .stillingargrid { grid-template-columns: 1fr; }
   .baetagrid { grid-template-columns: 1fr; }
 }
+
+/* ---- Flipar: Prófa / Skoða ---- */
+.flipar { display: flex; gap: 6px; margin: 16px 0 0; border-bottom: 1px solid var(--lina); }
+.flipar button { background: transparent; color: var(--grar); border: 0;
+  border-bottom: 3px solid transparent; border-radius: 0; padding: 8px 14px;
+  font-size: 16px; font-weight: 600; margin-bottom: -1px; }
+.flipar button[aria-selected="true"] { color: var(--texti); border-bottom-color: var(--bl); }
+.flipar button span, .skodagrid label span, label span[lang="en"] { color: var(--grar);
+  font-weight: 400; font-size: 0.85em; }
+.flipi { padding-top: 14px; }
+.flipalysing { margin: 0 0 12px; color: var(--grar); font-size: 14px; }
+
+/* ---- Skoða ---- */
+.verb { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.verb button { background: var(--spjald); color: var(--texti);
+  border: 1px solid var(--lina); font-family: var(--mono); font-size: 13px;
+  font-weight: 500; padding: 7px 11px; }
+.verb button[aria-pressed="true"] { background: var(--bl); color: #fff; border-color: var(--bl); }
+.skodagrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 12px;
+  margin: 8px 0 12px; }
+.skodagrid label { font-weight: 400; font-size: 14px; }
+.skodagrid input { width: 100%; padding: 7px 9px; margin-top: 4px; display: block;
+  border: 1px solid var(--lina); border-radius: 6px; background: var(--spjald);
+  color: var(--texti); font-family: var(--mono); font-size: 13px; }
+.sknidurstada { margin: 0 0 20px; }
+.skstada { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center;
+  background: var(--spjald); border: 1px solid var(--lina); border-radius: 10px;
+  padding: 10px 14px; margin-bottom: 12px; font-size: 14px; }
+.skstada .domur { font-weight: 700; padding: 2px 10px; border-radius: 6px; }
+.skstada .domur.ok { background: var(--gr-bg); color: var(--gr); }
+.skstada .domur.villa { background: var(--ra-bg); color: var(--ra); }
+.skstada .domur.advorun { background: var(--gu-bg); color: var(--gu); }
+.skstada code { font-family: var(--mono); font-size: 13px; }
+.skthattad table { border-collapse: collapse; width: 100%; font-size: 14px;
+  background: var(--spjald); margin-bottom: 12px; }
+.skthattad th, .skthattad td { border: 1px solid var(--lina); padding: 6px 10px;
+  text-align: left; vertical-align: top; }
+.skthattad th { background: var(--grar-bg); }
+.skthattad tr.smellanleg { cursor: pointer; }
+.skthattad tr.smellanleg:hover { background: var(--grar-bg); }
+.skthattad .reitir { display: none; }
+.skthattad tr.opin + tr .reitir, .skthattad .reitir.syna { display: table; }
+.skthattad .lykill { color: var(--grar); font-family: var(--mono); font-size: 12px; }
+.skthattad .tokenlina { color: var(--grar); font-size: 13px; margin: 0 0 12px; }
+
+/* ---- Skjölun ---- */
+.skjolun { margin: 32px 0 8px; }
+.skjolun h2 { font-size: 20px; margin: 0 0 8px; }
+.verbtafla { border-collapse: collapse; width: 100%; font-size: 14px;
+  background: var(--spjald); margin: 10px 0; }
+.verbtafla th, .verbtafla td { border: 1px solid var(--lina); padding: 6px 10px;
+  text-align: left; }
+.verbtafla th { background: var(--grar-bg); }
+.verbtafla a { color: var(--bl); }
+@media (max-width: 700px) { .skodagrid { grid-template-columns: 1fr; } }
