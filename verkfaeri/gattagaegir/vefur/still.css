@@ -11,6 +11,8 @@
   --sans: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
 }
 * { box-sizing: border-box; }
+/* hidden-eigindið verður að vinna yfir display:flex á stikum og köflum */
+[hidden] { display: none !important; }
 body {
   margin: 0; background: var(--bak); color: var(--texti);
   font-family: var(--sans); line-height: 1.5;

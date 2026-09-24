@@ -331,7 +331,7 @@
     endapunktar.innerHTML = "";
     const tomt = document.createElement("option");
     tomt.value = "";
-    tomt.textContent = "— veldu gagnaveitu —";
+    tomt.textContent = "— veldu veitu —";
     endapunktar.appendChild(tomt);
     HOPRAD.forEach((hopur) => {
       const iHop = veitur.filter((v) => v.hopur === hopur);
