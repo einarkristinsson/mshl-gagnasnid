@@ -1,15 +1,20 @@
 # Hverju eiga gagnaveitur að skila?
 
 **Leiðbeiningar um OAI-PMH og Dublin Core fyrir samþætta leitargátt**
-Útgáfa 1.0 · 16. september 2026 · Miðstöð stafrænna hugvísinda og lista
+Útgáfa 1.1 · 24. september 2026 · Miðstöð stafrænna hugvísinda og lista
 
 Þetta skjal er ætlað þeim sem reka gagnasafn og vilja að efnið þeirra sé
 leitanlegt í samleit með öðrum íslenskum söfnum. Það lýsir tvennu: hvernig
 afhendingin á að virka (OAI-PMH) og hvaða reitir þurfa að fylgja (Dublin Core).
 
-Allt sem hér er sýnt kemur úr þeim OAI veitum sem þegar eru aðgengilegar—
-Frávik merkt:
-🔴 hafa gerst.
+Allt sem hér er sýnt er mælt í þeim OAI-veitum sem þegar eru aðgengilegar.
+Ekkert er tilgáta. Frávik merkt 🔴 hafa öll gerst.
+
+Tvö tól hjálpa til við að prófa áður en nokkuð er sent: **Gáttagægir**
+keyrir gátlistann í þessu skjali gegn endapunkti
+(<https://gattagaegir-528717641663.europe-west4.run.app>), og **OAI Skoðari**
+sýnir eina beiðni í einu, sett, snið og hrátt svar
+(<https://oai-skodari-528717641663.europe-west4.run.app>).
 
 ---
 
@@ -28,13 +33,25 @@ Sex reitir og einn endapunktur. Ef ekkert annað næst, þá þetta:
 
 Og endapunktur á `https://…/oai` sem svarar OAI-PMH 2.0.
 
-**Tvö svið bera samleitina uppi: EFNI og STAÐUR.** Titlar eru sjaldan eins
+**Tveir reitir bera samleitina uppi: efni og staður.** Titlar eru sjaldan eins
 milli safna, en „Skarðsá" sem staður og „Draugar" sem efni eru það. Án
-þessara tveggja verða söfnin þrjú aðskilin listar í sama viðmóti, ekki ein leit.
+þessara tveggja verða söfnin aðskildir listar í sama viðmóti, ekki ein leit.
 
 ---
 
 ## 1. OAI-PMH — afhendingin
+
+Staðallinn er [OAI-PMH 2.0](https://www.openarchives.org/OAI/openarchivesprotocol.html).
+Endapunktur verður að svara öllum sex aðgerðunum hans:
+
+| Aðgerð | Hverju hún skilar |
+|---|---|
+| `Identify` | hver veitan er: nafn, `baseURL`, `adminEmail`, elsti dagstimpill |
+| `ListMetadataFormats` | hvaða snið eru í boði — `oai_dc` er skylda |
+| `ListSets` | hvaða gagnasett (`set`) má sækja sér |
+| `ListIdentifiers` | hausar allra færslna, síða fyrir síðu |
+| `ListRecords` | færslurnar sjálfar, síða fyrir síðu |
+| `GetRecord` | ein færsla eftir auðkenni |
 
 ### 1.1 Það sem verður að virka
 
@@ -44,12 +61,12 @@ milli safna, en „Skarðsá" sem staður og „Draugar" sem efni eru það. Án
 | `baseURL` í svarinu er **nákvæmlega** sú slóð sem virkar | afrita hana og prófa |
 | Bæði **GET og POST** virka á þeirri slóð | staðallinn, kafli 3.1.1.3 |
 | `ListMetadataFormats` auglýsir `oai_dc` | skyldusniðið |
-| `ListIdentifiers`, `ListRecords`, `GetRecord` virka öll | öll fjögur, ekki bara sum |
+| Allar sex aðgerðirnar virka | ekki bara sumar þeirra |
 | `resumptionToken` gengur alla leið á enda | telja færslur og bera saman við `completeListSize` |
 | `from` / `until` sía raunverulega | biðja um eina sekúndu og sjá hvort talan lækkar |
 | Villur koma sem OAI-villukóðar | `badVerb`, `idDoesNotExist` — ekki HTML |
 
-### 1.2 Frávik — allar mældar í raunkerfum
+### 1.2 Frávik — öll mæld í raunkerfum
 
 🔴 **Ein skemmd færsla fellir alla uppskeruna.**
 Færsla með ólokuðu `CDATA` eða stýritákni felldi `ListRecords` í miðri annarri
@@ -62,16 +79,16 @@ framhjá með `ListIdentifiers` + `GetRecord` — 22.729 fyrirspurnir í stað 2
 Beiðni um eina sekúndu skilaði `completeListSize` fyrir allt safnið. Þá er ekki
 hægt að sækja aðeins það sem breyttist — hver uppfærsla verður full uppskera.
 
-🔴 **Auglýsta slóðin stenst ekki POST.**
+🔴 **Auglýsta slóðin tekur ekki við POST.**
 `Identify` auglýsti `/oai` (án skástriks). GET þangað fór í 301 á `/oai/` og
 hélt fyrirspurnarstrengnum — í lagi. POST fór líka í 301, en meginmál beiðninnar
 féll niður og svarið varð `badVerb`.
 
-🔴 **`resumptionToken` lekur milli setta.**
-Ganga um `set=type:baer` skilaði bókum á síðustu tveimur síðunum. Sá sem treystir
-settinu fær rangt mengi.
+🔴 **Gagnasett skilar færslum úr öðru setti.**
+Ganga um settið `type:baer` skilaði bókum á síðustu tveimur síðunum. Sá sem
+treystir settinu fær rangt mengi.
 
-🔴 **Sett eru auglýst en tóm.**
+🔴 **Auglýst sett eru tóm.**
 `ListSets` auglýsti `era:19c`; `ListRecords` á því skilaði `noRecordsMatch`.
 
 🔴 **`adminEmail` vantar.**
@@ -95,8 +112,8 @@ settinu fær rangt mengi.
 | Reitur | | Fjöldi | Regla |
 |---|---|---|---|
 | `dc:title` | **M** | 1 | `xml:lang="is"`. Aldrei tómur |
-| `dc:identifier` (slóð) | **M** | 1 | varanleg slóð í ykkar kerfi — verður tengillinn „Skoða hjá útgefanda" |
-| `dc:identifier` (auðkenni) | R | 0..1 | safnmark eða OAI-auðkenni, mannlesanlegt |
+| `dc:identifier` (slóð) | **M** | 1 | varanleg slóð í kerfinu ykkar — verður tengillinn „Skoða hjá útgefanda" |
+| `dc:identifier` (auðkenni) | R | 0..1 | safnmark eða OAI-auðkenni, læsilegt fólki |
 | `dc:identifier` (smámynd) | **R** | 0..1 | bein myndslóð — það sem gerir færsluna að mynd en ekki gráum kassa í niðurstöðulistanum |
 | `dc:type` | **M** | 2 | **par**: `@is` og `@en`. Enska gildið stýrir flokkuninni |
 | `dc:subject` | **M** | 1..n | efnisorð, hreint gildi, `@is` ef íslenskt |
@@ -121,8 +138,8 @@ Forskeyti í gildinu rata beint í síuna og þá stendur þar
 „Sýsla: Rangárvallasýsla" — sem er ólæsilegt og sameinast ekki gildum frá
 öðrum söfnum. Flokkunin á heima í eigind (attribute), ekki í textanum.
 
-Sömu reglu fylgir nafnfall: **staðanöfn í nefnifalli**. *Skálholt*, ekki
-*Skálholti*. Þágufallsmyndir sameinast ekki nefnifallsmyndum í síu.
+Sama gildir um fallið: **staðanöfn í nefnifalli**. *Skálholt*, ekki
+*Skálholti*. Þágufallsmynd og nefnifallsmynd sameinast ekki í síu.
 
 ### 2.2 Dagsetningar — EDTF
 
@@ -136,7 +153,7 @@ Sömu reglu fylgir nafnfall: **staðanöfn í nefnifalli**. *Skálholt*, ekki
 Óvissan er upplýsingar, ekki sóðaskapur — geymið hana, en látið vélræna formið
 fylgja með svo hægt sé að raða og sía.
 
-### 2.4 Smámyndin — hvernig myndin kemst í niðurstöðulistann
+### 2.3 Smámyndin — hvernig myndin kemst í niðurstöðulistann
 
 Færsla með mynd er margfalt gagnlegri en færsla án hennar, og þetta er sá
 reitur sem oftast gleymist. **Ef þið eigið mynd af hlutnum, sendið slóðina á
@@ -150,10 +167,10 @@ myndslóð**, aðgreind frá síðuslóðinni á slóðamynstrinu.
 <dc:identifier>https://sarpur.is/multimedia/1/multimedia-2259821.large.jpg</dc:identifier>
 ```
 
-Okkar megin les leitarvísirinn þær í sitt hvorn reitinn með tveimur regex-um
-á sama `dc:identifier`:
+Okkar megin les leitarvísirinn þær í sitt hvorn reitinn með tveimur reglulegum
+segðum (regex) á sama `dc:identifier`:
 
-| Linking Parameter | Regex | Skilar |
+| Linking Parameter (Alma) | Regluleg segð | Skilar |
 |---|---|---|
 | **1** — tengill | `https://safn\.is/hlutur/.*` | „Skoða hjá útgefanda" |
 | **2** — smámynd | `https://safn\.is/.*\.jpg` | myndin á spjaldinu |
@@ -163,28 +180,28 @@ Okkar megin les leitarvísirinn þær í sitt hvorn reitinn með tveimur regex-u
 - **Bein slóð** á myndskrána sjálfa — endar á `.jpg`, `.png` eða `.webp`.
   Ekki slóð á síðu sem birtir myndina.
 - **Opin** án innskráningar, án `Referer`-kröfu og án tímabundins auðkennis.
-- **Aðgreinanleg með regex** frá síðuslóðinni. Ólíkt slóðamynstur dugar
-  (`/multimedia/` vs `/collection/`), eða bara skráarendingin.
+- **Aðgreinanleg með reglulegri segð** frá síðuslóðinni. Ólíkt slóðamynstur
+  dugar (`/multimedia/` á móti `/collection/`), eða bara skráarendingin.
 
-Stærðin skiptir minna máli en aðgengið — leitarvísirinn skalar myndina.
+Stærðin skiptir minna máli en aðgengið — leitarvísirinn minnkar myndina sjálfur.
 Ef þið eigið bæði smámynd og fulla mynd, sendið **smámyndina**; hún er það
 sem birtist í listanum og hún hleðst hraðar.
 
 Ef mynd er ekki til er reitnum einfaldlega sleppt. Hann er ráðlagður, ekki skylda.
 
-### 2.5 Staðanöfn — nefnifall, hnit, eða auðkenni
+### 2.4 Staðanöfn — nefnifall, hnit eða auðkenni
 
 Þetta er reiturinn sem veldur mestum vandræðum í íslenskum gögnum, og
-ástæðan er beyging. Sía er bókstafsjöfnuður: **`Skálholti` sameinast aldrei
-`Skálholt`.** Mælt í leitarvísinum 16.9.2026: `Skálholt` skilar 3.032
+ástæðan er beyging. Sía ber saman staf fyrir staf: **`Skálholti` sameinast
+aldrei `Skálholt`.** Mælt í leitarvísinum 16.9.2026: `Skálholt` skilar 3.032
 færslum, `Skálholti` 937 — tvö aðskilin mengi um sama stað.
 
-Við biðjum um eitt af þrennu. **Það efsta sem þið getið skilað.**
+Við biðjum um eitt af þrennu — **það efsta á listanum sem þið getið skilað.**
 
 | | Hvað | Af hverju |
 |---|---|---|
 | **1. Best** | **auðkenni staðarins** — t.d. örnefnanúmer eða ykkar eigið varanlega auðkenni | beyging og stafsetning hætta að skipta máli |
-| **2. Næstbest** | **hnit** `POINT(lengd breidd)` | leysa bæði beygingu OG stafsetningu. Mælt: `Breiðabólstaður` og `Breiðabólsstaður` reyndust **0,00 km** frá hvor öðrum — nafnapörun féll, hnitin ekki |
+| **2. Næstbest** | **hnit** `POINT(lengd breidd)` | leysa bæði beygingu **og** stafsetningu. Mælt: `Breiðabólstaður` og `Breiðabólsstaður` reyndust **0,00 km** hvor frá öðrum — nafnapörun féll, hnitin ekki |
 | **3. Lágmark** | **nafnið í nefnifalli** — `Þingvellir`, ekki `Þingvöllum` | sameinast öðrum söfnum í síunni |
 
 **Ef heimildin ykkar ber þágufall er það í lagi — skilið því.** Í sögulegum
@@ -192,11 +209,11 @@ texta *er* þágufallið heimildin („prestur á Kaldaðarnesi") og við ætlum
 ekki til að þið endurskrifið hana. Sendið þá beygðu myndina og **látið
 fylgja hnit eða auðkenni** ef þau eru til.
 
-Okkar megin afbeygjum við það sem við getum: forskrift flettir beygðri mynd
-upp í 11.471 bæjarnafni úr Sögulegu mann- og bæjatali. Mælt á Ævum lærðra
-manna: **7 % pössuðu óafbeygð, 67 % eftir afbeygingu.** Það sem stóð eftir
-var stafsetningarmunur og staðir sem eru ekki bæir — hvorugt leysist með
-fleiri málfræðireglum.
+Okkar megin færum við í nefnifall það sem við getum: forskrift flettir beygðu
+myndinni upp í 11.471 bæjarnafni úr Sögulegu mann- og bæjatali. Mælt á Ævum
+lærðra manna: **7 % pössuðu óbreytt, 67 % eftir að fallið var tekið af.** Það
+sem stóð eftir var stafsetningarmunur og staðir sem eru ekki bæir — hvorugt
+leysist með fleiri málfræðireglum.
 
 **Sendið hvort tveggja ef þið eigið það:** upprunalegu myndina eins og hún
 stendur í heimildinni, og nefnifallið. Þá glatast ekkert og sían virkar.
@@ -207,7 +224,7 @@ stendur í heimildinni, og nefnifallið. Þá glatast ekkert og sían virkar.
 <dcterms:bibliographicCitation xml:lang="is">prestur á Kaldaðarnesi</dcterms:bibliographicCitation>
 ```
 
-### 2.3 Hreinsun við útgáfu — skylda
+### 2.5 Hreinsun við útgáfu — skylda
 
 - Aldrei strenginn `None`, `null`, `N/A` eða `-` sem gildi. Sleppið reitnum.
 - Aldrei tóman reit: `<dc:format></dc:format>` ber engar upplýsingar.
@@ -273,8 +290,7 @@ kortleggjum í lag 2 — en þá þarf **varanlegt auðkenni á hvert efnisorð*
 
 Auðkennið er það sem gerir kortlagninguna varanlega. Merkimiðar breytast,
 auðkenni eiga ekki að gera það. Ísmús gerir þetta rétt í dag — hvert efnisorð
-ber `id="1000005"` — og þess vegna er hægt að þýða orðaforða þeirra einu sinni
-og vera búinn.
+ber `id="1000005"` — og þess vegna dugir að þýða orðaforða þeirra einu sinni.
 
 **Hlutverk fylgi fólki og stöðum.** `Jón Árnason` einn og sér segir ekki hvort
 maðurinn sagði söguna eða skrifaði hana niður. Hlutverkið á að fylgja:
@@ -298,7 +314,7 @@ en ekki bara í lýsigögnunum um það.
 
 | | Regla |
 |---|---|
-| **Hvar** | `dc:description` fyrir texta undir ~2.000 stöfum; `dcterms:tableOfContents` eða eigið svið fyrir lengri |
+| **Hvar** | `dc:description` fyrir texta undir um 2.000 stöfum; `dcterms:tableOfContents` eða eigin reitur fyrir lengri texta |
 | **Snið** | hreinn texti. Ekki HTML, ekki `<br>`, ekki `&nbsp;` |
 | **Línuskil** | mega fylgja, en ekki harðbrotnar línur í miðjum setningum |
 | **Tungumál** | `xml:lang` á að vera rétt |
@@ -338,7 +354,7 @@ Endapunkturinn:
 - [ ] `ListMetadataFormats` auglýsir `oai_dc`
 - [ ] `ListRecords` gengur á enda og talan stemmir við `completeListSize`
 - [ ] `from`/`until` sía raunverulega
-- [ ] Auglýst sett eru ekki tóm og leka ekki hvert í annað
+- [ ] Auglýst sett eru ekki tóm og skila aðeins eigin færslum
 - [ ] Ein skemmd færsla fellir ekki heildina
 
 Færslurnar:
@@ -350,14 +366,14 @@ Færslurnar:
 - [ ] Hnit `POINT(lengd breidd)`, öll innan raunhæfra marka
 - [ ] Staðanöfn í nefnifalli — eða beygð mynd með hnitum eða auðkenni. Án forskeytis
 - [ ] Slóðirnar svara 200 — ekki 302 á forsíðu
-- [ ] Smámyndaslóð með þar sem mynd er til — bein, opin, aðgreinanleg með regex
+- [ ] Smámyndaslóð fylgir þar sem mynd er til — bein, opin, aðgreinanleg með reglulegri segð
 - [ ] `dc:rights` segir hvað má
 
 ---
 
 ## 8. Hvað gerum við við þetta
 
-Gögnin fara í gegnum normaliseringarreglur inn í Gegni og verða leitanleg í
+Gögnin fara í gegnum samræmingarreglur inn í Gegni og verða leitanleg í
 Leitir.is við hliðina á öðrum söfnum. Hver færsla ber tengil heim í kerfið
 ykkar — við geymum lýsigögnin, ekki hlutina sjálfa, og umferðin endar hjá ykkur.
 
