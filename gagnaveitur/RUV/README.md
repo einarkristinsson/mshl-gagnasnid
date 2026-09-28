@@ -16,7 +16,7 @@ XML-útflutningur sem við umbreytum í gullna sniðið.
 | Skráarheiti | `<PARENT_ID>_<GENE_ID>.xml`; `00000000` = á ekkert foreldri |
 | Kortlagning | [KORTLAGNING-RUV.md](KORTLAGNING-RUV.md), frá RÚV 25.9.2026 |
 | OAI-PMH | ekkert — **sýnisveita** hýst í Gáttagægi: `/veitur/ruv/oai` |
-| Færslusíða | `https://sagnatrog.kann.is/ruv/<GENE_ID>` — hýst í Gáttagægi, virkar þegar DNS fyrir sagnatrog.kann.is er komið |
+| Færslusíða | `https://sagnatrog.kann.is/ruv/<GENE_ID>` — hýst í Gáttagægi, t.d. [Kastljós 4.7.2008](https://sagnatrog.kann.is/ruv/8270C1E3) |
 
 ## Umfang sýnishornanna
 
@@ -64,8 +64,8 @@ ekkert ef hún finnur eina.
 | 🔴 villa | engin varanleg opin slóð á færslu | færslan getur ekki vísað heim; tengillinn fer á beiðnasíðu safnsins |
 | ábending | engin opin smámynd | smámyndir eru til í safnkerfinu en ekki á opinni slóð |
 
-Villan leysist með færslusíðum Sagnatrogsins þegar DNS er komið. Hver
-færsla fær þá opna, varanlega slóð sem sýnir lýsinguna og vísar áfram á
+Villan er leyst með færslusíðum Sagnatrogsins (í loftinu 28.9.2026). Hver
+færsla hefur opna, varanlega slóð sem sýnir lýsinguna og vísar áfram á
 beiðnasíðu Safns RÚV.
 
 ## Skörun við ruv.is (mælt 28.9.2026)
