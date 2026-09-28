@@ -1,3 +1,10 @@
 .DS_Store
 __pycache__/
 *.pyc
+
+# RÚV-hrágögn bera kennitölur (PERSON_ALT_NAME) — aldrei í git
+gagnaveitur/RUV/*.zip
+gagnaveitur/RUV/hratt/
+
+# Sýnisveitugögn — ekki í opið git (fara með í Cloud Run, sjá .gcloudignore)
+verkfaeri/gattagaegir/synisveitur/*.xml

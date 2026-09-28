@@ -39,7 +39,15 @@ def _thjonn(a):
         threading.Thread(target=hermir.serve_forever, daemon=True).start()
         print("Hermir:  http://%s:%d/god/oai  ·  http://%s:%d/brotin/oai"
               % (a.host, a.hermi_port, a.host, a.hermi_port))
-    thj = bua_til_thjon(a.port, a.host, opin=a.opinn, aframsending=a.aframsending)
+    from .thjonn import hlada_synisveitum
+    import os as _os
+    mappa = _os.environ.get("GATTAGAEGIR_SYNISVEITUR") or _os.path.join(
+        _os.path.dirname(_os.path.abspath(__file__)), "synisveitur")
+    veitur = hlada_synisveitum(mappa)
+    thj = bua_til_thjon(a.port, a.host, opin=a.opinn, aframsending=a.aframsending,
+                        veitur=veitur)
+    for n, v in sorted(veitur.items()):
+        print("Sýnisveita: /veitur/%s/oai  (%d færslur)" % (n, v.fjoldi()))
     for h, slod in a.aframsending.items():
         print("Áframsending: %s → %s" % (h, slod))
     print("Gáttagægir %s á http://%s:%d%s"

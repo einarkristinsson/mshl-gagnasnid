@@ -132,10 +132,6 @@ class OpinnThjonnProf(unittest.TestCase):
         self.assertEqual(beidnir, [])
 
 
-if __name__ == "__main__":
-    unittest.main()
-
-
 class SkodaApiProf(unittest.TestCase):
     """POST /api/skoda — flettihlutinn yfir HTTP."""
 
@@ -204,3 +200,51 @@ class AframsendingProf(unittest.TestCase):
 class _EngarBeiningar(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, *a, **k):
         return None
+
+
+class SynisveituLeidProf(unittest.TestCase):
+    """/veitur/<nafn>/oai — sýnisveitur hýstar í sama þjóni."""
+
+    def setUp(self):
+        from ..synisveita import Synisveita
+        from .test_synisveita import SKRA
+        self.thj = bua_thjon(0, veitur={"daemi": Synisveita("daemi", SKRA, sidustaerd=3)})
+        self.port = self.thj.server_address[1]
+        threading.Thread(target=self.thj.serve_forever, daemon=True).start()
+        time.sleep(0.1)
+        self.b = "http://127.0.0.1:%d" % self.port
+
+    def tearDown(self):
+        self.thj.shutdown()
+
+    def test_get_identify_skilar_xml(self):
+        st, texti, haus = _get(self.b + "/veitur/daemi/oai?verb=Identify")
+        self.assertEqual(st, 200)
+        self.assertIn("text/xml", haus.get("Content-Type"))
+        self.assertIn("<baseURL>http://127.0.0.1:%d/veitur/daemi/oai</baseURL>" % self.port, texti)
+
+    def test_skastrik_virkar_lika(self):
+        st, texti, _ = _get(self.b + "/veitur/daemi/oai/?verb=Identify")
+        self.assertEqual(st, 200)
+        self.assertIn("<Identify>", texti)
+
+    def test_post_virkar(self):
+        beidni = urllib.request.Request(self.b + "/veitur/daemi/oai",
+                                        data=b"verb=ListSets", method="POST",
+                                        headers={"Content-Type": "application/x-www-form-urlencoded"})
+        with urllib.request.urlopen(beidni, timeout=10) as r:
+            self.assertIn("<setSpec>type:a</setSpec>", r.read().decode("utf-8"))
+
+    def test_othekkt_veita_404(self):
+        with self.assertRaises(urllib.error.HTTPError) as cm:
+            urllib.request.urlopen(self.b + "/veitur/ekki/oai?verb=Identify", timeout=10)
+        self.assertEqual(cm.exception.code, 404)
+
+    def test_veitulisti(self):
+        st, texti, _ = _get(self.b + "/api/veitur")
+        self.assertEqual(st, 200)
+        self.assertEqual(json.loads(texti)[0]["nafn"], "daemi")
+
+
+if __name__ == "__main__":
+    unittest.main()

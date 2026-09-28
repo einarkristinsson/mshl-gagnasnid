@@ -33,6 +33,7 @@ _TYPUR_EN = {
     "soundrecording", "photography", "drawing", "art", "book / archive",
     "artifact", "coin", "house", "archaeology remain",
     "mineralogy / petrology", "archaeology", "folk customs response",
+    "movingimage",  # DCMI Type — RÚV sjónvarpsefni (28.9.2026)
 }
 
 

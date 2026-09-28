@@ -282,7 +282,10 @@
       slod: "http://127.0.0.1:8766/brotin/oai",
       sidur: 3, syni: 10, sett: 5, slodaprof: true },
   ];
-  const HOPRAD = ["Gagnaveitur", "Mínar veitur", "Prófun (hermir)"];
+  const HOPRAD = ["Gagnaveitur", "Sýnisveitur (hýstar hér)", "Mínar veitur", "Prófun (hermir)"];
+  // Sýnisveitur sem þjónninn hýsir sjálfur (/api/veitur): gögn frá gagnaeiganda
+  // umbreytt í gullna sniðið og birt sem OAI-veita, t.d. Safn RÚV.
+  let hystar = [];
   const GEYMSLULYKILL = "gattagaegir.veitur";
   // Opin útgáfa (skýið): hermirinn er á 127.0.0.1 og nær aldrei þangað —
   // /api/heilsa segir til um það og þá er hópurinn ekki sýndur.
@@ -324,6 +327,13 @@
     INNBYGGDIR.forEach((v, i) => {
       if (opin && v.hopur === "Prófun (hermir)") return;
       veitur.push(Object.assign({ lykill: "innb-" + i, minn: false }, v));
+    });
+    hystar.forEach((v) => {
+      veitur.push({ lykill: "hyst-" + v.nafn, minn: false,
+        hopur: "Sýnisveitur (hýstar hér)", nafn: v.heiti,
+        slod: location.origin + v.slod, sidur: 3, syni: 10, sett: 3, slodaprof: true,
+        athugasemd: v.faerslur + " færslur, umbreyttar í gullna sniðið og hýstar hér " +
+          "sem OAI-veita. Sýnishorn — ekki opinber veita gagnaeigandans." });
     });
     lesaMinar().forEach((v) => {
       veitur.push(Object.assign({}, v, {
@@ -453,6 +463,9 @@
     });
 
     byggjaVal("");
+    fetch("/api/veitur").then((r) => r.json()).then((listi) => {
+      if (Array.isArray(listi) && listi.length) { hystar = listi; byggjaVal(valinLykill); }
+    }).catch(() => { /* engar hýstar veitur */ });
     fetch("/api/heilsa").then((r) => r.json()).then((h) => {
       if (h && h.opin) { opin = true; byggjaVal(valinLykill); }
     }).catch(() => { /* heilsan er valkvæm */ });

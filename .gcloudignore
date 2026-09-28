@@ -1,0 +1,12 @@
+# Það sem fer EKKI til Cloud Build. Án þessarar skrár notar gcloud .gitignore,
+# og þá færu sýnisveitugögnin (verkfaeri/gattagaegir/synisveitur/*.xml) ekki með.
+.gcloudignore
+.git
+.gitignore
+.gitattributes
+**/__pycache__
+**/*.pyc
+.DS_Store
+verkfaeri/gattagaegir/profanir
+gagnaveitur/RUV/*.zip
+gagnaveitur/RUV/hratt/

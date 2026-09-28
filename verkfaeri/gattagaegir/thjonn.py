@@ -7,6 +7,8 @@ Leiðir:
   POST /api/profa        -> NDJSON straumur af atburðum
   GET  /api/profa?slod=  -> full skýrsla sem JSON (buffrað, fyrir curl)
   POST /api/skoda        -> ein OAI-beiðni, þáttuð og hrá (flettihlutinn)
+  GET  /api/veitur       -> sýnisveitur sem þjónninn hýsir
+  GET|POST /veitur/<nafn>/oai[/]  -> OAI-PMH 2.0 sýnisveita (synisveita.py)
 """
 import json
 import os
@@ -150,6 +152,23 @@ class Handler(BaseHTTPRequestHandler):
         hysill = (self.headers.get("Host") or "").split(":")[0].strip().lower()
         return kort.get(hysill)
 
+    # ---- sýnisveitur: /veitur/<nafn>/oai og /veitur/<nafn>/oai/ ----
+    _VEITULEID = re.compile(r"^/veitur/([a-z0-9_-]+)/oai/?$")
+
+    def _synisveita(self, p, rok):
+        m = self._VEITULEID.match(p.path)
+        veitur = getattr(self.server, "veitur", None) or {}
+        if not m or m.group(1) not in veitur:
+            return False
+        # baseURL eins og gesturinn sér hana (Cloud Run: X-Forwarded-Proto)
+        proto = (self.headers.get("X-Forwarded-Proto") or "http").split(",")[0].strip()
+        hysill = self.headers.get("Host") or "127.0.0.1"
+        base = "%s://%s/veitur/%s/oai" % (proto, hysill, m.group(1))
+        _, xml = veitur[m.group(1)].svara(rok, base)
+        self._send(200, "text/xml; charset=UTF-8", xml.encode("utf-8"),
+                   {"X-Robots-Tag": "noindex, nofollow"})
+        return True
+
     def do_GET(self):
         p = urlparse(self.path)
         slod = self._aframsending()
@@ -159,6 +178,14 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header("Content-Length", "0")
             self.end_headers()
             return
+        if p.path.startswith("/veitur/"):
+            if self._synisveita(p, parse_qs(p.query)):
+                return
+            return self._json(404, {"villa": "engin sýnisveita með því nafni"})
+        if p.path == "/api/veitur":
+            veitur = getattr(self.server, "veitur", None) or {}
+            return self._json(200, [{"nafn": n, "heiti": v.heiti, "faerslur": v.fjoldi(),
+                                     "slod": "/veitur/%s/oai" % n} for n, v in sorted(veitur.items())])
         if p.path == "/":
             return self._skra("index.html", "text/html; charset=utf-8")
         if p.path.startswith("/vefur/"):
@@ -187,6 +214,12 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         p = urlparse(self.path)
+        if p.path.startswith("/veitur/"):
+            lengd = int(self.headers.get("Content-Length", 0) or 0)
+            rok = parse_qs((self.rfile.read(lengd) or b"").decode("utf-8"))
+            if self._synisveita(p, rok):
+                return
+            return self._json(404, {"villa": "engin sýnisveita með því nafni"})
         if p.path not in ("/api/profa", "/api/skoda"):
             return self._json(404, {"villa": "ekki fundið"})
         try:
@@ -247,10 +280,36 @@ class Handler(BaseHTTPRequestHandler):
         return _vorn_athuga if self._opin() else None
 
 
-def bua_til(port=8765, host="127.0.0.1", opin=False, aframsending=None):
+def bua_til(port=8765, host="127.0.0.1", opin=False, aframsending=None, veitur=None):
     """opin=True þegar þjónninn er aðgengilegur öðrum en eigin vél.
-    aframsending: {hýsilheiti: slóð} — beiðnir með því Host-hausi fá 302."""
+    aframsending: {hýsilheiti: slóð} — beiðnir með því Host-hausi fá 302.
+    veitur: {nafn: Synisveita} — hýstar á /veitur/<nafn>/oai."""
     thj = ThreadingHTTPServer((host, port), Handler)
     thj.opin = opin
     thj.aframsending = {k.lower(): v for k, v in (aframsending or {}).items()}
+    thj.veitur = dict(veitur or {})
     return thj
+
+
+def hlada_synisveitum(mappa):
+    """Hver <nafn>.xml í möppunni verður sýnisveita; <nafn>.json (valfrjálst)
+    gefur heiti, netfang og lýsingu. Mappa sem er ekki til → engar veitur."""
+    from .synisveita import Synisveita
+    ut = {}
+    if not mappa or not os.path.isdir(mappa):
+        return ut
+    for skra in sorted(os.listdir(mappa)):
+        if not skra.endswith(".xml"):
+            continue
+        nafn = skra[:-4]
+        meta = {}
+        jslod = os.path.join(mappa, nafn + ".json")
+        if os.path.exists(jslod):
+            with open(jslod, encoding="utf-8") as f:
+                meta = json.load(f)
+        with open(os.path.join(mappa, skra), encoding="utf-8") as f:
+            ut[nafn] = Synisveita(nafn, f.read(), heiti=meta.get("heiti"),
+                                  netfang=meta.get("netfang", "einar@kann.is"),
+                                  sidustaerd=int(meta.get("sidustaerd", 5)),
+                                  lysing=meta.get("lysing", ""))
+    return ut
