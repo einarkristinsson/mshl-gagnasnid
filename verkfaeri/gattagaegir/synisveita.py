@@ -44,8 +44,12 @@ def _x(s):
 
 class Synisveita:
     def __init__(self, nafn, xml_texti, heiti=None, netfang="einar@kann.is",
-                 sidustaerd=5, lysing=""):
+                 sidustaerd=5, lysing="", audkennisforskeyti="", adgangur=None, uppruni=""):
         self.nafn = nafn
+        # færslusíður: /<nafn>/<stutt> ↔ <audkennisforskeyti><stutt>
+        self.audkennisforskeyti = audkennisforskeyti
+        self.adgangur = adgangur or {}      # {"texti": …, "slod": …} — hvar efnið sjálft fæst
+        self.uppruni = uppruni
         self.heiti = heiti or ("Sýnisveita: " + nafn)
         self.netfang = netfang
         self.sidustaerd = sidustaerd
@@ -204,6 +208,56 @@ class Synisveita:
                 continue
             ut.append(r)
         return ut
+
+    # ---------------------------------------------------------- færslusíða
+    _DC = "{http://purl.org/dc/elements/1.1/}"
+    _DCT = "{http://purl.org/dc/terms/}"
+    _ROLE = "{https://mshl.is/terms#}role"
+
+    def faersla(self, stutt):
+        """Ein færsla sem orðabók fyrir færslusíðu, eða None. `stutt` er
+        auðkennið án forskeytis (t.d. 6170EA10)."""
+        aud = self.audkennisforskeyti + stutt
+        r = self.db.execute("SELECT id, datestamp, sett, metadata FROM f WHERE id=?", (aud,)).fetchone()
+        if not r or not r[3]:
+            return None
+        dc = ET.fromstring(r[3])
+        allt = lambda tag: [" ".join((e.text or "").split()) if tag != "description" else (e.text or "").strip()
+                            for e in dc if e.tag.split("}")[-1] == tag and (e.text or "").strip()]
+        folk = [{"nafn": (e.text or "").strip(), "hlutverk": e.get(self._ROLE, ""),
+                 "reitur": e.tag.split("}")[-1]}
+                for e in dc if e.tag.split("}")[-1] in ("creator", "contributor") and (e.text or "").strip()]
+        foreldri = None
+        hlutar = [e for e in dc if e.tag == self._DCT + "isPartOf"]
+        fid = next((e.text.strip() for e in hlutar if (e.text or "").startswith(self.audkennisforskeyti)
+                    and self.audkennisforskeyti), None)
+        if fid:
+            ftitill = next((e.text.strip() for e in hlutar if not (e.text or "").startswith(self.audkennisforskeyti)), "")
+            foreldri = {"stutt": fid[len(self.audkennisforskeyti):], "titill": ftitill}
+        born = []
+        for bid, bmd in self.db.execute("SELECT id, metadata FROM f WHERE metadata LIKE ? ORDER BY rod",
+                                        ("%>" + aud + "<%",)):
+            if bid == aud:
+                continue
+            t = ET.fromstring(bmd).find(self._DC + "title")
+            born.append({"stutt": bid[len(self.audkennisforskeyti):],
+                         "titill": " ".join((t.text or "").split()) if t is not None else bid})
+        return {
+            "audkenni": aud, "stutt": stutt, "titill": (allt("title") or [stutt])[0],
+            "tegund": [e.text.strip() for e in dc if e.tag == self._DC + "type"
+                       and e.get("{http://www.w3.org/XML/1998/namespace}lang") == "is"],
+            "dags": (allt("date") or [""])[0], "tekid_upp": (allt("created") or [""])[0],
+            "utsent": allt("issued"), "lysing": (allt("description") or [""])[0],
+            "efnisord": [e.text.strip() for e in dc if e.tag == self._DC + "subject" and (e.text or "").strip()
+                         and not e.get("{http://www.w3.org/2001/XMLSchema-instance}type")],
+            "flokkar": [e.text.strip() for e in dc if e.tag == self._DC + "subject" and (e.text or "").strip()
+                        and e.get("{http://www.w3.org/2001/XMLSchema-instance}type")],
+            "folk": folk, "foreldri": foreldri, "born": born,
+            "frumeintak": (allt("source") or [""])[0], "midill": (allt("format") or [""])[0],
+            "lengd": (allt("extent") or [""])[0], "utgefandi": allt("publisher"),
+            "safnnumer": [i for i in allt("identifier") if not i.startswith(("http", "oai:"))],
+            "rettindi": (allt("rights") or [""])[0],
+        }
 
     # ---------------------------------------------------------- smáföll
     def _til(self, aud):

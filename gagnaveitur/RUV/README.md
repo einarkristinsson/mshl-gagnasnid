@@ -16,6 +16,7 @@ XML-útflutningur sem við umbreytum í gullna sniðið.
 | Skráarheiti | `<PARENT_ID>_<GENE_ID>.xml`; `00000000` = á ekkert foreldri |
 | Kortlagning | [KORTLAGNING-RUV.md](KORTLAGNING-RUV.md), frá RÚV 25.9.2026 |
 | OAI-PMH | ekkert — **sýnisveita** hýst í Gáttagægi: `/veitur/ruv/oai` |
+| Færslusíða | `https://sagnatrog.kann.is/ruv/<GENE_ID>` — hýst í Gáttagægi, virkar þegar DNS fyrir sagnatrog.kann.is er komið |
 
 ## Umfang sýnishornanna
 
@@ -29,7 +30,7 @@ XML-útflutningur sem við umbreytum í gullna sniðið.
 
 | Gullið DC | Úr RÚV | Athugasemd |
 |---|---|---|
-| `dc:identifier` | `oai:ruv.is:safn:<GENE_ID>` + safnnúmer (`GENE_CENTRAL_ARCHIVE00`) | engin opin slóð á færslu |
+| `dc:identifier` | færslusíða `https://sagnatrog.kann.is/ruv/<GENE_ID>` fyrst, síðan `oai:ruv.is:safn:<GENE_ID>` + safnnúmer (`GENE_CENTRAL_ARCHIVE00`) | RÚV á enga opna slóð á færslu; Sagnatrogið gefur hana |
 | `dc:title` | `GENE_TITLE` | |
 | `dc:type` (par) | `GENE_TYPE` + `GENE_FUNCTION` | foreldri og barn fá ólík heiti |
 | `dc:date` | upptökudagur, annars fyrsta útsending, annars ár úr `GENE_PUB_TIME` | börn erfa dag foreldris |
@@ -63,7 +64,27 @@ ekkert ef hún finnur eina.
 | 🔴 villa | engin varanleg opin slóð á færslu | færslan getur ekki vísað heim; tengillinn fer á beiðnasíðu safnsins |
 | ábending | engin opin smámynd | smámyndir eru til í safnkerfinu en ekki á opinni slóð |
 
+Villan leysist með færslusíðum Sagnatrogsins þegar DNS er komið. Hver
+færsla fær þá opna, varanlega slóð sem sýnir lýsinguna og vísar áfram á
+beiðnasíðu Safns RÚV.
+
+## Skörun við ruv.is (mælt 28.9.2026)
+
+Leitin á ruv.is leitar í fréttagreinum, að mestu frá 2010 og síðar, ekki í
+safninu. Spilari RÚV geymir aðeins nýlegt efni. Af sýnishornunum 14:
+
+| Færslur | Á ruv.is |
+|---|---|
+| Sögur 2018 | sama myndskeið í [frétt 22.4.2018](https://www.ruv.is/frettir/menning-og-daegurmal/verdlaunaafhendingin-sogur-i-horpu), opin skrá og mynd |
+| 3 innslög og lög | sama fólk í síðari fréttum, ekki sama efni |
+| Morgunútvarpið 28.5.2024 | fréttir sama dag um sömu mál, ekki úr þættinum |
+| Kastljós 2008, lög 1983, Fréttir kl. 11 | ekkert |
+
+Myndskeið á ruv.is ber eigið númer. Ef safnkerfið veit hvaða myndskeið
+tilheyrir hverri færslu fær allt birt efni opna slóð á efnið sjálft.
+
 ## Opið
 
 - Hvað af lýsigögnum RÚV má birtast opinberlega? Spurt 24.9.2026, ósvarað.
 - Hvernig verða foreldri og börn í nýja safnkerfinu?
+- Veit safnkerfið hvaða myndskeið á ruv.is tilheyrir hverri færslu?

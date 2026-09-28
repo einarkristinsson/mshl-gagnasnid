@@ -158,3 +158,47 @@ class SynisveitaProf(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+FORELDRI_BORN = "<ListRecords>\n" + "".join(
+    ("  <record>\n    <header>\n      <identifier>oai:daemi.is:safn:%s</identifier>\n"
+     "      <datestamp>2024-01-01T00:00:00Z</datestamp>\n      <setSpec>type:a</setSpec>\n"
+     "    </header>\n    <metadata>\n"
+     '<oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" '
+     'xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" '
+     'xmlns:mshl="https://mshl.is/terms#">\n'
+     '      <dc:title xml:lang="is">%s</dc:title>\n'
+     '      <dc:type xml:lang="is">%s</dc:type>\n'
+     '      <dc:creator mshl:role="flytjandi, stjórnandi">Jóna Jónsdóttir</dc:creator>\n'
+     '      <dc:subject xml:lang="is" mshl:id="d:1">Kórar</dc:subject>\n'
+     '      <dc:description xml:lang="is">Lýsing á &lt;b&gt; færslu.</dc:description>\n'
+     "%s"
+     "</oai_dc:dc>\n    </metadata>\n  </record>\n") % (i, t, g, p)
+    for i, t, g, p in (
+        ("AAA", "Platan", "Tónlistarupptaka", ""),
+        ("BBB", "Fyrsta lag", "Lag",
+         '      <dcterms:isPartOf xml:lang="is">Platan</dcterms:isPartOf>\n'
+         "      <dcterms:isPartOf>oai:daemi.is:safn:AAA</dcterms:isPartOf>\n"),
+    )) + "</ListRecords>\n"
+
+
+class FaerslusiduProf(unittest.TestCase):
+    """Færslusíða: læsileg útgáfa einnar færslu, fyrir tengilinn heim."""
+
+    def setUp(self):
+        self.v = Synisveita("daemi", FORELDRI_BORN, audkennisforskeyti="oai:daemi.is:safn:")
+
+    def test_faersla_eftir_stuttu_audkenni(self):
+        f = self.v.faersla("BBB")
+        self.assertEqual(f["titill"], "Fyrsta lag")
+        self.assertEqual(f["tegund"], ["Lag"])
+        self.assertEqual(f["folk"][0], {"nafn": "Jóna Jónsdóttir", "hlutverk": "flytjandi, stjórnandi",
+                                        "reitur": "creator"})
+        self.assertEqual(f["efnisord"], ["Kórar"])
+
+    def test_foreldri_og_born_tengd(self):
+        self.assertEqual(self.v.faersla("BBB")["foreldri"], {"stutt": "AAA", "titill": "Platan"})
+        self.assertEqual(self.v.faersla("AAA")["born"], [{"stutt": "BBB", "titill": "Fyrsta lag"}])
+
+    def test_othekkt_audkenni_er_none(self):
+        self.assertIsNone(self.v.faersla("ZZZ"))

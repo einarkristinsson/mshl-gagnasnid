@@ -246,5 +246,62 @@ class SynisveituLeidProf(unittest.TestCase):
         self.assertEqual(json.loads(texti)[0]["nafn"], "daemi")
 
 
+class FaerslusiduLeidProf(unittest.TestCase):
+    """/<veita>/<stutt auðkenni> — færslusíða; sagnatrog.kann.is sýnir hana líka."""
+
+    def setUp(self):
+        from ..synisveita import Synisveita
+        from .test_synisveita import FORELDRI_BORN
+        v = Synisveita("daemi", FORELDRI_BORN, audkennisforskeyti="oai:daemi.is:safn:",
+                       adgangur={"texti": "Óska eftir efninu", "slod": "https://daemi.is/safn"})
+        self.thj = bua_thjon(0, veitur={"daemi": v},
+                             aframsending={"trog.example": "https://leitir.example/"})
+        self.port = self.thj.server_address[1]
+        threading.Thread(target=self.thj.serve_forever, daemon=True).start()
+        time.sleep(0.1)
+        self.b = "http://127.0.0.1:%d" % self.port
+
+    def tearDown(self):
+        self.thj.shutdown()
+
+    def _get_host(self, slod, host):
+        beidni = urllib.request.Request(self.b + slod, headers={"Host": host})
+        opn = urllib.request.build_opener(_EngarBeiningar)
+        try:
+            with opn.open(beidni, timeout=10) as r:
+                return r.status, r.read().decode("utf-8"), r.headers
+        except urllib.error.HTTPError as e:
+            return e.code, "", e.headers
+
+    def test_faerslusida_er_html_med_efni(self):
+        st, texti, haus = _get(self.b + "/daemi/BBB")
+        self.assertEqual(st, 200)
+        self.assertIn("text/html", haus.get("Content-Type"))
+        self.assertIn("Fyrsta lag", texti)
+        self.assertIn("flytjandi, stjórnandi", texti)
+        self.assertIn('href="/daemi/AAA"', texti)            # hluti af foreldri
+        self.assertIn("https://daemi.is/safn", texti)         # aðgangur að efninu
+        self.assertIn("&lt;b&gt;", texti)                     # texti er afkóðaður, ekki HTML
+        self.assertNotIn("<b>", texti)
+
+    def test_tengill_a_eiganda_opnast_i_nyjum_flipa(self):
+        # færslusíðan helst opin; noopener svo síða eigandans nái ekki í hana
+        _, texti, _ = _get(self.b + "/daemi/BBB")
+        self.assertIn('href="https://daemi.is/safn" target="_blank" rel="noopener"', texti)
+
+    def test_othekkt_faersla_404(self):
+        with self.assertRaises(urllib.error.HTTPError) as cm:
+            urllib.request.urlopen(self.b + "/daemi/ZZZ", timeout=10)
+        self.assertEqual(cm.exception.code, 404)
+
+    def test_aframsendingarhysill_synir_faerslusidu_en_sendir_forsidu_afram(self):
+        st, texti, _ = self._get_host("/daemi/AAA", "trog.example")
+        self.assertEqual(st, 200)
+        self.assertIn("Platan", texti)
+        st, _, haus = self._get_host("/", "trog.example")
+        self.assertEqual(st, 302)
+        self.assertEqual(haus.get("Location"), "https://leitir.example/")
+
+
 if __name__ == "__main__":
     unittest.main()

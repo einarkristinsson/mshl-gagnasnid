@@ -9,6 +9,7 @@ Leiðir:
   POST /api/skoda        -> ein OAI-beiðni, þáttuð og hrá (flettihlutinn)
   GET  /api/veitur       -> sýnisveitur sem þjónninn hýsir
   GET|POST /veitur/<nafn>/oai[/]  -> OAI-PMH 2.0 sýnisveita (synisveita.py)
+  GET  /<nafn>/<stutt auðkenni>   -> færslusíða (faerslusida.py) — opin slóð á færslu
 """
 import json
 import os
@@ -169,9 +170,35 @@ class Handler(BaseHTTPRequestHandler):
                    {"X-Robots-Tag": "noindex, nofollow"})
         return True
 
+    # ---- færslusíður: /<veita>/<stutt auðkenni> ----
+    _FAERSLULEID = re.compile(r"^/([a-z0-9_-]+)/([A-Za-z0-9._-]+)/?$")
+
+    def _faerslusida(self, p):
+        m = self._FAERSLULEID.match(p.path)
+        veitur = getattr(self.server, "veitur", None) or {}
+        if not m or m.group(1) not in veitur:
+            return False
+        veita = veitur[m.group(1)]
+        f = veita.faersla(m.group(2))
+        if f is None:
+            self._send(404, "text/html; charset=utf-8",
+                       "<!DOCTYPE html><meta charset=utf-8><title>Finnst ekki</title>"
+                       "<p>Engin færsla með þessu auðkenni.</p>".encode("utf-8"))
+            return True
+        from .faerslusida import smida
+        self._send(200, "text/html; charset=utf-8", smida(veita, f).encode("utf-8"),
+                   {"X-Robots-Tag": "noindex, nofollow"})
+        return True
+
     def do_GET(self):
         p = urlparse(self.path)
         slod = self._aframsending()
+        # áframsendingarlén (sagnatrog.kann.is) sýnir færslusíður; allt annað fer á Leitir
+        if slod and self._FAERSLULEID.match(p.path) and not p.path.startswith(("/vefur/", "/api/", "/veitur/")):
+            if self._faerslusida(p):
+                return
+        if slod and p.path.startswith("/vefur/"):
+            slod = None                      # merki og favicon færslusíðunnar
         if slod:
             self.send_response(302)
             self.send_header("Location", slod)
@@ -188,6 +215,8 @@ class Handler(BaseHTTPRequestHandler):
                                      "slod": "/veitur/%s/oai" % n} for n, v in sorted(veitur.items())])
         if p.path == "/":
             return self._skra("index.html", "text/html; charset=utf-8")
+        if not p.path.startswith(("/vefur/", "/api/")) and self._faerslusida(p):
+            return
         if p.path.startswith("/vefur/"):
             nafn = p.path[len("/vefur/"):]
             if nafn in _STATIC:
@@ -311,5 +340,8 @@ def hlada_synisveitum(mappa):
             ut[nafn] = Synisveita(nafn, f.read(), heiti=meta.get("heiti"),
                                   netfang=meta.get("netfang", "einar@kann.is"),
                                   sidustaerd=int(meta.get("sidustaerd", 5)),
-                                  lysing=meta.get("lysing", ""))
+                                  lysing=meta.get("lysing", ""),
+                                  audkennisforskeyti=meta.get("audkennisforskeyti", ""),
+                                  adgangur=meta.get("adgangur"),
+                                  uppruni=meta.get("uppruni", ""))
     return ut
