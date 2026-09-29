@@ -289,6 +289,30 @@ class FaerslusiduLeidProf(unittest.TestCase):
         _, texti, _ = _get(self.b + "/daemi/BBB")
         self.assertIn('href="https://daemi.is/safn" target="_blank" rel="noopener"', texti)
 
+    def test_tilvisun_birtist_med_hysilheiti_i_fyrirsogn(self):
+        _, texti, _ = _get(self.b + "/daemi/BBB")
+        self.assertIn("Á daemi.is", texti)
+        self.assertIn('href="https://www.daemi.is/frett/lagid" target="_blank" rel="noopener"', texti)
+
+    def test_yfirlitssida_tengir_allar_faerslur(self):
+        st, texti, haus = _get(self.b + "/daemi/")
+        self.assertEqual(st, 200)
+        self.assertIn("text/html", haus.get("Content-Type"))
+        for stutt in ("AAA", "BBB", "CCC"):
+            self.assertIn('href="/daemi/%s"' % stutt, texti)
+        self.assertIn('href="/veitur/daemi/oai?verb=Identify"', texti)
+        self.assertEqual(_get(self.b + "/daemi")[0], 200)
+
+    def test_mynd_birtist_a_faerslusidu(self):
+        _, texti, _ = _get(self.b + "/daemi/CCC")
+        self.assertIn('<img class="mynd" src="https://myndir.daemi.is/kyrrmynd.jpg"', texti)
+        _, texti, _ = _get(self.b + "/daemi/AAA")
+        self.assertNotIn('class="mynd"', texti)
+
+    def test_faerslusida_visar_a_yfirlit(self):
+        _, texti, _ = _get(self.b + "/daemi/BBB")
+        self.assertIn('href="/daemi/"', texti)
+
     def test_othekkt_faersla_404(self):
         with self.assertRaises(urllib.error.HTTPError) as cm:
             urllib.request.urlopen(self.b + "/daemi/ZZZ", timeout=10)
@@ -298,6 +322,11 @@ class FaerslusiduLeidProf(unittest.TestCase):
         st, texti, _ = self._get_host("/daemi/AAA", "trog.example")
         self.assertEqual(st, 200)
         self.assertIn("Platan", texti)
+        st, texti, _ = self._get_host("/daemi/", "trog.example")
+        self.assertEqual(st, 200)
+        self.assertIn('href="/daemi/AAA"', texti)
+        st, texti, _ = self._get_host("/veitur/daemi/oai?verb=Identify", "trog.example")
+        self.assertEqual(st, 200)                      # yfirlitið vísar á veituna
         st, _, haus = self._get_host("/", "trog.example")
         self.assertEqual(st, 302)
         self.assertEqual(haus.get("Location"), "https://leitir.example/")

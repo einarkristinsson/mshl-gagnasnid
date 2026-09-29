@@ -257,7 +257,44 @@ class Synisveita:
             "lengd": (allt("extent") or [""])[0], "utgefandi": allt("publisher"),
             "safnnumer": [i for i in allt("identifier") if not i.startswith(("http", "oai:"))],
             "rettindi": (allt("rights") or [""])[0],
+            "tilvisanir": self._tilvisanir(dc),
+            # smámynd: bein myndslóð í dc:identifier (gullna sniðið, LinkingParameter2)
+            "mynd": next((i for i in allt("identifier") if i.startswith(("http://", "https://"))
+                          and re.search(r"\.(jpe?g|png|webp)$", i, re.I)), ""),
         }
+
+    def _tilvisanir(self, dc):
+        """dcterms:isReferencedBy í pörum, eins og isPartOf: texti + slóð."""
+        tv = [(e.text or "").strip() for e in dc if e.tag == self._DCT + "isReferencedBy" and (e.text or "").strip()]
+        slodir = [t for t in tv if t.startswith(("http://", "https://"))]
+        textar = [t for t in tv if not t.startswith(("http://", "https://"))]
+        return [{"titill": textar[i] if i < len(textar) else s, "slod": s} for i, s in enumerate(slodir)]
+
+    def yfirlit(self):
+        """Allar færslur í röð skrárinnar: efsta stig, börn undir foreldri sínu."""
+        rod, eftir_id = [], {}
+        for aud, md in self.db.execute("SELECT id, metadata FROM f ORDER BY rod"):
+            if not md:
+                continue
+            dc = ET.fromstring(md)
+            texti = lambda tag, lang=None: next(
+                (" ".join((e.text or "").split()) for e in dc if e.tag == self._DC + tag and (e.text or "").strip()
+                 and (lang is None or e.get("{http://www.w3.org/XML/1998/namespace}lang") == lang)), "")
+            foreldri = next((e.text.strip()[len(self.audkennisforskeyti):] for e in dc
+                             if e.tag == self._DCT + "isPartOf" and self.audkennisforskeyti
+                             and (e.text or "").strip().startswith(self.audkennisforskeyti)), None)
+            stutt = aud[len(self.audkennisforskeyti):] if aud.startswith(self.audkennisforskeyti) else aud
+            t = {"stutt": stutt, "titill": texti("title") or stutt, "tegund": texti("type", "is"),
+                 "dags": texti("date"), "foreldri": foreldri, "born": []}
+            eftir_id[stutt] = t
+            rod.append(t)
+        efst = []
+        for t in rod:
+            if t["foreldri"] and t["foreldri"] in eftir_id:
+                eftir_id[t["foreldri"]]["born"].append(t)
+            else:
+                efst.append(t)
+        return efst
 
     # ---------------------------------------------------------- smáföll
     def _til(self, aud):

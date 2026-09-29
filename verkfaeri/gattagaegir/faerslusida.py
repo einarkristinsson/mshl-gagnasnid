@@ -9,10 +9,13 @@ leitargátt MSHL, með lýsigögnum frá eigandanum, ekki eftirlíking af vef ha
 Allur texti er afkóðaður (html.escape) — lýsigögn eru aldrei HTML hér.
 """
 import html
-from urllib.parse import quote
+from urllib.parse import quote, urlparse
 
 LEITIR = ("https://gegnir-psb.primo.exlibrisgroup.com/nde/search?query=any,contains,%s"
           "&tab=ALLT&search_scope=MSHL_ALLT&vid=354ILC_NETWORK:MSHL_SAGNATROG_LEITIR_UNION&lang=is")
+LEITIR_FORSIDA = ("https://gegnir-psb.primo.exlibrisgroup.com/nde/home"
+                  "?vid=354ILC_NETWORK:MSHL_SAGNATROG_LEITIR_UNION&lang=is")
+GATTAGAEGIR = "https://gattagaegir-mshl.kann.is/"
 
 _STILL = """
 :root{--bak:#f4ecdb;--spjald:#fffaf0;--texti:#2a2118;--grar:#6b5d4e;--lina:#d4c4ae;
@@ -37,6 +40,9 @@ ol,ul{margin:0;padding-left:22px}a{color:var(--bl)}
 .hnappur{display:inline-block;background:var(--bl);color:#fff;text-decoration:none;border-radius:8px;padding:10px 16px;font:15px var(--hn)}
 .hnappur.aukab{background:var(--grar-bg);color:var(--texti)}
 .smatt{color:var(--grar);font-size:14px}
+.mynd{display:block;max-width:100%;border-radius:10px;border:1px solid var(--lina);margin:0 0 6px}
+.myndtexti{color:var(--grar);font-size:13px;margin:0 0 16px}
+.yfirlit li{margin:0 0 8px}.yfirlit ol{margin:6px 0 4px}.yfirlit .smatt{margin-left:6px}
 footer{border-top:1px solid var(--lina);padding:14px 0 30px;color:var(--grar);font-size:13px}
 """
 
@@ -83,6 +89,18 @@ def smida(veita, f, rotarslod=""):
         hnappar += ("<a class=\"hnappur\" href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
                     % (_e(ag["slod"]), _e(ag.get("texti") or "Hjá eiganda")))
     hnappar += "<a class=\"hnappur aukab\" href=\"%s\">Leita í Sagnatroginu</a>" % _e(LEITIR % quote(f["titill"]))
+    mynd = ""
+    if f.get("mynd"):
+        # skráð lén (images.nyr.ruv.is → ruv.is): það sem lesandinn þekkir
+        mhysill = ".".join((urlparse(f["mynd"]).hostname or "").split(".")[-2:])
+        mynd = ("<img class=\"mynd\" src=\"%s\" alt=\"%s\" loading=\"lazy\"><p class=\"myndtexti\">Mynd: %s</p>"
+                % (_e(f["mynd"]), _e(f["titill"]), _e(mhysill)))
+    # sama efni birt annars staðar (t.d. frétt á ruv.is með myndskeiði): nýr flipi
+    vefur = ""
+    for t in f.get("tilvisanir") or []:
+        hysill = (urlparse(t["slod"]).hostname or "").replace("www.", "", 1)
+        vefur += ("<div class=\"spjald\"><h2>Á %s</h2><a href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a></div>"
+                  % (_e(hysill), _e(t["slod"]), _e(t["titill"])))
 
     return """<!DOCTYPE html>
 <html lang="is"><head><meta charset="utf-8">
@@ -93,12 +111,14 @@ def smida(veita, f, rotarslod=""):
 <style>%(still)s</style></head><body>
 <header><div class="innihald merki">
 <a href="https://gegnir-psb.primo.exlibrisgroup.com/nde/home?vid=354ILC_NETWORK:MSHL_SAGNATROG_LEITIR_UNION&amp;lang=is"><img src="%(rot)s/vefur/sagnatrog.png" alt="Sagnatrogið"></a>
-<span>Sagnatrog · Færslusíða · Lýsigögn frá %(uppruni)s</span></div></header>
+<span>Sagnatrog · Færslusíða · Lýsigögn frá <a href="%(rot)s/%(veita)s/">%(uppruni)s</a></span></div></header>
 <main class="innihald">
 <p class="teg">%(teg)s</p>
 <h1>%(titill)s</h1>
 <p class="dags">%(dagslina)s</p>
 <div class="hnappar">%(hnappar)s</div>
+%(mynd)s
+%(vefur)s
 %(lysing)s
 %(folk)s
 %(efni)s
@@ -113,7 +133,7 @@ varanlega slóð meðan eigandinn hefur hana ekki sjálfur.</div></footer>
 </body></html>""" % {
         "titill": _e(f["titill"]), "rot": rotarslod, "still": _STILL, "uppruni": _e(uppruni),
         "teg": _e(" · ".join(f["tegund"])), "dagslina": _e(" · ".join(dagslina)),
-        "hnappar": hnappar,
+        "hnappar": hnappar, "vefur": vefur, "mynd": mynd, "veita": _e(veita.nafn),
         "lysing": ("<div class=\"spjald\"><h2>Lýsing</h2><p class=\"lysing\">%s</p></div>" % _e(f["lysing"])) if f["lysing"] else "",
         "folk": ("<div class=\"spjald\"><h2>Fólk</h2><table>%s</table></div>" % folk) if folk else "",
         "efni": ("<div class=\"spjald\"><h2>Efni</h2><div class=\"flogur\">%s</div></div>" % efni) if efni else "",
@@ -129,3 +149,45 @@ def _lengd(iso):
         return ""
     k, mi, s = (int(x or 0) for x in m.groups())
     return ("%d:%02d:%02d" % (k, mi, s)) if k else ("%d:%02d" % (mi, s))
+
+
+def smida_yfirlit(veita, listi, rotarslod=""):
+    """HTML yfirlit allra færslna sýnisveitu (Synisveita.yfirlit): inngangur í sýnina."""
+    def lina(t):
+        uppl = " · ".join(v for v in (t["tegund"], t["dags"]) if v)
+        born = ""
+        if t["born"]:
+            born = "<ol>%s</ol>" % "".join(lina(b) for b in t["born"])
+        return ("<li><a href=\"%s/%s/%s\">%s</a><span class=\"smatt\">%s</span>%s</li>"
+                % (rotarslod, _e(veita.nafn), _e(t["stutt"]), _e(t["titill"]), _e(uppl), born))
+
+    fjoldi = sum(1 + len(t["born"]) for t in listi)
+    hnappar = ("<a class=\"hnappur\" href=\"%s\" target=\"_blank\" rel=\"noopener\">Opna Sagnatrogið</a>"
+               "<a class=\"hnappur aukab\" href=\"%s/veitur/%s/oai?verb=Identify\">OAI-PMH-veitan</a>"
+               "<a class=\"hnappur aukab\" href=\"%s\" target=\"_blank\" rel=\"noopener\">Prófa í Gáttagægi</a>"
+               % (_e(LEITIR_FORSIDA), rotarslod, _e(veita.nafn), _e(GATTAGAEGIR)))
+    return """<!DOCTYPE html>
+<html lang="is"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>%(heiti)s — Sagnatrog</title>
+<link rel="icon" type="image/png" href="%(rot)s/vefur/favicon.png">
+<style>%(still)s</style></head><body>
+<header><div class="innihald merki">
+<a href="%(forsida)s"><img src="%(rot)s/vefur/sagnatrog.png" alt="Sagnatrogið"></a>
+<span>Sagnatrog · Lýsigögn frá %(uppruni)s</span></div></header>
+<main class="innihald">
+<p class="teg">%(fjoldi)d færslur</p>
+<h1>%(heiti)s</h1>
+<p class="dags">%(lysing)s</p>
+<div class="hnappar">%(hnappar)s</div>
+<div class="spjald yfirlit"><h2>Færslur</h2><ul>%(listi)s</ul></div>
+<p class="smatt">Hver færsla hefur opna, varanlega slóð hér. Leitir tengir á hana og hún vísar áfram á eigandann.</p>
+</main>
+<footer><div class="innihald">Sýnishorn í Sagnatroginu, leitargátt Miðstöðvar stafrænna hugvísinda og lista.
+Lýsigögnin koma frá %(uppruni)s; efnið sjálft er hjá eigandanum.</div></footer>
+</body></html>""" % {
+        "heiti": _e(veita.heiti), "rot": rotarslod, "still": _STILL, "uppruni": _e(veita.uppruni or veita.heiti),
+        "forsida": _e(LEITIR_FORSIDA), "fjoldi": fjoldi, "lysing": _e(veita.lysing), "hnappar": hnappar,
+        "listi": "".join(lina(t) for t in listi),
+    }

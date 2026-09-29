@@ -178,7 +178,11 @@ FORELDRI_BORN = "<ListRecords>\n" + "".join(
         ("AAA", "Platan", "Tónlistarupptaka", ""),
         ("BBB", "Fyrsta lag", "Lag",
          '      <dcterms:isPartOf xml:lang="is">Platan</dcterms:isPartOf>\n'
-         "      <dcterms:isPartOf>oai:daemi.is:safn:AAA</dcterms:isPartOf>\n"),
+         "      <dcterms:isPartOf>oai:daemi.is:safn:AAA</dcterms:isPartOf>\n"
+         '      <dcterms:isReferencedBy xml:lang="is">Frétt um lagið (daemi.is, 2024-01-02)</dcterms:isReferencedBy>\n'
+         "      <dcterms:isReferencedBy>https://www.daemi.is/frett/lagid</dcterms:isReferencedBy>\n"),
+        ("CCC", "Stakt efni", "Útvarpsþáttur",
+         "      <dc:identifier>https://myndir.daemi.is/kyrrmynd.jpg</dc:identifier>\n"),
     )) + "</ListRecords>\n"
 
 
@@ -202,3 +206,20 @@ class FaerslusiduProf(unittest.TestCase):
 
     def test_othekkt_audkenni_er_none(self):
         self.assertIsNone(self.v.faersla("ZZZ"))
+
+    def test_tilvisanir_parast_titill_og_slod(self):
+        self.assertEqual(self.v.faersla("BBB")["tilvisanir"],
+                         [{"titill": "Frétt um lagið (daemi.is, 2024-01-02)",
+                           "slod": "https://www.daemi.is/frett/lagid"}])
+        self.assertEqual(self.v.faersla("AAA")["tilvisanir"], [])
+
+    def test_yfirlit_foreldri_med_bornum_og_stakt_efni(self):
+        y = self.v.yfirlit()
+        self.assertEqual([t["stutt"] for t in y], ["AAA", "CCC"])      # aðeins efsta stig
+        self.assertEqual([b["stutt"] for b in y[0]["born"]], ["BBB"])
+        self.assertEqual(y[0]["tegund"], "Tónlistarupptaka")
+        self.assertEqual(y[1]["born"], [])
+
+    def test_mynd_er_bein_myndslod_ur_identifier(self):
+        self.assertEqual(self.v.faersla("CCC")["mynd"], "https://myndir.daemi.is/kyrrmynd.jpg")
+        self.assertEqual(self.v.faersla("AAA")["mynd"], "")

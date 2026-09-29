@@ -10,6 +10,7 @@ Leiðir:
   GET  /api/veitur       -> sýnisveitur sem þjónninn hýsir
   GET|POST /veitur/<nafn>/oai[/]  -> OAI-PMH 2.0 sýnisveita (synisveita.py)
   GET  /<nafn>/<stutt auðkenni>   -> færslusíða (faerslusida.py) — opin slóð á færslu
+  GET  /<nafn>/                   -> yfirlit allra færslna sýnisveitunnar
 """
 import json
 import os
@@ -190,15 +191,29 @@ class Handler(BaseHTTPRequestHandler):
                    {"X-Robots-Tag": "noindex, nofollow"})
         return True
 
+    # ---- yfirlit sýnisveitu: /<veita>/ ----
+    _YFIRLITSLEID = re.compile(r"^/([a-z0-9_-]+)/?$")
+
+    def _yfirlitssida(self, p):
+        m = self._YFIRLITSLEID.match(p.path)
+        veitur = getattr(self.server, "veitur", None) or {}
+        if not m or m.group(1) not in veitur:
+            return False
+        veita = veitur[m.group(1)]
+        from .faerslusida import smida_yfirlit
+        self._send(200, "text/html; charset=utf-8", smida_yfirlit(veita, veita.yfirlit()).encode("utf-8"),
+                   {"X-Robots-Tag": "noindex, nofollow"})
+        return True
+
     def do_GET(self):
         p = urlparse(self.path)
         slod = self._aframsending()
-        # áframsendingarlén (sagnatrog.kann.is) sýnir færslusíður; allt annað fer á Leitir
-        if slod and self._FAERSLULEID.match(p.path) and not p.path.startswith(("/vefur/", "/api/", "/veitur/")):
-            if self._faerslusida(p):
+        # áframsendingarlén (sagnatrog.kann.is) sýnir yfirlit og færslusíður; forsíðan fer á Leitir
+        if slod and not p.path.startswith(("/vefur/", "/api/", "/veitur/")):
+            if self._yfirlitssida(p) or (self._FAERSLULEID.match(p.path) and self._faerslusida(p)):
                 return
-        if slod and p.path.startswith("/vefur/"):
-            slod = None                      # merki og favicon færslusíðunnar
+        if slod and p.path.startswith(("/vefur/", "/veitur/")):
+            slod = None                      # merki síðnanna og OAI-veitan sem yfirlitið vísar á
         if slod:
             self.send_response(302)
             self.send_header("Location", slod)
@@ -215,7 +230,7 @@ class Handler(BaseHTTPRequestHandler):
                                      "slod": "/veitur/%s/oai" % n} for n, v in sorted(veitur.items())])
         if p.path == "/":
             return self._skra("index.html", "text/html; charset=utf-8")
-        if not p.path.startswith(("/vefur/", "/api/")) and self._faerslusida(p):
+        if not p.path.startswith(("/vefur/", "/api/")) and (self._yfirlitssida(p) or self._faerslusida(p)):
             return
         if p.path.startswith("/vefur/"):
             nafn = p.path[len("/vefur/"):]

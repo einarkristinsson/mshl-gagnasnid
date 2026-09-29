@@ -55,36 +55,38 @@ XML-útflutningur sem við umbreytum í gullna sniðið.
 Umbreytingin sannprófar sjálf að engin kennitala sé í úttakinu og skrifar
 ekkert ef hún finnur eina.
 
-## Mælt með Gáttagægi (28.9.2026)
+## Mælt með Gáttagægi (29.9.2026)
 
-40 athuganir standast. Tvennt vantar, og hvort tveggja er ákvörðun RÚV:
+**43 athuganir standast. Engar villur, viðvaranir né ábendingar.** Tvær
+athuganir á hnitum sleppa, því gögnin bera engin hnit.
 
-| | Hvað | Hvers vegna skiptir það máli |
+| 28.9 | 29.9 | Hvað breyttist |
 |---|---|---|
-| 🔴 villa | engin varanleg opin slóð á færslu | færslan getur ekki vísað heim; tengillinn fer á beiðnasíðu safnsins |
-| ábending | engin opin smámynd | smámyndir eru til í safnkerfinu en ekki á opinni slóð |
+| 🔴 engin opin slóð á færslu | ✅ | færslusíður Sagnatrogsins, `https://sagnatrog.kann.is/ruv/<GENE_ID>` |
+| ábending: engin smámynd | ✅ | kyrrmynd myndskeiðs af ruv.is þar sem efnið hefur birst þar |
 
-Villan er leyst með færslusíðum Sagnatrogsins (í loftinu 28.9.2026). Hver
-færsla hefur opna, varanlega slóð sem sýnir lýsinguna og vísar áfram á
-beiðnasíðu Safns RÚV.
+Yfirlit allra færslna: <https://sagnatrog.kann.is/ruv/>
 
-## Skörun við ruv.is (mælt 28.9.2026)
+## Skörun við ruv.is (mælt 28.–29.9.2026)
 
 Leitin á ruv.is leitar í fréttagreinum, að mestu frá 2010 og síðar, ekki í
 safninu. Spilari RÚV geymir aðeins nýlegt efni. Af sýnishornunum 14:
 
 | Færslur | Á ruv.is |
 |---|---|
-| Sögur 2018 | sama myndskeið í [frétt 22.4.2018](https://www.ruv.is/frettir/menning-og-daegurmal/verdlaunaafhendingin-sogur-i-horpu), opin skrá og mynd |
+| Sögur 2018 | sama myndskeið í [frétt 22.4.2018](https://www.ruv.is/frettir/menning-og-daegurmal/verdlaunaafhendingin-sogur-i-horpu) — tengill og smámynd komin í færsluna |
 | 3 innslög og lög | sama fólk í síðari fréttum, ekki sama efni |
 | Morgunútvarpið 28.5.2024 | fréttir sama dag um sömu mál, ekki úr þættinum |
 | Kastljós 2008, lög 1983, Fréttir kl. 11 | ekkert |
 
-Myndskeið á ruv.is ber eigið númer. Ef safnkerfið veit hvaða myndskeið
-tilheyrir hverri færslu fær allt birt efni opna slóð á efnið sjálft.
+Pörunin er sjálfvirk og ströng: titill myndskeiðs í frétt verður að vera
+titill færslunnar, og fréttin innan fárra daga frá útsendingu. Myndskeið á
+ruv.is ber eigið númer. Ef safnkerfið veit hvaða myndskeið tilheyrir hverri
+færslu fær allt birt efni opna slóð á efnið sjálft, án pörunar.
 
 ## Opið
 
-- Hvað af lýsigögnum RÚV má birtast opinberlega? Spurt 24.9.2026, ósvarað.
+- ~~Hvað af lýsigögnum RÚV má birtast opinberlega?~~ Svarað 28.9.2026:
+  gögnin eru ekki viðkvæm og mega fara í Leitir.
 - Hvernig verða foreldri og börn í nýja safnkerfinu?
 - Veit safnkerfið hvaða myndskeið á ruv.is tilheyrir hverri færslu?
