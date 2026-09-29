@@ -64,6 +64,23 @@ class GildiProf(unittest.TestCase):
         self.assertEqual(G.G01(gott).stada, STODST)
         self.assertEqual(G.G01(vont).stada, FELL)
 
+    def test_G01_edtf_opid_bil(self):
+        # EDTF L1: opinn endi — Tímarit.is „Published from 1949 to present“
+        for d in ("1949/..", "../1920"):
+            s = _samhengi(_record('<dc:title>A</dc:title>'
+                                  '<dc:date>%s</dc:date>' % d))
+            self.assertEqual(G.G01(s).stada, STODST, d)
+        for d in ("1949/", "1949/...", "../.."):
+            s = _samhengi(_record('<dc:title>A</dc:title>'
+                                  '<dc:date>%s</dc:date>' % d))
+            self.assertEqual(G.G01(s).stada, FELL, d)
+
+    def test_G09_text_er_thekkt(self):
+        s = _samhengi(_record('<dc:title>A</dc:title>'
+                              '<dc:type xml:lang="is">Tímarit</dc:type>'
+                              '<dc:type xml:lang="en">Text</dc:type>'))
+        self.assertEqual(G.G09(s).stada, STODST)
+
     def test_G02_G03_hnit(self):
         ofug = _samhengi(_record(
             '<dc:title>A</dc:title>'

@@ -5,11 +5,13 @@ from . import (GILDI, VILLA, ADVORUN, ABENDING)
 
 DOC = "oai-pmh/LEIDBEININGAR.md"
 
-# EDTF L0/L1 (naumt): ártal, ártal-mánuður(-dagur), bil með /, óvissa ~?%
+# EDTF L0/L1 (naumt): ártal, ártal-mánuður(-dagur), bil með /, óvissa ~?%,
+# opinn endi bils með .. (L1: „1949/..“ = kemur enn út; „../1920“)
 _EDTF = re.compile(
     r"^-?\d{4}([-~?%])?$|"
     r"^-?\d{4}-\d{2}(-\d{2})?[~?%]?$|"
     r"^-?\d{4}(-\d{2}(-\d{2})?)?/-?\d{4}(-\d{2}(-\d{2})?)?$|"
+    r"^-?\d{4}(-\d{2}(-\d{2})?)?/\.\.$|^\.\./-?\d{4}(-\d{2}(-\d{2})?)?$|"
     r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$"
 )
 _POINT = re.compile(r"^POINT\(\s*(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s*\)$")
@@ -34,6 +36,7 @@ _TYPUR_EN = {
     "artifact", "coin", "house", "archaeology remain",
     "mineralogy / petrology", "archaeology", "folk customs response",
     "movingimage",  # DCMI Type — RÚV sjónvarpsefni (28.9.2026)
+    "text",         # DCMI Type — Tímarit.is, titlar blaða og tímarita (29.9.2026)
 }
 
 
