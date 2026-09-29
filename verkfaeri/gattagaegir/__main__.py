@@ -45,7 +45,7 @@ def _thjonn(a):
         _os.path.dirname(_os.path.abspath(__file__)), "synisveitur")
     veitur = hlada_synisveitum(mappa)
     thj = bua_til_thjon(a.port, a.host, opin=a.opinn, aframsending=a.aframsending,
-                        veitur=veitur, oai_hyslar=a.oai_hyslar)
+                        veitur=veitur, oai_hyslar=a.oai_hyslar, kanoniskur=a.kanoniskur)
     for n, v in sorted(veitur.items()):
         print("Sýnisveita: /veitur/%s/oai  (%d færslur)" % (n, v.fjoldi()))
     for h in sorted(a.oai_hyslar):
@@ -88,6 +88,8 @@ def lesa_rok(argv=None, umhverfi=None):
     p.set_defaults(aframsending=afr)
     # OAI_HYSLAR="oai.kann.is, annar.is" — hýsilheiti OAI-miðstöðvar
     p.set_defaults(oai_hyslar={h.strip().lower() for h in (u.get("OAI_HYSLAR") or "").split(",") if h.strip()})
+    # KANONISKUR_HYSILL="gattagaegir-mshl.kann.is" — *.run.app vísar hingað (301)
+    p.set_defaults(kanoniskur=(u.get("KANONISKUR_HYSILL") or "").strip().lower() or None)
     p.add_argument("--hermi-port", type=int, default=8766)
     und = p.add_subparsers(dest="skipun")
     pr = und.add_parser("profa", help="keyra í skel og prenta samantekt")

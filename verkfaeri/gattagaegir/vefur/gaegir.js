@@ -331,7 +331,9 @@
     hystar.forEach((v) => {
       veitur.push({ lykill: "hyst-" + v.nafn, minn: false,
         hopur: "Sýnisveitur (hýstar hér)", nafn: v.heiti,
-        slod: location.origin + v.slod, sidur: 3, syni: 10, sett: 3, slodaprof: true,
+        // þjónninn gefur DNS-slóð (https://oai.kann.is/ruv); annars hlutfallsleg slóð á þennan þjón
+        slod: /^https?:\/\//.test(v.slod) ? v.slod : location.origin + v.slod,
+        sidur: 3, syni: 10, sett: 3, slodaprof: true,
         athugasemd: v.faerslur + " færslur, umbreyttar í gullna sniðið og hýstar hér " +
           "sem OAI-veita. Sýnishorn — ekki opinber veita gagnaeigandans." });
     });
@@ -463,8 +465,15 @@
     });
 
     byggjaVal("");
+    // ?slod=<grunnslóð> í vefslóðinni (t.d. frá yfirliti sýnisveitu): fylla inn og velja veituna
+    const bedin = new URLSearchParams(location.search).get("slod");
+    if (bedin && /^https?:\/\//.test(bedin)) { $("#slod").value = bedin; }
     fetch("/api/veitur").then((r) => r.json()).then((listi) => {
       if (Array.isArray(listi) && listi.length) { hystar = listi; byggjaVal(valinLykill); }
+      if (bedin) {
+        const v = veitur.find((x) => x.slod === bedin);
+        if (v) { byggjaVal(v.lykill); synaValda(); setjaStillingar(v); $("#slod").value = bedin; }
+      }
     }).catch(() => { /* engar hýstar veitur */ });
     fetch("/api/heilsa").then((r) => r.json()).then((h) => {
       if (h && h.opin) { opin = true; byggjaVal(valinLykill); }

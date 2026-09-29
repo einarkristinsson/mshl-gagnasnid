@@ -12,7 +12,7 @@ Ekkert er tilgáta. Frávik merkt 🔴 hafa öll komið fyrir.
 
 Tvö tól hjálpa til við að prófa áður en nokkuð er sent: **Gáttagægir**
 prófar endapunkt eftir gátlistanum í þessu skjali
-(<https://gattagaegir-528717641663.europe-west4.run.app>), og **OAI Skoðari**
+(<https://gattagaegir-mshl.kann.is>), og **OAI Skoðari**
 sýnir eina beiðni í einu — sett, snið og hrátt svar
 (<https://oai-skodari-528717641663.europe-west4.run.app>).
 

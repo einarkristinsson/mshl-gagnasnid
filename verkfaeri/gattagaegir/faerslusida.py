@@ -151,7 +151,7 @@ def _lengd(iso):
     return ("%d:%02d:%02d" % (k, mi, s)) if k else ("%d:%02d" % (mi, s))
 
 
-def smida_yfirlit(veita, listi, rotarslod=""):
+def smida_yfirlit(veita, listi, rotarslod="", oai_slod=None):
     """HTML yfirlit allra færslna sýnisveitu (Synisveita.yfirlit): inngangur í sýnina."""
     def lina(t):
         uppl = " · ".join(v for v in (t["tegund"], t["dags"]) if v)
@@ -162,10 +162,13 @@ def smida_yfirlit(veita, listi, rotarslod=""):
                 % (rotarslod, _e(veita.nafn), _e(t["stutt"]), _e(t["titill"]), _e(uppl), born))
 
     fjoldi = sum(1 + len(t["born"]) for t in listi)
+    # OAI-veitan á léni miðstöðvarinnar ef hún er stillt (oai.kann.is/ruv), annars á þessum þjóni
+    oai = oai_slod or "%s/veitur/%s/oai" % (rotarslod, veita.nafn)
+    gaegir = GATTAGAEGIR + ("?slod=" + quote(oai_slod, safe="") if oai_slod else "")
     hnappar = ("<a class=\"hnappur\" href=\"%s\" target=\"_blank\" rel=\"noopener\">Opna Sagnatrogið</a>"
-               "<a class=\"hnappur aukab\" href=\"%s/veitur/%s/oai?verb=Identify\">OAI-PMH-veitan</a>"
+               "<a class=\"hnappur aukab\" href=\"%s?verb=Identify\">OAI-PMH-veitan</a>"
                "<a class=\"hnappur aukab\" href=\"%s\" target=\"_blank\" rel=\"noopener\">Prófa í Gáttagægi</a>"
-               % (_e(LEITIR_FORSIDA), rotarslod, _e(veita.nafn), _e(GATTAGAEGIR)))
+               % (_e(LEITIR_FORSIDA), _e(oai), _e(gaegir)))
     return """<!DOCTYPE html>
 <html lang="is"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">

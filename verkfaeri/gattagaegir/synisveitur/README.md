@@ -1,8 +1,9 @@
 # Sýnisveitur
 
 Hver `<nafn>.xml` hér (gullið DC á `ListRecords`-formi) verður OAI-PMH 2.0
-veita á `/veitur/<nafn>/oai` í Gáttagægi. `<nafn>.json` gefur heiti, netfang,
-síðustærð og lýsingu.
+veita á **`https://oai.kann.is/<nafn>`** (og `/veitur/<nafn>/oai` á öðrum lénum
+þjónustunnar). `<nafn>.json` gefur heiti, netfang, síðustærð og lýsingu.
+Forsíða <https://oai.kann.is/> listar allar veiturnar.
 
 Gagnaskrárnar sjálfar (`*.xml`) eru **ekki í git**: þær eru smíðaðar úr gögnum
 gagnaeiganda sem hafa ekki samþykkt opna birtingu. Þær fara með í Cloud Run
@@ -11,4 +12,4 @@ einkasafninu `leidarljos` (`dc-template/sources/<veita>/`).
 
 | Veita | Slóð | Uppruni |
 |---|---|---|
-| RÚV | `/veitur/ruv/oai` | 14 sýnishorn frá Bergþóru Ólöfu Björgvinsdóttur, 28.9.2026 |
+| RÚV | `https://oai.kann.is/ruv` | 14 sýnishorn frá Bergþóru Ólöfu Björgvinsdóttur, 28.9.2026 |

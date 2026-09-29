@@ -175,7 +175,24 @@ class Handler(BaseHTTPRequestHandler):
                    {"X-Robots-Tag": "noindex, nofollow"})
 
     # ---- OAI-miðstöð: oai.kann.is/<veita> er veitan sjálf, forsíðan listar þær ----
-    _MIDSTODVARLEID = re.compile(r"^/([a-z0-9_-]+)/?$")
+    _MIDSTODVARLEID = re.compile(r"^/([a-z0-9_-]+)(?:/oai)?/?$")      # /ruv, /ruv/, /ruv/oai
+
+    def _oai_grunnur(self, nafn):
+        """Slóð veitunnar á léni OAI-miðstöðvar (https://oai.kann.is/ruv), eða None."""
+        hyslar = sorted(getattr(self.server, "oai_hyslar", None) or ())
+        return "https://%s/%s" % (hyslar[0], nafn) if hyslar else None
+
+    def _kanoniskt(self):
+        """GET á *.run.app → 301 á DNS-nafnið, svo gamlar slóðir í póstum virki áfram."""
+        kan = getattr(self.server, "kanoniskur", None)
+        hysill = (self.headers.get("Host") or "").split(":")[0].strip().lower()
+        if not kan or not hysill.endswith(".run.app"):
+            return False
+        self.send_response(301)
+        self.send_header("Location", "https://%s%s" % (kan, self.path))
+        self.send_header("Content-Length", "0")
+        self.end_headers()
+        return True
 
     def _oai_hysill(self):
         hyslar = getattr(self.server, "oai_hyslar", None) or set()
@@ -229,12 +246,15 @@ class Handler(BaseHTTPRequestHandler):
             return False
         veita = veitur[m.group(1)]
         from .faerslusida import smida_yfirlit
-        self._send(200, "text/html; charset=utf-8", smida_yfirlit(veita, veita.yfirlit()).encode("utf-8"),
+        self._send(200, "text/html; charset=utf-8",
+                   smida_yfirlit(veita, veita.yfirlit(), oai_slod=self._oai_grunnur(m.group(1))).encode("utf-8"),
                    {"X-Robots-Tag": "noindex, nofollow"})
         return True
 
     def do_GET(self):
         p = urlparse(self.path)
+        if self._kanoniskt():
+            return
         if self._oai_hysill():
             return self._midstod(p, parse_qs(p.query))
         slod = self._aframsending()
@@ -257,7 +277,8 @@ class Handler(BaseHTTPRequestHandler):
         if p.path == "/api/veitur":
             veitur = getattr(self.server, "veitur", None) or {}
             return self._json(200, [{"nafn": n, "heiti": v.heiti, "faerslur": v.fjoldi(),
-                                     "slod": "/veitur/%s/oai" % n} for n, v in sorted(veitur.items())])
+                                     "slod": self._oai_grunnur(n) or "/veitur/%s/oai" % n}
+                                    for n, v in sorted(veitur.items())])
         if p.path == "/":
             return self._skra("index.html", "text/html; charset=utf-8")
         if not p.path.startswith(("/vefur/", "/api/")) and (self._yfirlitssida(p) or self._faerslusida(p)):
@@ -357,16 +378,19 @@ class Handler(BaseHTTPRequestHandler):
         return _vorn_athuga if self._opin() else None
 
 
-def bua_til(port=8765, host="127.0.0.1", opin=False, aframsending=None, veitur=None, oai_hyslar=None):
+def bua_til(port=8765, host="127.0.0.1", opin=False, aframsending=None, veitur=None, oai_hyslar=None,
+            kanoniskur=None):
     """opin=True þegar þjónninn er aðgengilegur öðrum en eigin vél.
     aframsending: {hýsilheiti: slóð} — beiðnir með því Host-hausi fá 302.
     veitur: {nafn: Synisveita} — hýstar á /veitur/<nafn>/oai.
-    oai_hyslar: hýsilheiti OAI-miðstöðvar (oai.kann.is): /<nafn> er veitan, / listar þær."""
+    oai_hyslar: hýsilheiti OAI-miðstöðvar (oai.kann.is): /<nafn> er veitan, / listar þær.
+    kanoniskur: DNS-nafn Gáttagægis; GET á *.run.app fær 301 þangað."""
     thj = ThreadingHTTPServer((host, port), Handler)
     thj.opin = opin
     thj.aframsending = {k.lower(): v for k, v in (aframsending or {}).items()}
     thj.veitur = dict(veitur or {})
     thj.oai_hyslar = {h.strip().lower() for h in (oai_hyslar or ()) if h.strip()}
+    thj.kanoniskur = (kanoniskur or "").strip().lower() or None
     return thj
 
 

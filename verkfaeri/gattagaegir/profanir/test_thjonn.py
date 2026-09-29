@@ -350,7 +350,8 @@ class OaiMidstodProf(unittest.TestCase):
         from ..synisveita import Synisveita
         from .test_synisveita import SKRA
         v = Synisveita("daemi", SKRA, heiti="Dæmaveita", lysing="Tilbúin gögn til prófunar.")
-        self.thj = bua_thjon(0, veitur={"daemi": v}, oai_hyslar={"oai.example"})
+        self.thj = bua_thjon(0, veitur={"daemi": v}, oai_hyslar={"oai.example"},
+                             kanoniskur="gaegir.example")
         threading.Thread(target=self.thj.serve_forever, daemon=True).start()
         time.sleep(0.1)
         self.b = "http://127.0.0.1:%d" % self.thj.server_address[1]
@@ -380,6 +381,29 @@ class OaiMidstodProf(unittest.TestCase):
     def test_othekkt_veita_404_og_merki_opin(self):
         self.assertEqual(_hysill(self.b + "/ekkitil?verb=Identify", "oai.example")[0], 404)
         self.assertEqual(_hysill(self.b + "/vefur/still.css", "oai.example")[0], 200)
+
+    def test_oai_vidskeyti_virkar_lika(self):
+        st, texti, _ = _hysill(self.b + "/daemi/oai?verb=Identify", "oai.example")
+        self.assertEqual(st, 200)
+        self.assertIn("<baseURL>http://oai.example/daemi</baseURL>", texti)
+
+    def test_veitulisti_gefur_lenid(self):
+        st, texti, _ = _hysill(self.b + "/api/veitur", "gaegir.example")
+        self.assertEqual(json.loads(texti)[0]["slod"], "https://oai.example/daemi")
+
+    def test_yfirlit_visar_a_lenid_og_gattagaegi_med_slod(self):
+        st, texti, _ = _hysill(self.b + "/daemi/", "gaegir.example")
+        self.assertEqual(st, 200)
+        self.assertIn('href="https://oai.example/daemi?verb=Identify"', texti)
+        self.assertIn("?slod=https%3A%2F%2Foai.example%2Fdaemi", texti)
+
+    def test_run_app_visar_a_kanoniskt_len(self):
+        st, _, haus = _hysill(self.b + "/veitur/daemi/oai?verb=Identify", "gattagaegir-123.europe-west4.run.app")
+        self.assertEqual(st, 301)
+        self.assertEqual(haus.get("Location"), "https://gaegir.example/veitur/daemi/oai?verb=Identify")
+        st, texti, _ = _hysill(self.b + "/veitur/daemi/oai", "gattagaegir-123.europe-west4.run.app",
+                               b"verb=Identify")
+        self.assertEqual(st, 200)                       # POST fylgir ekki 301 — svarað beint
 
     def test_annar_hysill_obreyttur(self):
         st, texti, _ = _hysill(self.b + "/", "127.0.0.1")

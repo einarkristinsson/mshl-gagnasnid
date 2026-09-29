@@ -40,5 +40,10 @@ class AframsendingRokProf(unittest.TestCase):
         self.assertEqual(a.oai_hyslar, {"oai.kann.is", "oai2.example"})
         self.assertEqual(lesa_rok([], umhverfi={}).oai_hyslar, set())
 
+    def test_umhverfi_gefur_kanoniskt_len(self):
+        a = lesa_rok([], umhverfi={"KANONISKUR_HYSILL": "Gattagaegir-MSHL.kann.is"})
+        self.assertEqual(a.kanoniskur, "gattagaegir-mshl.kann.is")
+        self.assertIsNone(lesa_rok([], umhverfi={}).kanoniskur)
+
     def test_engin_aframsending_sjalfgefid(self):
         self.assertEqual(lesa_rok([], umhverfi={}).aframsending, {})

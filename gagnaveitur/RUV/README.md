@@ -15,7 +15,7 @@ XML-útflutningur sem við umbreytum í gullna sniðið.
 | Sýnishorn | 14 skrár, 28.9.2026 (Bergþóra Ólöf Björgvinsdóttir, RÚV) |
 | Skráarheiti | `<PARENT_ID>_<GENE_ID>.xml`; `00000000` = á ekkert foreldri |
 | Kortlagning | [KORTLAGNING-RUV.md](KORTLAGNING-RUV.md), frá RÚV 25.9.2026 |
-| OAI-PMH | ekkert — **sýnisveita** hýst í Gáttagægi: `/veitur/ruv/oai` |
+| OAI-PMH | ekkert hjá RÚV — **sýnisveita** á <https://oai.kann.is/ruv> |
 | Færslusíða | `https://sagnatrog.kann.is/ruv/<GENE_ID>` — hýst í Gáttagægi, t.d. [Kastljós 4.7.2008](https://sagnatrog.kann.is/ruv/8270C1E3) |
 
 ## Umfang sýnishornanna
