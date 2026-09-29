@@ -8,3 +8,6 @@ gagnaveitur/RUV/hratt/
 
 # Sýnisveitugögn — ekki í opið git (fara með í Cloud Run, sjá .gcloudignore)
 verkfaeri/gattagaegir/synisveitur/*.xml
+
+# vinnusvæði Claude Code (worktrees undirverkefna)
+.claude/

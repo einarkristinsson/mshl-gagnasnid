@@ -10,3 +10,6 @@
 verkfaeri/gattagaegir/profanir
 gagnaveitur/RUV/*.zip
 gagnaveitur/RUV/hratt/
+
+# vinnusvæði Claude Code (worktrees undirverkefna)
+.claude/
