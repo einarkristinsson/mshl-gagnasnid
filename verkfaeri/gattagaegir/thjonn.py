@@ -11,6 +11,7 @@ Leiðir:
   GET|POST /veitur/<nafn>/oai[/]  -> OAI-PMH 2.0 sýnisveita (synisveita.py)
   GET  /<nafn>/<stutt auðkenni>   -> færslusíða (faerslusida.py) — opin slóð á færslu
   GET  /<nafn>/                   -> yfirlit allra færslna sýnisveitunnar
+  á OAI-miðstöð (OAI_HYSLAR, t.d. oai.kann.is):  /  -> listi veitna · /<nafn> -> OAI-veitan
 """
 import json
 import os
@@ -162,14 +163,41 @@ class Handler(BaseHTTPRequestHandler):
         veitur = getattr(self.server, "veitur", None) or {}
         if not m or m.group(1) not in veitur:
             return False
-        # baseURL eins og gesturinn sér hana (Cloud Run: X-Forwarded-Proto)
+        self._svara_oai(m.group(1), rok, "/veitur/%s/oai" % m.group(1))
+        return True
+
+    def _svara_oai(self, nafn, rok, leid):
+        """OAI-svar veitu `nafn`; baseURL eins og gesturinn sér hana (Cloud Run: X-Forwarded-Proto)."""
         proto = (self.headers.get("X-Forwarded-Proto") or "http").split(",")[0].strip()
         hysill = self.headers.get("Host") or "127.0.0.1"
-        base = "%s://%s/veitur/%s/oai" % (proto, hysill, m.group(1))
-        _, xml = veitur[m.group(1)].svara(rok, base)
+        _, xml = self.server.veitur[nafn].svara(rok, "%s://%s%s" % (proto, hysill, leid))
         self._send(200, "text/xml; charset=UTF-8", xml.encode("utf-8"),
                    {"X-Robots-Tag": "noindex, nofollow"})
-        return True
+
+    # ---- OAI-miðstöð: oai.kann.is/<veita> er veitan sjálf, forsíðan listar þær ----
+    _MIDSTODVARLEID = re.compile(r"^/([a-z0-9_-]+)/?$")
+
+    def _oai_hysill(self):
+        hyslar = getattr(self.server, "oai_hyslar", None) or set()
+        return (self.headers.get("Host") or "").split(":")[0].strip().lower() in hyslar
+
+    def _midstod(self, p, rok):
+        veitur = getattr(self.server, "veitur", None) or {}
+        if p.path == "/":
+            from .faerslusida import smida_midstod
+            proto = (self.headers.get("X-Forwarded-Proto") or "http").split(",")[0].strip()
+            rot = "%s://%s" % (proto, self.headers.get("Host") or "127.0.0.1")
+            return self._send(200, "text/html; charset=utf-8",
+                              smida_midstod(veitur, rot).encode("utf-8"))
+        if p.path.startswith("/vefur/") and p.path[len("/vefur/"):] in _STATIC:
+            nafn = p.path[len("/vefur/"):]
+            return self._skra(nafn, _STATIC[nafn])
+        m = self._MIDSTODVARLEID.match(p.path)
+        if m and m.group(1) in veitur:
+            return self._svara_oai(m.group(1), rok, "/" + m.group(1))
+        return self._send(404, "text/html; charset=utf-8",
+                          "<!DOCTYPE html><meta charset=utf-8><title>Finnst ekki</title>"
+                          "<p>Engin veita með þessu nafni. <a href=\"/\">Allar veitur</a></p>".encode("utf-8"))
 
     # ---- færslusíður: /<veita>/<stutt auðkenni> ----
     _FAERSLULEID = re.compile(r"^/([a-z0-9_-]+)/([A-Za-z0-9._-]+)/?$")
@@ -207,6 +235,8 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         p = urlparse(self.path)
+        if self._oai_hysill():
+            return self._midstod(p, parse_qs(p.query))
         slod = self._aframsending()
         # áframsendingarlén (sagnatrog.kann.is) sýnir yfirlit og færslusíður; forsíðan fer á Leitir
         if slod and not p.path.startswith(("/vefur/", "/api/", "/veitur/")):
@@ -258,6 +288,9 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         p = urlparse(self.path)
+        if self._oai_hysill():
+            lengd = int(self.headers.get("Content-Length", 0) or 0)
+            return self._midstod(p, parse_qs((self.rfile.read(lengd) or b"").decode("utf-8")))
         if p.path.startswith("/veitur/"):
             lengd = int(self.headers.get("Content-Length", 0) or 0)
             rok = parse_qs((self.rfile.read(lengd) or b"").decode("utf-8"))
@@ -324,14 +357,16 @@ class Handler(BaseHTTPRequestHandler):
         return _vorn_athuga if self._opin() else None
 
 
-def bua_til(port=8765, host="127.0.0.1", opin=False, aframsending=None, veitur=None):
+def bua_til(port=8765, host="127.0.0.1", opin=False, aframsending=None, veitur=None, oai_hyslar=None):
     """opin=True þegar þjónninn er aðgengilegur öðrum en eigin vél.
     aframsending: {hýsilheiti: slóð} — beiðnir með því Host-hausi fá 302.
-    veitur: {nafn: Synisveita} — hýstar á /veitur/<nafn>/oai."""
+    veitur: {nafn: Synisveita} — hýstar á /veitur/<nafn>/oai.
+    oai_hyslar: hýsilheiti OAI-miðstöðvar (oai.kann.is): /<nafn> er veitan, / listar þær."""
     thj = ThreadingHTTPServer((host, port), Handler)
     thj.opin = opin
     thj.aframsending = {k.lower(): v for k, v in (aframsending or {}).items()}
     thj.veitur = dict(veitur or {})
+    thj.oai_hyslar = {h.strip().lower() for h in (oai_hyslar or ()) if h.strip()}
     return thj
 
 

@@ -35,5 +35,10 @@ class AframsendingRokProf(unittest.TestCase):
         self.assertEqual(a.aframsending, {"sagnatrog.kann.is": "https://trog.example/a",
                                           "annad.kann.is": "https://b.example/"})
 
+    def test_umhverfi_gefur_oai_hysla(self):
+        a = lesa_rok([], umhverfi={"OAI_HYSLAR": "oai.kann.is, Oai2.Example"})
+        self.assertEqual(a.oai_hyslar, {"oai.kann.is", "oai2.example"})
+        self.assertEqual(lesa_rok([], umhverfi={}).oai_hyslar, set())
+
     def test_engin_aframsending_sjalfgefid(self):
         self.assertEqual(lesa_rok([], umhverfi={}).aframsending, {})

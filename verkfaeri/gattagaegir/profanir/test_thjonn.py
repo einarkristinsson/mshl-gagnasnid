@@ -332,5 +332,60 @@ class FaerslusiduLeidProf(unittest.TestCase):
         self.assertEqual(haus.get("Location"), "https://leitir.example/")
 
 
+def _hysill(url, host, gogn=None):
+    """GET (eða POST ef gogn) með gefnu Host-hausi; fylgir ekki tilvísunum."""
+    beidni = urllib.request.Request(url, data=gogn, headers={"Host": host})
+    opn = urllib.request.build_opener(_EngarBeiningar)
+    try:
+        with opn.open(beidni, timeout=10) as r:
+            return r.status, r.read().decode("utf-8"), r.headers
+    except urllib.error.HTTPError as e:
+        return e.code, "", e.headers
+
+
+class OaiMidstodProf(unittest.TestCase):
+    """Einn staður sem þjónar mörgum sýnisveitum: oai.kann.is/<veita>."""
+
+    def setUp(self):
+        from ..synisveita import Synisveita
+        from .test_synisveita import SKRA
+        v = Synisveita("daemi", SKRA, heiti="Dæmaveita", lysing="Tilbúin gögn til prófunar.")
+        self.thj = bua_thjon(0, veitur={"daemi": v}, oai_hyslar={"oai.example"})
+        threading.Thread(target=self.thj.serve_forever, daemon=True).start()
+        time.sleep(0.1)
+        self.b = "http://127.0.0.1:%d" % self.thj.server_address[1]
+
+    def tearDown(self):
+        self.thj.shutdown()
+
+    def test_forsida_listar_veitur(self):
+        st, texti, haus = _hysill(self.b + "/", "oai.example")
+        self.assertEqual(st, 200)
+        self.assertIn("text/html", haus.get("Content-Type"))
+        self.assertIn('href="/daemi?verb=Identify"', texti)
+        self.assertIn("Dæmaveita", texti)
+
+    def test_stutt_slod_er_veitan_og_baseurl_fylgir(self):
+        for slod in ("/daemi?verb=Identify", "/daemi/?verb=Identify"):
+            st, texti, haus = _hysill(self.b + slod, "oai.example")
+            self.assertEqual(st, 200, slod)
+            self.assertIn("text/xml", haus.get("Content-Type"))
+            self.assertIn("<baseURL>http://oai.example/daemi</baseURL>", texti)
+
+    def test_post_virkar_a_stuttu_slodinni(self):
+        st, texti, _ = _hysill(self.b + "/daemi", "oai.example", b"verb=Identify")
+        self.assertEqual(st, 200)
+        self.assertIn("<Identify>", texti)
+
+    def test_othekkt_veita_404_og_merki_opin(self):
+        self.assertEqual(_hysill(self.b + "/ekkitil?verb=Identify", "oai.example")[0], 404)
+        self.assertEqual(_hysill(self.b + "/vefur/still.css", "oai.example")[0], 200)
+
+    def test_annar_hysill_obreyttur(self):
+        st, texti, _ = _hysill(self.b + "/", "127.0.0.1")
+        self.assertEqual(st, 200)
+        self.assertNotIn('href="/daemi?verb=Identify"', texti)
+
+
 if __name__ == "__main__":
     unittest.main()

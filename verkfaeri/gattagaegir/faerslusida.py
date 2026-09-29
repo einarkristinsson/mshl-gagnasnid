@@ -191,3 +191,40 @@ Lýsigögnin koma frá %(uppruni)s; efnið sjálft er hjá eigandanum.</div></fo
         "forsida": _e(LEITIR_FORSIDA), "fjoldi": fjoldi, "lysing": _e(veita.lysing), "hnappar": hnappar,
         "listi": "".join(lina(t) for t in listi),
     }
+
+
+def smida_midstod(veitur, rot):
+    """Forsíða OAI-miðstöðvar (oai.kann.is): hver sýnisveita, grunnslóð hennar og tenglar."""
+    spjold = ""
+    for nafn, v in sorted(veitur.items()):
+        grunn = "%s/%s" % (rot, nafn)
+        spjold += """<div class="spjald"><h2>%(heiti)s</h2>
+<p class="lysing">%(lysing)s</p>
+<table><tr><td>Grunnslóð</td><td class="hl"><code>%(grunn)s</code></td></tr>
+<tr><td>Færslur</td><td class="hl">%(fjoldi)d</td></tr>
+<tr><td>Snið</td><td class="hl">oai_dc</td></tr></table>
+<div class="hnappar" style="margin:12px 0 0">
+<a class="hnappur" href="/%(nafn)s?verb=Identify">Identify</a>
+<a class="hnappur aukab" href="/%(nafn)s?verb=ListRecords&amp;metadataPrefix=oai_dc">ListRecords</a>
+<a class="hnappur aukab" href="/%(nafn)s?verb=ListSets">ListSets</a>
+<a class="hnappur aukab" href="https://sagnatrog.kann.is/%(nafn)s/" target="_blank" rel="noopener">Færslusíður</a>
+</div></div>""" % {"heiti": _e(v.heiti), "lysing": _e(v.lysing), "grunn": _e(grunn), "fjoldi": v.fjoldi(),
+                  "nafn": _e(nafn)}
+    return """<!DOCTYPE html>
+<html lang="is"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sýnisveitur — OAI-PMH</title>
+<link rel="icon" type="image/png" href="/vefur/favicon.png">
+<style>%(still)s code{font-size:14px}</style></head><body>
+<header><div class="innihald merki"><span>oai.kann.is · Sýnisveitur · OAI-PMH 2.0</span></div></header>
+<main class="innihald">
+<h1>Sýnisveitur</h1>
+<p class="dags">OAI-PMH-veitur fyrir gagnaeigendur sem eiga ekki eigin veitu. Hver veita skilar
+Dublin Core (oai_dc) og má uppskera eins og hverja aðra veitu.</p>
+<div class="hnappar"><a class="hnappur aukab" href="%(gaegir)s" target="_blank" rel="noopener">Prófa grunnslóð í Gáttagægi</a></div>
+%(spjold)s
+</main>
+<footer><div class="innihald">Hýst af Kann ehf. fyrir Miðstöð stafrænna hugvísinda og lista.
+Lýsigögnin eru eign gagnaeigendanna.</div></footer>
+</body></html>""" % {"still": _STILL, "gaegir": _e(GATTAGAEGIR), "spjold": spjold}
