@@ -1,0 +1,12 @@
+{
+  "heiti": "Tímarit.is — titlar blaða og tímarita",
+  "netfang": "einar@kann.is",
+  "sidustaerd": 100,
+  "lysing": "Sýnisveita sem Kann ehf. smíðaði fyrir MSHL úr opinni OAI-gagnaveitu Tímarit.is. Hér eru aðeins titlar blaða og tímarita, ekki tölublöð eða greinar.",
+  "audkennisforskeyti": "oai:timarit.is:publications/",
+  "uppruni": "Tímarit.is",
+  "adgangur": {
+    "texti": "Opna á Tímarit.is",
+    "slod": "https://timarit.is/"
+  }
+}
