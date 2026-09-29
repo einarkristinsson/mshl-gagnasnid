@@ -121,6 +121,7 @@ menningarflokkunina. Bæði eru leidd af enska `dc:type`-gildinu.
 | Ævir lærðra manna | `Volume` | `volume` | `books` |
 | Jarðaskrá | `Register` | `register` | `books` |
 | Handrit.is | `Manuscript` | `manuscript` | `manuscripts` |
+| Tímarit.is | `Text` | `journal` | `journals` |
 | Ísmús og Sagnagrunnur | `Legend` | `legend` | `other` |
 | Ísmús og Sagnagrunnur | `SoundRecording` | `recording` | `audio` |
 | Sarpur | `Photography`, `Drawing`, `Art` | `image`, `drawing`, `artwork` | `images` |

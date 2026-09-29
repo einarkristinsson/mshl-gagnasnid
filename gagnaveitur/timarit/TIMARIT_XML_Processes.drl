@@ -1,0 +1,134 @@
+// TIMARIT_XML_Processes.drl — Tímarit.is, titlar blaða og tímarita (29.9.2026)
+// Smíðað 29.9.2026 eftir RUV_XML_Processes.drl. Reglurnar lesa AFURÐ
+// byggja_timarit_dc.py (TIMARIT-tryA.xml), ekki hráa OAI-svarið frá Tímarit.is.
+// Allar forsendur eru af gerð sem ER staðfest í Alma: exist + name()/local-name(),
+// @xml:lang og starts-with(text(),'…'). Engin xsi:type-forsenda.
+//
+// 14 reglur. Sleppt úr RÚV-reglunum, því Tímarit.is skilar ekki þessum reitum:
+//   dc:coverage (local22), dc:creator og dc:contributor (local49),
+//   dcterms:bibliographicCitation (local75), dcterms:isPartOf (dc.relation).
+// Bætt við: dc:rights → dc.rights (sama regla og í Handrit.is-reglunum).
+//
+// ÓSTAÐFEST í Alma (prófa í fyrsta innlestri):
+//   - resourceType "journals" fyrir Text (audio og video eru staðfest)
+//   - "dc"."date" sem markreitur, og hvernig Primo les opið bil „1949/..“
+// Data Source Code prófílsins: TIMARIT (ASCII — sjá Æ-lexíuna, E11).
+
+rule "timarit dc:title - copy to title and local1"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:title']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:title']" to "dc"."title"
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:title']" to "discovery"."local1"
+end
+
+rule "timarit local5 data source"
+when
+    TRUE
+then
+    set "TIMARIT" in "discovery"."local5"
+end
+
+rule "timarit external data source flag"
+when
+    TRUE
+then
+    set "XDS" in "dcterms"."source"
+end
+
+// ---- tegund: parið Tímarit / Text ----
+rule "timarit dc:type"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:type']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:type']" to "dc"."type"
+end
+
+rule "timarit resourceType and local2"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:type'][@xml:lang='en']"
+then
+    set TEMP"1" to xpath "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:type'][@xml:lang='en'][1]"
+    set TEMP"2" to xpath "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:type'][@xml:lang='en'][1]"
+    replace string by string (TEMP"1","\n","")
+    replace string by string (TEMP"2","\n","")
+    replace string by string (TEMP"1","\r","")
+    replace string by string (TEMP"2","\r","")
+    add suffix (TEMP"1","YY")
+    add suffix (TEMP"2","YY")
+    replace string by string (TEMP"1","^TextYY$","journal")
+    replace string by string (TEMP"2","^TextYY$","journals")
+    replace string by string (TEMP"1","^.*YY$","other")
+    replace string by string (TEMP"2","^.*YY$","other")
+    set TEMP"1" in "discovery"."local2"
+    set TEMP"2" in "discovery"."resourceType"
+end
+
+// ---- lýsing: útgáfutími + lýsing Tímarit.is ----
+rule "timarit dc:description"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:description']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:description']" to "dc"."description"
+end
+
+// ---- efnisorð: „Tímarit og blöð“ í síuna, „Serials“ aðeins leitanlegt ----
+rule "timarit dc:subject all"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:subject']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:subject']" to "dc"."subject"
+end
+
+rule "timarit islensk efnisord to local93"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:subject'][@xml:lang='is']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:subject'][@xml:lang='is']" to "discovery"."local93"
+end
+
+// ---- útgefandi, tungumál, réttindi ----
+rule "timarit dc:publisher"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:publisher']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:publisher']" to "dc"."publisher"
+end
+
+rule "timarit dc:language"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:language']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:language']" to "dc"."language"
+end
+
+rule "timarit dc:rights"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:rights']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:rights']" to "dc"."rights"
+end
+
+// ---- útgáfutími: EDTF, 1933/1948 · 1852 · 1913/.. ----
+rule "timarit dc:date"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:date']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:date']" to "dc"."date"
+end
+
+// ---- tengill heim: titilslóð Tímarit.is (302 á fyrstu síðu titilsins) ----
+rule "timarit link to resource"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:identifier'][starts-with(text(),'https://timarit.is/')]"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:identifier'][starts-with(text(),'https://timarit.is/')]" to "dcterms"."source"
+end
+
+// OAI-auðkennið (oai:timarit.is:…) fer ekki í dc.identifier — aðeins slóðin
+rule "timarit identifier url only"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:identifier'][starts-with(text(),'http')]"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:identifier'][starts-with(text(),'http')]" to "dc"."identifier"
+end
