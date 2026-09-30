@@ -12,7 +12,7 @@ XML-útflutningur sem við umbreytum í gullna sniðið.
 | | |
 |---|---|
 | Form | ein XML-skrá á hverja færslu, rót `EXPORT/TAKE` |
-| Sýnishorn | 14 skrár, 28.9.2026 (Bergþóra Ólöf Björgvinsdóttir, RÚV) |
+| Sýnishorn | 14 skrár 28.9.2026 og 300 skrár 30.9.2026 (100 af hverri tegund), frá Bergþóru Ólöfu Björgvinsdóttur, RÚV. Tvær tómar prófunarfærslur án titils falla burt: **312 færslur** |
 | Skráarheiti | `<PARENT_ID>_<GENE_ID>.xml`; `00000000` = á ekkert foreldri |
 | Kortlagning | [KORTLAGNING-RUV.md](KORTLAGNING-RUV.md), frá RÚV 25.9.2026 |
 | OAI-PMH | ekkert hjá RÚV — **sýnisveita** á <https://oai.kann.is/ruv> |
@@ -22,9 +22,13 @@ XML-útflutningur sem við umbreytum í gullna sniðið.
 
 | Tegund | Foreldri | Börn | Stakt | `dc:type` |
 |---|---:|---:|---:|---|
-| Tónlist | 1 (upptaka) | 5 (lög) | — | Tónlistarupptaka, Lag / SoundRecording |
-| Útvarp | — | — | 2 | Útvarpsþáttur / SoundRecording |
-| Sjónvarp | 1 (þáttur) | 4 (innslög) | 1 | Sjónvarpsþáttur, Sjónvarpsinnslag / MovingImage |
+| Tónlist | 11 (upptökur) | 60 (lög) | 33 | Tónlistarupptaka, Lag / SoundRecording |
+| Útvarp | 19 (upptökur) | 48 (þættir) | 35 | Útvarpsupptaka, Útvarpsþáttur / SoundRecording |
+| Sjónvarp | 3 (þættir) | 21 (innslög) | 82 | Sjónvarpsþáttur, Sjónvarpsinnslag / MovingImage |
+
+Í útvarpi heldur „Útvarpsupptaka“ utan um þætti, eins og plata utan um lög:
+þáttaröð („Úr ævi og starfi íslenskra kvenna“) eða atburð í hlutum
+(„Þjóðhátíð á Hólum í Hjaltadal 1974“).
 
 ## Kortlagning í gullna sniðið
 
@@ -44,15 +48,17 @@ XML-útflutningur sem við umbreytum í gullna sniðið.
 | `dc:relation` | `https://www.ruv.is/um-ruv/safn-ruv` | beiðnasíða safnsins |
 | `dc:source` · `dc:format` · `dcterms:extent` | `GENE_ARCHIVE00` · `GENE_REMARK` · `GENE_LENGTH` | frumeintak, miðill, lengd |
 
-## Persónuvernd — þrjár reglur í umbreytingunni
+## Persónuvernd — fjórar reglur í umbreytingunni
 
 1. **`PERSON_ALT_NAME` er kennitala** og er aldrei lesin.
 2. **Kennitölur í frjálsum texta eru fjarlægðar.** Þær koma fyrir: lýsingartexti
    eins sjónvarpsþáttar í sýnishornunum bar framleiðsluskýrslu með kennitölum.
 3. **Fæðingarár lifandi fólks fara ekki út.** Æviár birtast aðeins þegar
    dánarár er skráð. Það nær líka yfir börn sem koma fram í barnaefni.
+4. **Símanúmer tengiliða í vinnutexta fara út með setningunni** (eitt tilvik
+   í úrtakinu 30.9: „Allar frekari upplýsingar … (s. …)“).
 
-Umbreytingin sannprófar sjálf að engin kennitala sé í úttakinu og skrifar
+Umbreytingin sannprófar sjálf að engin kennitala og ekkert símanúmer sé í úttakinu og skrifar
 ekkert ef hún finnur eina.
 
 ## Mælt með Gáttagægi (29.9.2026)
