@@ -14,6 +14,7 @@ Allar tölur eru mældar á raungögnum og dagsettar.
 | [Ævir lærðra manna](aevir/) | Þjóðskjalasafn Íslands | 2.867 | lesið inn |
 | [Ísmús og Sagnagrunnur](ismus/) | Stofnun Árna Magnússonar í íslenskum fræðum | 22.658 | mælt, ekki lesið inn |
 | [Tímarit.is](timarit/) | Landsbókasafn Íslands – Háskólabókasafn | 2.011 titlar | umbreytt, ekki lesið inn |
+| [Bækur.is](baekur/) | Landsbókasafn Íslands – Háskólabókasafn | 2.984 bækur | umbreytt, ekki lesið inn |
 
 ## Hvað hver síða svarar
 
