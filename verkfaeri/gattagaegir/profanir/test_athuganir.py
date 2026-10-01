@@ -81,6 +81,12 @@ class GildiProf(unittest.TestCase):
                               '<dc:type xml:lang="en">Text</dc:type>'))
         self.assertEqual(G.G09(s).stada, STODST)
 
+    def test_G09_event_er_thekkt(self):
+        s = _samhengi(_record('<dc:title>A</dc:title>'
+                              '<dc:type xml:lang="is">Sýning</dc:type>'
+                              '<dc:type xml:lang="en">Event</dc:type>'))
+        self.assertEqual(G.G09(s).stada, STODST)
+
     def test_G02_G03_hnit(self):
         ofug = _samhengi(_record(
             '<dc:title>A</dc:title>'
