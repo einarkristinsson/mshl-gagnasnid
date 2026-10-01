@@ -1,0 +1,12 @@
+{
+  "heiti": "Bækur.is — stafrænar bækur Landsbókasafns",
+  "netfang": "einar@kann.is",
+  "sidustaerd": 100,
+  "lysing": "Sýnisveita sem Kann ehf. smíðaði fyrir MSHL úr opinni OAI-gagnaveitu Bækur.is (edm-sniðinu). Hér eru 2.984 stafrænar bækur Landsbókasafns Íslands – Háskólabókasafns, frá 16. öld til okkar daga, með höfundum, æviárum þeirra, útgáfulandi og smámynd.",
+  "audkennisforskeyti": "oai:baekur.is:books/",
+  "uppruni": "Bækur.is",
+  "adgangur": {
+    "texti": "Opna á Bækur.is",
+    "slod": "https://baekur.is/"
+  }
+}
