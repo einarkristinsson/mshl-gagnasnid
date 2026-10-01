@@ -37,6 +37,7 @@ _TYPUR_EN = {
     "mineralogy / petrology", "archaeology", "folk customs response",
     "movingimage",  # DCMI Type — RÚV sjónvarpsefni (28.9.2026)
     "text",         # DCMI Type — Tímarit.is, titlar blaða og tímarita (29.9.2026)
+    "event",        # DCMI Type — Listasafn Íslands, sýningar (1.10.2026)
 }
 
 
