@@ -6,8 +6,9 @@ from . import (FAERSLUR, VILLA, ADVORUN, ABENDING)
 DOC = "snidmat/GULLNA-SNIDID.md"
 _SLOD = re.compile(r"^https?://", re.IGNORECASE)
 _MYND = re.compile(r"\.(jpe?g|png|webp|gif)(\?.*)?$", re.IGNORECASE)
+# /cover/: Bækur.is gefur smámynd á /cover/tbn/<uuid> (302 á JPEG, án endingar)
 _MYND_STIGUR = re.compile(r"/(multimedia|thumb|thumbnail|image|images|mynd|"
-                          r"myndir)/", re.IGNORECASE)
+                          r"myndir|cover|covers)/", re.IGNORECASE)
 _TIMABUNDID = re.compile(r"(token=|expires=|sig=|signature=|x-amz-)",
                          re.IGNORECASE)
 

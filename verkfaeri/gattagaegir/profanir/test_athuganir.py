@@ -32,6 +32,15 @@ class FaersluProf(unittest.TestCase):
             '<sarpur:x xmlns:sarpur="https://sarpur.is/ns">1</sarpur:x>'))
         self.assertEqual(F.F13(s).stada, FELL)
 
+    def test_F07_smamynd_a_cover_slod(self):
+        # Bækur.is: /cover/tbn/<uuid> er smámynd án skráarendingar
+        s = _samhengi(_record(
+            '<dc:title>A</dc:title>'
+            '<dc:identifier>https://baekur.is/bok/0006ba32</dc:identifier>'
+            '<dc:identifier>https://baekur.is/cover/tbn/0006ba32</dc:identifier>'))
+        self.assertEqual(F.F07(s).stada, STODST)
+        self.assertEqual(F._sidusslodir(s.faerslur[0]), ["https://baekur.is/bok/0006ba32"])
+
     def test_F12_source_slod(self):
         s = _samhengi(_record('<dc:title>A</dc:title>'
                               '<dc:source>https://x/1</dc:source>'))
