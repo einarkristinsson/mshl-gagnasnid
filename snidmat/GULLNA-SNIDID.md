@@ -122,6 +122,7 @@ menningarflokkunina. Bæði eru leidd af enska `dc:type`-gildinu.
 | Jarðaskrá | `Register` | `register` | `books` |
 | Handrit.is | `Manuscript` | `manuscript` | `manuscripts` |
 | Tímarit.is | `Text` | `journal` | `journals` |
+| Bækur.is | `Text` | `book` | `books` |
 | Ísmús og Sagnagrunnur | `Legend` | `legend` | `other` |
 | Ísmús og Sagnagrunnur | `SoundRecording` | `recording` | `audio` |
 | Sarpur | `Photography`, `Drawing`, `Art` | `image`, `drawing`, `artwork` | `images` |

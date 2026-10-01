@@ -115,6 +115,7 @@ og sameinast gildum frá öðrum söfnum. Nafnrýmið er `xmlns:mshl="https://ms
 
 | Eigind | Á reit | Merking |
 |---|---|---|
+| `mshl:land` | `dcterms:spatial` | Land — efsta stigið. Bækur.is: útgáfuland, með `mshl:role="útgáfustaður"` |
 | `mshl:sysla` | `dcterms:spatial` | Sýsla |
 | `mshl:hreppur` | `dcterms:spatial` | Hreppur |
 | `mshl:sokn` | `dcterms:spatial` | Sókn |
@@ -122,7 +123,7 @@ og sameinast gildum frá öðrum söfnum. Nafnrýmið er `xmlns:mshl="https://ms
 | `mshl:stadur` | `dc:coverage` | Staður án stigs (Ævir: starfsstaður) |
 | `mshl:manntal` | `dcterms:temporal` | Manntalsár, hreint ártal án orðsins „Manntal“ |
 | `mshl:folk` | `dcterms:relation` | Nafn manneskju, hreint; hlutverkið í `mshl:role` |
-| `mshl:verk` | `dcterms:hasPart` | Verk í handriti, hreint heiti án forskeytis |
+| `mshl:verk` | `dcterms:hasPart` | Verk í handriti eða bók, hreint heiti án forskeytis (Bækur.is: samræmdur titill, t.d. „Njáls saga“) |
 | `mshl:starf` | `dc:subject` | Starf eða embætti manneskju |
 | `mshl:flokkur` | `dc:subject` | Sameiginlegur efnisflokkur — grófa sían |
 | `dcterms:Point` | `dcterms:spatial` | WKT-hnit, `POINT(lengd breidd)` |

@@ -1,0 +1,180 @@
+// BAEKUR_XML_Processes.drl — Bækur.is, stafrænar bækur Landsbókasafns (1.10.2026)
+// Smíðað 1.10.2026 eftir TIMARIT_XML_Processes.drl og RUV_XML_Processes.drl.
+// Reglurnar lesa AFURÐ byggja_baekur_dc.py (BAEKUR-tryA.xml), ekki hráa
+// edm-svarið frá Bækur.is. Allar forsendur eru af gerð sem ER staðfest í Alma:
+// exist + name()/local-name(), @xml:lang og starts-with(text(),'…').
+// Engin xsi:type-forsenda — hvorki á mshl:land né mshl:verk.
+//
+// 19 reglur. Úr Tímarit.is-reglunum: titill, local5, XDS, tegund, efnisorð,
+// útgefandi, tungumál, réttindi, dagsetning, tenglar. Úr RÚV-reglunum: staður
+// (local22), fólk (local49) og hlutverk (local75). Úr Handrit.is-reglunum:
+// dcterms:hasPart → dcterms.haspart (samræmdir titlar, t.d. „Njáls saga“).
+//
+// resourceType "books" er sama gildi og Ævir og Jarðaskrá nota (lesin inn).
+//
+// ÓSTAÐFEST í Alma (prófa í fyrsta innlestri):
+//   - "dc"."coverage" og local22 úr dcterms:spatial (RÚV fyllir þau úr dc:coverage)
+//   - hvort "dcterms"."haspart" er leitanlegt í Primo
+// Data Source Code prófílsins: BAEKUR (ASCII — sjá Æ-lexíuna, E11).
+
+rule "baekur dc:title - copy to title and local1"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:title']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:title']" to "dc"."title"
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:title']" to "discovery"."local1"
+end
+
+rule "baekur local5 data source"
+when
+    TRUE
+then
+    set "BAEKUR" in "discovery"."local5"
+end
+
+rule "baekur external data source flag"
+when
+    TRUE
+then
+    set "XDS" in "dcterms"."source"
+end
+
+// ---- tegund: parið Bók / Text ----
+rule "baekur dc:type"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:type']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:type']" to "dc"."type"
+end
+
+rule "baekur resourceType and local2"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:type'][@xml:lang='en']"
+then
+    set TEMP"1" to xpath "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:type'][@xml:lang='en'][1]"
+    set TEMP"2" to xpath "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:type'][@xml:lang='en'][1]"
+    replace string by string (TEMP"1","\n","")
+    replace string by string (TEMP"2","\n","")
+    replace string by string (TEMP"1","\r","")
+    replace string by string (TEMP"2","\r","")
+    add suffix (TEMP"1","YY")
+    add suffix (TEMP"2","YY")
+    replace string by string (TEMP"1","^TextYY$","book")
+    replace string by string (TEMP"2","^TextYY$","books")
+    replace string by string (TEMP"1","^.*YY$","other")
+    replace string by string (TEMP"2","^.*YY$","other")
+    set TEMP"1" in "discovery"."local2"
+    set TEMP"2" in "discovery"."resourceType"
+end
+
+// ---- efnisorð: öll leitanleg, íslensk í síuna (líka fasta orðið „Bækur“) ----
+rule "baekur dc:subject all"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:subject']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:subject']" to "dc"."subject"
+end
+
+rule "baekur islensk efnisord to local93"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:subject'][@xml:lang='is']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:subject'][@xml:lang='is']" to "discovery"."local93"
+end
+
+// ---- staður: útgáfuland, dcterms:spatial xsi:type="mshl:land" (Ísland, Danmörk …) ----
+rule "baekur utgafuland to coverage"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[local-name()='spatial']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[local-name()='spatial']" to "dc"."coverage"
+end
+
+rule "baekur utgafuland to local22"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[local-name()='spatial']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[local-name()='spatial']" to "discovery"."local22"
+end
+
+// ---- fólk: höfundar með æviárum (creator), stofnanir (contributor) ----
+rule "baekur dc:creator"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:creator']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:creator']" to "dc"."creator"
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:creator']" to "discovery"."local49"
+end
+
+rule "baekur dc:contributor"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:contributor']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:contributor']" to "dc"."contributor"
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:contributor']" to "discovery"."local49"
+end
+
+// hlutverkin læsileg á spjaldinu: "Hallgrímur Pétursson (1614-1674) (höfundur)"
+rule "baekur hlutverk folks to local75"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[local-name()='bibliographicCitation']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[local-name()='bibliographicCitation']" to "discovery"."local75"
+end
+
+// ---- verk: samræmdir titlar sem Bækur.is skráir sem höfunda (Eddukvæði, Biblían …) ----
+rule "baekur verk to haspart"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[local-name()='hasPart']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[local-name()='hasPart']" to "dcterms"."haspart"
+end
+
+// ---- útgefandi, tungumál, réttindi ----
+rule "baekur dc:publisher"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:publisher']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:publisher']" to "dc"."publisher"
+end
+
+rule "baekur dc:language"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:language']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:language']" to "dc"."language"
+end
+
+// heiti yfirlýsingarinnar á íslensku og slóð hennar, hvort í sínum reit
+rule "baekur dc:rights"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:rights']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:rights']" to "dc"."rights"
+end
+
+// ---- útgáfuár: EDTF, 1750 ----
+rule "baekur dc:date"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:date']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:date']" to "dc"."date"
+end
+
+// ---- tengill heim: bókin á baekur.is (svarar 200) ----
+// aðeins bókarslóðin — smámyndin (baekur.is/cover/tbn/…) er líka http-slóð
+rule "baekur link to resource"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:identifier'][starts-with(text(),'https://baekur.is/bok/')]"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:identifier'][starts-with(text(),'https://baekur.is/bok/')]" to "dcterms"."source"
+end
+
+// bókarslóð OG smámynd: LinkingParameter1/2 greina þær í sundur með regex.
+// OAI-auðkennið (oai:baekur.is:…) fer ekki í dc.identifier.
+rule "baekur identifier url only"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:identifier'][starts-with(text(),'http')]"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:identifier'][starts-with(text(),'http')]" to "dc"."identifier"
+end
