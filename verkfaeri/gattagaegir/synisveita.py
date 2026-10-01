@@ -260,7 +260,7 @@ class Synisveita:
             "tilvisanir": self._tilvisanir(dc),
             # smámynd: bein myndslóð í dc:identifier (gullna sniðið, LinkingParameter2)
             "mynd": next((i for i in allt("identifier") if i.startswith(("http://", "https://"))
-                          and re.search(r"\.(jpe?g|png|webp)$", i, re.I)), ""),
+                          and re.search(r"\.(jpe?g|png|webp)(\?.*)?$", i, re.I)), ""),
         }
 
     def _tilvisanir(self, dc):

@@ -223,3 +223,9 @@ class FaerslusiduProf(unittest.TestCase):
     def test_mynd_er_bein_myndslod_ur_identifier(self):
         self.assertEqual(self.v.faersla("CCC")["mynd"], "https://myndir.daemi.is/kyrrmynd.jpg")
         self.assertEqual(self.v.faersla("AAA")["mynd"], "")
+
+    def test_mynd_med_fyrirspurnarstreng(self):
+        # myndþjónustur (Prismic/imgix) bera stærð í fyrirspurn: …/mynd.jpg?w=400 — sama regla og gátlistinn (F07)
+        v = Synisveita("daemi", SKRA.replace("<dc:title", "<dc:identifier>https://img.daemi.is/a.jpg?auto=format&amp;w=400</dc:identifier>\n      <dc:title", 1),
+                        audkennisforskeyti="oai:daemi.is:")
+        self.assertEqual(v.faersla("1")["mynd"], "https://img.daemi.is/a.jpg?auto=format&w=400")
