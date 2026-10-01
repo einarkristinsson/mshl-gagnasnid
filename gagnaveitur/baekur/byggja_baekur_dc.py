@@ -242,7 +242,7 @@ def umfang(s):
 
     Talan er fjöldi mynda í stafræna eintakinu, með bandi, saurblöðum og
     litaspjaldi: Biblía 1859 er 1122 í straumnum en „Blaðsíður 1118“ á
-    bókarsíðunni. „bls.“ myndi lesast sem blaðsíðutal prentuðu bókarinnar."""
+    bókarsíðunni. „bls.“ yrði lesið sem blaðsíðutal prentuðu bókarinnar."""
     m = re.match(r"^(\d+)\s*p\.?$", hreinsa(s))
     if not m or int(m.group(1)) == 0:
         return None
