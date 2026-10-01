@@ -1,0 +1,171 @@
+// LISTASAFN_XML_Processes.drl — Listasafn Íslands, sýningar og listamenn (1.10.2026)
+// Smíðað 1.10.2026 eftir TIMARIT_XML_Processes.drl og RÚV-reglunum (fólk og hlutverk).
+// Reglurnar lesa AFURÐ byggja_listasafn_dc.py (LISTASAFN-tryA.xml).
+// Allar forsendur eru af gerð sem ER staðfest í Alma: exist + name()/local-name(),
+// @xml:lang og starts-with(text(),'…'). Engin xsi:type-forsenda.
+//
+// ÓSTAÐFEST í Alma (prófa í fyrsta innlestri):
+//   - resourceType "exhibitions" (sérkóði — þarf þýðingu í Facet Resource Type Labels
+//     og Icon Codes Labels, eins og places/artifacts 9.9) og "people" (þýtt: Fólk)
+//   - "dcterms"."alternative" sem markreitur
+// Data Source Code prófílsins: LISTASAFN (ASCII).
+
+rule "listasafn dc:title - copy to title and local1"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:title']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:title']" to "dc"."title"
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:title']" to "discovery"."local1"
+end
+
+rule "listasafn local5 data source"
+when
+    TRUE
+then
+    set "LISTASAFN" in "discovery"."local5"
+end
+
+rule "listasafn external data source flag"
+when
+    TRUE
+then
+    set "XDS" in "dcterms"."source"
+end
+
+// ---- tegund: Sýning / Event og Einstaklingur / Person ----
+rule "listasafn dc:type"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:type']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:type']" to "dc"."type"
+end
+
+rule "listasafn resourceType and local2"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:type'][@xml:lang='en']"
+then
+    set TEMP"1" to xpath "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:type'][@xml:lang='en'][1]"
+    set TEMP"2" to xpath "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:type'][@xml:lang='en'][1]"
+    replace string by string (TEMP"1","\n","")
+    replace string by string (TEMP"2","\n","")
+    replace string by string (TEMP"1","\r","")
+    replace string by string (TEMP"2","\r","")
+    add suffix (TEMP"1","YY")
+    add suffix (TEMP"2","YY")
+    replace string by string (TEMP"1","^EventYY$","exhibition")
+    replace string by string (TEMP"1","^PersonYY$","person")
+    replace string by string (TEMP"2","^EventYY$","exhibitions")
+    replace string by string (TEMP"2","^PersonYY$","people")
+    replace string by string (TEMP"1","^.*YY$","other")
+    replace string by string (TEMP"2","^.*YY$","other")
+    set TEMP"1" in "discovery"."local2"
+    set TEMP"2" in "discovery"."resourceType"
+end
+
+// ---- lýsing sýningar eða listamanns ----
+rule "listasafn dc:description"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:description']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:description']" to "dc"."description"
+end
+
+// ---- efnisorð ----
+rule "listasafn dc:subject all"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:subject']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:subject']" to "dc"."subject"
+end
+
+rule "listasafn islensk efnisord to local93"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:subject'][@xml:lang='is']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:subject'][@xml:lang='is']" to "discovery"."local93"
+end
+
+// ---- útgefandi, tungumál, réttindi ----
+rule "listasafn dc:publisher"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:publisher']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:publisher']" to "dc"."publisher"
+end
+
+rule "listasafn dc:language"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:language']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:language']" to "dc"."language"
+end
+
+rule "listasafn dc:rights"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:rights']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:rights']" to "dc"."rights"
+end
+
+// ---- dagsetning: EDTF, sýningartími 2017-04-07/2020-06-07 eða æviár 1876/1958 ----
+rule "listasafn dc:date"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:date']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:date']" to "dc"."date"
+end
+
+// ---- fólk: listamenn sýningar, hlutverk í síuna ----
+rule "listasafn dc:creator"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:creator']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:creator']" to "dc"."creator"
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:creator']" to "discovery"."local49"
+end
+
+rule "listasafn hlutverk to local75"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[local-name()='bibliographicCitation']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[local-name()='bibliographicCitation']" to "discovery"."local75"
+end
+
+// ---- safnið sem staður ----
+rule "listasafn safn to coverage"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:coverage']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:coverage']" to "dc"."coverage"
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:coverage']" to "discovery"."local22"
+end
+
+// ---- undirtitill (artist-reitur sem er ekki listamaður) — ÓSTAÐFEST markreitur ----
+rule "listasafn dcterms:alternative"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[local-name()='alternative']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[local-name()='alternative']" to "dcterms"."alternative"
+end
+
+rule "listasafn dc:relation (Sarpur)"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:relation']"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:relation']" to "dc"."relation"
+end
+
+// ---- tenglar: síða á listasafn.is heim; síða + smámynd í dc.identifier (LinkingParameter1/2) ----
+rule "listasafn link to resource"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:identifier'][starts-with(text(),'https://www.listasafn.is/')]"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:identifier'][starts-with(text(),'https://www.listasafn.is/')]" to "dcterms"."source"
+end
+
+rule "listasafn identifier url"
+when
+    exist "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:identifier'][starts-with(text(),'http')]"
+then
+    copy "//*[local-name()='metadata']/*[name()='oai_dc:dc']/*[name()='dc:identifier'][starts-with(text(),'http')]" to "dc"."identifier"
+end

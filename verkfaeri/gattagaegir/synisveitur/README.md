@@ -10,11 +10,13 @@ gagnaeiganda sem hafa ekki samþykkt opna birtingu. Þær fara með í Cloud Run
 (sjá `.gcloudignore` í rót safnsins) og eru smíðaðar með umbreytingum í
 einkasafninu `leidarljos` (`dc-template/sources/<veita>/`).
 
-Undantekning er Tímarit.is: gögnin eru opin, svo skráin er líka í git sem
-[`gagnaveitur/timarit/TIMARIT-tryA.xml`](../../../gagnaveitur/timarit/TIMARIT-tryA.xml).
-`byggja_timarit_dc.py` þar skrifar báðar skrárnar.
+Undantekningar eru Tímarit.is og Listasafn Íslands: gögnin eru opin, svo
+skráin er líka í git ([`TIMARIT-tryA.xml`](../../../gagnaveitur/timarit/TIMARIT-tryA.xml),
+[`LISTASAFN-tryA.xml`](../../../gagnaveitur/listasafn/LISTASAFN-tryA.xml)).
+Umbreytingarnar þar skrifa báðar skrárnar.
 
 | Veita | Slóð | Uppruni |
 |---|---|---|
-| RÚV | `https://oai.kann.is/ruv` | 14 sýnishorn frá Bergþóru Ólöfu Björgvinsdóttur, 28.9.2026 |
+| RÚV | `https://oai.kann.is/ruv` | 312 sýnishorn frá Bergþóru Ólöfu Björgvinsdóttur, 28.9. og 30.9.2026 |
 | Tímarit.is | `https://oai.kann.is/timarit` | 2.011 titlar úr opinni OAI-gagnaveitu Tímarit.is, sótt 29.9.2026 |
+| Listasafn Íslands | `https://oai.kann.is/listasafn` | 124 sýningar og 4 listamannasíður úr opinni vefþjónustu Prismic á listasafn.is, sótt 1.10.2026 |
