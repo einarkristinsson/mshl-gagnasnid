@@ -411,5 +411,39 @@ class OaiMidstodProf(unittest.TestCase):
         self.assertNotIn('href="/daemi?verb=Identify"', texti)
 
 
+class FaerslusidaTvipunkturProf(unittest.TestCase):
+    """Auðkenni með tvípunkti og hlutfallskóðun (Listasafn: syning:%C3%BEoka)."""
+
+    def setUp(self):
+        from ..synisveita import Synisveita
+        from .test_synisveita import FORELDRI_BORN
+        xml = FORELDRI_BORN.replace("safn:CCC", "safn:syning:%C3%BEoka")
+        v = Synisveita("daemi", xml, audkennisforskeyti="oai:daemi.is:safn:")
+        self.thj = bua_thjon(0, veitur={"daemi": v},
+                             aframsending={"trog.example": "https://leitir.example/"})
+        threading.Thread(target=self.thj.serve_forever, daemon=True).start()
+        time.sleep(0.1)
+        self.b = "http://127.0.0.1:%d" % self.thj.server_address[1]
+
+    def tearDown(self):
+        self.thj.shutdown()
+
+    def test_faerslusida_med_tvipunkti_og_hlutfallskodun(self):
+        st, texti, _ = _get(self.b + "/daemi/syning:%C3%BEoka")
+        self.assertEqual(st, 200)
+        self.assertIn("Stakt efni", texti)
+
+    def test_yfirlit_visar_a_somu_slod(self):
+        _, texti, _ = _get(self.b + "/daemi/")
+        self.assertIn('href="/daemi/syning:%C3%BEoka"', texti)
+
+    def test_aframsendingarhysill_synir_siduna(self):
+        beidni = urllib.request.Request(self.b + "/daemi/syning:%C3%BEoka",
+                                        headers={"Host": "trog.example"})
+        with urllib.request.build_opener(_EngarBeiningar).open(beidni, timeout=10) as r:
+            self.assertEqual(r.status, 200)
+            self.assertIn("Stakt efni", r.read().decode("utf-8"))
+
+
 if __name__ == "__main__":
     unittest.main()

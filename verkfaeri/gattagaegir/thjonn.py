@@ -217,7 +217,8 @@ class Handler(BaseHTTPRequestHandler):
                           "<p>Engin veita með þessu nafni. <a href=\"/\">Allar veitur</a></p>".encode("utf-8"))
 
     # ---- færslusíður: /<veita>/<stutt auðkenni> ----
-    _FAERSLULEID = re.compile(r"^/([a-z0-9_-]+)/([A-Za-z0-9._-]+)/?$")
+    # auðkenni má bera tvípunkt og hlutfallskóðun (Listasafn: syning:%C3%BEoka)
+    _FAERSLULEID = re.compile(r"^/([a-z0-9_-]+)/([A-Za-z0-9._:%-]+)/?$")
 
     def _faerslusida(self, p):
         m = self._FAERSLULEID.match(p.path)
