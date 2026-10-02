@@ -8,7 +8,7 @@
 //   - resourceType "exhibitions" (sérkóði — þarf þýðingu í Facet Resource Type Labels
 //     og Icon Codes Labels, eins og places/artifacts 9.9) og "people" (þýtt: Fólk)
 //   - "dcterms"."alternative" sem markreitur
-// Data Source Code prófílsins: LISTASAFN (ASCII).
+// Data Source Code prófílsins: LS_RVK (ákveðið 2.10.2026; Label „Listasafn Íslands“).
 
 rule "listasafn dc:title - copy to title and local1"
 when
@@ -22,7 +22,7 @@ rule "listasafn local5 data source"
 when
     TRUE
 then
-    set "LISTASAFN" in "discovery"."local5"
+    set "LS_RVK" in "discovery"."local5"
 end
 
 rule "listasafn external data source flag"
