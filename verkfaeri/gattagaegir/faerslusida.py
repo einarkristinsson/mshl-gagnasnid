@@ -11,7 +11,7 @@ Allur texti er afkóðaður (html.escape) — lýsigögn eru aldrei HTML hér.
 import html
 from urllib.parse import quote, urlparse
 
-LEITIR = ("https://gegnir-psb.primo.exlibrisgroup.com/nde/search?query=any,contains,%s"
+LEITIR = ("https://gegnir-psb.primo.exlibrisgroup.com/nde/search?query=%s"
           "&tab=ALLT&search_scope=MSHL_ALLT&vid=354ILC_NETWORK:MSHL_SAGNATROG_LEITIR_UNION&lang=is")
 LEITIR_FORSIDA = ("https://gegnir-psb.primo.exlibrisgroup.com/nde/home"
                   "?vid=354ILC_NETWORK:MSHL_SAGNATROG_LEITIR_UNION&lang=is")

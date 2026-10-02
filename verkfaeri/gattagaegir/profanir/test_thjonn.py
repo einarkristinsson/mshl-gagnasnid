@@ -309,6 +309,12 @@ class FaerslusiduLeidProf(unittest.TestCase):
         _, texti, _ = _get(self.b + "/daemi/AAA")
         self.assertNotIn('class="mynd"', texti)
 
+    def test_leit_i_sagnatroginu_er_hrein_leitarord(self):
+        # NDE sýnir query-gildið orðrétt í leitarreitnum; „any,contains,“ á ekki heima þar
+        _, texti, _ = _get(self.b + "/daemi/AAA")
+        self.assertIn("nde/search?query=Platan&amp;", texti)
+        self.assertNotIn("any,contains", texti)
+
     def test_faerslusida_visar_a_yfirlit(self):
         _, texti, _ = _get(self.b + "/daemi/BBB")
         self.assertIn('href="/daemi/"', texti)
