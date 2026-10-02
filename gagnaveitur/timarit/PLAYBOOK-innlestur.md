@@ -23,6 +23,7 @@ aðlagaðar úr RÚV-reglunum).
 | Profile name | `MSHL_TIMARIT_FILE` |
 | **Data Source Code** | **`TIMARIT`** ⚠️ ASCII, óbreytanlegt eftir stofnun (Æ-lexían, E11) |
 | Data Source Label | Tímarit.is |
+| **Status** | **Active** ⚠️ á Inactive klárast keyrslan á sekúndum með 0 færslur |
 | Originating system | Other |
 | Import Protocol | Upload File/s |
 | Physical source format | XML · Generic XML · target Dublin Core |
@@ -43,6 +44,10 @@ samt öruggari ef mynd bætist við síðar.
 
 `Run` → [`TIMARIT-tryA.xml`](TIMARIT-tryA.xml) (2,4 MB) → Monitor Jobs:
 **2.011** færslur.
+
+🔴 **Fyrsta keyrsla er `Run` á virkum prófíl.** Engin gögn vistast fyrr en
+prófíllinn hefur keyrt einu sinni meðan hann er Active; `Reload` á undan því
+les ekkert inn (mælt 2.10 með Listasafni).
 
 ## 4 · Mæla
 

@@ -23,6 +23,7 @@ aðlagaðar úr reglum Tímarit.is og RÚV).
 | Profile name | `MSHL_BAEKUR_FILE` |
 | **Data Source Code** | **`BAEKUR`** ⚠️ ASCII, óbreytanlegt eftir stofnun (Æ-lexían, E11) |
 | Data Source Label | Bækur.is |
+| **Status** | **Active** ⚠️ á Inactive klárast keyrslan á sekúndum með 0 færslur |
 | Originating system | Other |
 | Import Protocol | Upload File/s |
 | Physical source format | XML · Generic XML · target Dublin Core |
@@ -47,6 +48,10 @@ svo tengillinn virkaði, en smámyndin yrði þá bókarslóðin líka. Regex á
 
 `Run` → [`BAEKUR-tryA.xml`](BAEKUR-tryA.xml) (6,2 MB) → Monitor Jobs:
 **2.984** færslur.
+
+🔴 **Fyrsta keyrsla er `Run` á virkum prófíl.** Engin gögn vistast fyrr en
+prófíllinn hefur keyrt einu sinni meðan hann er Active; `Reload` á undan því
+les ekkert inn (mælt 2.10 með Listasafni).
 
 ## 4 · Mæla
 

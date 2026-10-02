@@ -24,8 +24,9 @@ líma [`LISTASAFN_XML_Processes.drl`](LISTASAFN_XML_Processes.drl) (19 reglur,
 | Reitur | Gildi |
 |---|---|
 | Profile name | `MSHL_LISTASAFN_FILE` |
-| **Data Source Code** | **`LISTASAFN`** ⚠️ ASCII, óbreytanlegt eftir stofnun |
+| **Data Source Code** | **`LS_RVK`** — í notkun frá 2.10 (Einar), óbreytanlegt eftir stofnun |
 | Data Source Label | Listasafn Íslands |
+| **Status** | **Active** ⚠️ á Inactive klárast keyrslan á sekúndum með 0 færslur |
 | Originating system | Other |
 | Import Protocol | Upload File/s |
 | Physical source format | XML · Generic XML · target Dublin Core |
@@ -47,11 +48,15 @@ líma [`LISTASAFN_XML_Processes.drl`](LISTASAFN_XML_Processes.drl) (19 reglur,
 
 `Run` → [`LISTASAFN-tryA.xml`](LISTASAFN-tryA.xml) → Monitor Jobs: **128** færslur.
 
+🔴 **Fyrsta keyrsla er `Run` á virkum prófíl.** Engin gögn vistast fyrr en
+prófíllinn hefur keyrt einu sinni meðan hann er Active; `Reload` á undan því
+les ekkert inn (mælt 2.10 með Listasafni).
+
 ## 4 · Mæla
 
 | Leit | Vænt |
 |---|---|
-| `lds05=LISTASAFN` | 128 |
+| `lds05=LS_RVK` | 128 |
 | „Ásgrímur Jónsson“ | listamannasíða + sýningar hans, með „listamaður“ í hlutverkasíu |
 | „Ummyndlingar“ | sýning James Merry, með smámynd |
 | „Þjóðsögur í íslenskri myndlist“ | samleit við þjóðsögur í Ísmús |
@@ -59,7 +64,7 @@ líma [`LISTASAFN_XML_Processes.drl`](LISTASAFN_XML_Processes.drl) (19 reglur,
 ## 5 · Leitarumfang
 
 Nýtt leitarumfang (custom scope) **`MSHL_LISTASAFN`**, skilyrði `Data Source` ·
-`Contains Keywords` · `LISTASAFN` → bæta í `Search Profiles → MSHL_ALLT` → Save →
+`Contains Keywords` · `LS_RVK` → bæta í `Search Profiles → MSHL_ALLT` → Save →
 `Configure Views → MSHL_SAGNATROG_LIGHT_UNION` → **Publish view**. Án Publish
 sést ekkert (mælt 29.9 með RÚV).
 
