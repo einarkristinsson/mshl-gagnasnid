@@ -15,7 +15,7 @@ Allar tölur eru mældar á raungögnum og dagsettar.
 | [Ísmús og Sagnagrunnur](ismus/) | Stofnun Árna Magnússonar í íslenskum fræðum | 22.658 | mælt, ekki lesið inn |
 | [Tímarit.is](timarit/) | Landsbókasafn Íslands – Háskólabókasafn | 2.011 titlar | umbreytt, ekki lesið inn |
 | [Bækur.is](baekur/) | Landsbókasafn Íslands – Háskólabókasafn | 2.984 bækur | umbreytt, ekki lesið inn |
-| [Safn RÚV](RUV/) | Ríkisútvarpið | 312 sýnishorn | 14 lesin inn, 312 bíða Reload |
+| [Safn RÚV](RUV/) | Ríkisútvarpið | 312 sýnishorn | lesið inn (2.10.2026) |
 | [Listasafn Íslands](listasafn/) | Listasafn Íslands | 128 (124 sýningar, 4 listamenn) | umbreytt, ekki lesið inn |
 
 ## Hvað hver síða svarar
