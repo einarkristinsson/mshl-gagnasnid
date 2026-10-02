@@ -12,9 +12,9 @@ import html
 from urllib.parse import quote, urlparse
 
 LEITIR = ("https://gegnir-psb.primo.exlibrisgroup.com/nde/search?query=%s"
-          "&tab=ALLT&search_scope=MSHL_ALLT&vid=354ILC_NETWORK:MSHL_SAGNATROG_LEITIR_UNION&lang=is")
+          "&tab=ALLT&search_scope=MSHL_ALLT&vid=354ILC_NETWORK:MSHL_SAGNATROG_LIGHT_UNION&lang=is")
 LEITIR_FORSIDA = ("https://gegnir-psb.primo.exlibrisgroup.com/nde/home"
-                  "?vid=354ILC_NETWORK:MSHL_SAGNATROG_LEITIR_UNION&lang=is")
+                  "?vid=354ILC_NETWORK:MSHL_SAGNATROG_LIGHT_UNION&lang=is")
 GATTAGAEGIR = "https://gattagaegir-mshl.kann.is/"
 
 _STILL = """
@@ -55,6 +55,11 @@ def _radir(par):
     return "".join("<tr><td>%s</td><td class=\"hl\">%s</td></tr>" % (_e(a), _e(b)) for a, b in par if b)
 
 
+def _len(slod):
+    """Skráð lén slóðar: https://www.listasafn.is/list/… → listasafn.is."""
+    return ".".join((urlparse(slod).hostname or "").split(".")[-2:])
+
+
 def smida(veita, f, rotarslod=""):
     """HTML fyrir færslu `f` (Synisveita.faersla) úr sýnisveitu `veita`."""
     uppruni = veita.uppruni or veita.heiti
@@ -85,9 +90,12 @@ def smida(veita, f, rotarslod=""):
                      ("Útgefandi", ", ".join(f["utgefandi"])), ("Auðkenni", f["audkenni"])])
     hnappar = ""
     if ag.get("slod"):
+        # eigi færslan slóð á léni eigandans (fyrsta dc:identifier þar) fer hnappurinn beint á hana
+        heim = next((s for s in f.get("slodir") or [] if s != f.get("mynd") and _len(s) == _len(ag["slod"])),
+                    ag["slod"])
         # nýr flipi: notandinn heldur færslusíðunni opinni meðan hann biður um efnið
         hnappar += ("<a class=\"hnappur\" href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
-                    % (_e(ag["slod"]), _e(ag.get("texti") or "Hjá eiganda")))
+                    % (_e(heim), _e(ag.get("texti") or "Hjá eiganda")))
     hnappar += "<a class=\"hnappur aukab\" href=\"%s\">Leita í Sagnatroginu</a>" % _e(LEITIR % quote(f["titill"]))
     mynd = ""
     if f.get("mynd"):
@@ -110,7 +118,7 @@ def smida(veita, f, rotarslod=""):
 <link rel="icon" type="image/png" href="%(rot)s/vefur/favicon.png">
 <style>%(still)s</style></head><body>
 <header><div class="innihald merki">
-<a href="https://gegnir-psb.primo.exlibrisgroup.com/nde/home?vid=354ILC_NETWORK:MSHL_SAGNATROG_LEITIR_UNION&amp;lang=is"><img src="%(rot)s/vefur/sagnatrog.png" alt="Sagnatrogið"></a>
+<a href="https://gegnir-psb.primo.exlibrisgroup.com/nde/home?vid=354ILC_NETWORK:MSHL_SAGNATROG_LIGHT_UNION&amp;lang=is"><img src="%(rot)s/vefur/sagnatrog.png" alt="Sagnatrogið"></a>
 <span>Sagnatrog · Færslusíða · Lýsigögn frá <a href="%(rot)s/%(veita)s/">%(uppruni)s</a></span></div></header>
 <main class="innihald">
 <p class="teg">%(teg)s</p>

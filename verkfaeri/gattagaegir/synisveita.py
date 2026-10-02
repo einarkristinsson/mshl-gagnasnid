@@ -258,6 +258,8 @@ class Synisveita:
             "safnnumer": [i for i in allt("identifier") if not i.startswith(("http", "oai:"))],
             "rettindi": (allt("rights") or [""])[0],
             "tilvisanir": self._tilvisanir(dc),
+            # allar slóðir færslunnar; færslusíðan velur þá sem er hjá eigandanum
+            "slodir": [i for i in allt("identifier") if i.startswith(("http://", "https://"))],
             # smámynd: bein myndslóð í dc:identifier (gullna sniðið, LinkingParameter2)
             "mynd": next((i for i in allt("identifier") if i.startswith(("http://", "https://"))
                           and re.search(r"\.(jpe?g|png|webp)(\?.*)?$", i, re.I)), ""),

@@ -451,5 +451,41 @@ class FaerslusidaTvipunkturProf(unittest.TestCase):
             self.assertIn("Stakt efni", r.read().decode("utf-8"))
 
 
+class HeimaslodProf(unittest.TestCase):
+    """Hnappur eigandans vísar beint á færsluna hjá eigandanum þegar hún á slóð þar."""
+
+    def setUp(self):
+        from ..synisveita import Synisveita
+        from .test_synisveita import FORELDRI_BORN
+        mynd = "      <dc:identifier>https://myndir.daemi.is/kyrrmynd.jpg</dc:identifier>\n"
+        assert mynd in FORELDRI_BORN
+        xml = FORELDRI_BORN.replace(
+            mynd, "      <dc:identifier>https://trog.example/daemi/CCC</dc:identifier>\n"
+                  "      <dc:identifier>https://www.daemi.is/syning/stakt</dc:identifier>\n" + mynd)
+        v = Synisveita("daemi", xml, audkennisforskeyti="oai:daemi.is:safn:",
+                       adgangur={"texti": "Opna á daemi.is", "slod": "https://daemi.is/"})
+        self.thj = bua_thjon(0, veitur={"daemi": v})
+        threading.Thread(target=self.thj.serve_forever, daemon=True).start()
+        time.sleep(0.1)
+        self.b = "http://127.0.0.1:%d" % self.thj.server_address[1]
+
+    def tearDown(self):
+        self.thj.shutdown()
+
+    def test_hnappur_visar_a_faersluna_hja_eiganda(self):
+        _, texti, _ = _get(self.b + "/daemi/CCC")
+        self.assertIn('<a class="hnappur" href="https://www.daemi.is/syning/stakt" target="_blank"', texti)
+
+    def test_an_slodar_hja_eiganda_fer_hnappur_a_almennu_slodina(self):
+        _, texti, _ = _get(self.b + "/daemi/AAA")
+        self.assertIn('<a class="hnappur" href="https://daemi.is/" target="_blank"', texti)
+
+    def test_sidur_visa_a_light_synina(self):
+        for slod in ("/daemi/AAA", "/daemi/"):
+            _, texti, _ = _get(self.b + slod)
+            self.assertIn("MSHL_SAGNATROG_LIGHT_UNION", texti)
+            self.assertNotIn("MSHL_SAGNATROG_LEITIR_UNION", texti)
+
+
 if __name__ == "__main__":
     unittest.main()
