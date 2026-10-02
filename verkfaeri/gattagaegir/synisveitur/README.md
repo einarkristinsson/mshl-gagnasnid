@@ -23,4 +23,4 @@ hver sínar tvær skrár.
 | RÚV | `https://oai.kann.is/ruv` | 312 sýnishorn frá Bergþóru Ólöfu Björgvinsdóttur, 28.9. og 30.9.2026 |
 | Tímarit.is | `https://oai.kann.is/timarit` | 2.011 titlar úr opinni OAI-gagnaveitu Tímarit.is, sótt 29.9.2026 |
 | Bækur.is | `https://oai.kann.is/baekur` | 2.984 stafrænar bækur úr opinni OAI-gagnaveitu Bækur.is (edm), sótt 1.10.2026 |
-| Listasafn Íslands | `https://oai.kann.is/listasafn` | 124 sýningar og 4 listamannasíður úr opinni vefþjónustu Prismic á listasafn.is, sótt 1.10.2026 |
+| Listasafn Íslands | `https://oai.kann.is/listasafn` | 124 sýningar og 5 listamannasíður úr opinni vefþjónustu Prismic á listasafn.is, sótt 2.10.2026 |

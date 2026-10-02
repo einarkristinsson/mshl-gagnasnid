@@ -4978,7 +4978,7 @@ Sýningin er skipulögð af Tate Modern í samstarfi við Listasafn Íslands, GL
   <record>
     <header>
       <identifier>oai:listasafn.is:listamadur:asgrimur-jonsson</identifier>
-      <datestamp>2026-09-30T09:04:25Z</datestamp>
+      <datestamp>2026-10-02T11:25:38Z</datestamp>
       <setSpec>source:listasafn</setSpec>
       <setSpec>type:listamadur</setSpec>
     </header>
@@ -4991,13 +4991,13 @@ Sýningin er skipulögð af Tate Modern í samstarfi við Listasafn Íslands, GL
       <dc:type xml:lang="is">Einstaklingur</dc:type>
       <dc:type xml:lang="en">Person</dc:type>
       <dc:date>1876/1958</dc:date>
-      <dcterms:temporal xml:lang="is">1876-03-04 – 1958-04-05</dcterms:temporal>
+      <dcterms:temporal xml:lang="is">1876-04-03 – 1958-05-04</dcterms:temporal>
       <dc:subject xml:lang="is">Myndlistarmenn</dc:subject>
       <dc:description xml:lang="is">Ásgrímur Jónsson var einn af brautryðjendum íslenskrar myndlistar og fyrsti íslenski listamaðurinn sem gerði myndlist að aðalstarfi. Íslensk náttúra var aðalviðfangsefni hans og með landslagstúlkun sinni lagði hann grunn að hefð í íslenskri landslagslist. Íslenskar þjóðsögur urðu honum einnig snemma að yrkisefni og er hann helst túlkandi þeirra meðal íslenskra myndlistarmanna.
 
 Ásgrímur var fæddur í Suðurkoti í Rútsstaðahverfi í Flóa, elstur sjö systkina, og faðir hans eina fyrirvinnan. Heimilið var fátækt og börnin urðu fljótt að taka til hendinni við ýmis störf. Þrátt fyrir þessar aðstæður gafst Ásgrími tími til að skapa. Hann teiknaði á allan pappír sem hann sankaði að sér, og ef pappírinn þraut bjó hann til verk úr því efni sem hendi var næst, og skildi eftir þar sem hann stóð.
 
-„En hver veit líka nema þetta kynlega dundur mitt hafi raunverulega notið meiri samúðar en ætla mátti og ég gat í fljótu bragði gert mér grein fyrir? Að minnsta kosti er mér í fersku minni, að eitt sinn lét faðir minn þau orð falla við mig, að ég ætti að verða málari. Mér þótti einkennilegt, að hann skyldi taka þannig til orða, og veit ég reyndar ekki enn, hvað fyrir honum vakti.“
+„En hver veit líka nema þetta kynlega dundur mitt hafi raunverulega notið meiri sammúðar en ætla mátti og ég gat í fljótu bragði gert mér grein fyrir? Að minnsta kosti er mér í fersku minni, að eitt sinn lét faðir minn þau orð falla við mig, að ég ætti að verða málari. Mér þótti einkennilegt, að hann skyldi taka þannig til orða, og veit ég reyndar ekki enn, hvað fyrir honum vakti.“
 
 Ásgrímur fór að heiman rétt eftir fermingu, og var ráðinn sem vikapiltur hjá Pétri Nielsen, verslunarstjóra Lefoliiverslunarinnar á Eyrarbakka. Þar bjó Ásgrímur í tæp þrjú ár. Í Húsinu á Eyrarbakka eignaðist Ásgrímur sína fyrstu vatnsliti.
 
@@ -5089,6 +5089,32 @@ Listasafn Einars Jónssonar var fyrsta listasafnsbyggingin sem reist var hér á
 
 Einar vann að list sinni fram á síðasta aldursár og voru verk hans til sýnis í safni hans. Þar vann hann meðal annars að gerð fjölda höfuðmynda eftir pöntun. Tvö mannskæð slys urðu honum einnig kveikja að verkum sem komið hefur verið fyrir á almannafæri. Fyrra verkið ber heitið Í minningu skiptapa dr. Charcots frá 1936, en kveikjan að því var sjóslys undan vesturströnd Íslands haustið 1936 þegar franska rannsóknarskipið Pourquoi pas? fórst. Bronsafsteypa af verkinu er í Saint-Malo í Bretagne í Frakklandi og önnur á Fáskrúðsfirði. Hitt verkið er Glitfaxi frá 1952, í minningu þeirra sem fórust með flugvélinni Glifaxa árið 1951, en bronsafsteypa af því verki er við Fossvogskirkju í Reykjavik og önnur í höggmyndagarði safnsins.</dc:description>
       <dc:relation xml:lang="is">Sarpur, aðili 30865</dc:relation>
+      <dc:publisher xml:lang="is">Listasafn Íslands</dc:publisher>
+      <dc:language>is</dc:language>
+      <dc:rights xml:lang="is">Lýsigögn: Listasafn Íslands. Myndir af verkum eru háðar höfundarrétti listamanna.</dc:rights>
+</oai_dc:dc>
+    </metadata>
+  </record>
+  <record>
+    <header>
+      <identifier>oai:listasafn.is:listamadur:gudmunda-andresdottir</identifier>
+      <datestamp>2026-10-01T12:48:31Z</datestamp>
+      <setSpec>source:listasafn</setSpec>
+      <setSpec>type:listamadur</setSpec>
+    </header>
+    <metadata>
+<oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mshl="https://mshl.is/terms#">
+      <dc:identifier>https://www.listasafn.is/list/listamenn/gudmunda-andresdottir/</dc:identifier>
+      <dc:identifier>https://images.prismic.io/listasafn-islands/obctSox3qYhGJ2Zf_002_L2840.jpg?auto=format,compress&amp;w=400</dc:identifier>
+      <dc:identifier>oai:listasafn.is:listamadur:gudmunda-andresdottir</dc:identifier>
+      <dc:title xml:lang="is">Guðmunda Andrésdóttir</dc:title>
+      <dc:type xml:lang="is">Einstaklingur</dc:type>
+      <dc:type xml:lang="en">Person</dc:type>
+      <dc:date>1922/2002</dc:date>
+      <dcterms:temporal xml:lang="is">1922-11-03 – 2002-09-01</dcterms:temporal>
+      <dc:subject xml:lang="is">Myndlistarmenn</dc:subject>
+      <dc:description xml:lang="is">Guðmunda Andrésdóttir er einn helsti fulltrúi abstraktlistarinnar í íslenskri myndlist og ein fárra kvenna er fylgdi þeirri stefnu hér á landi. Guðmunda stundaði list sína af mikilli einurð og liggur eftir hana fjöldi verka sem bera vott um persónulega listsköpun og næma tilfinningu fyrir þeim lögmálum sem ríkja á myndfletinum. Guðmunda var trú abstraktlistinni allan sinn feril en verk hennar eru þó ekki öll steypt í sama mót eins og sést glögglega þegar list hennar er skoðuð í heild.</dc:description>
+      <dc:relation xml:lang="is">Sarpur, aðili 19594</dc:relation>
       <dc:publisher xml:lang="is">Listasafn Íslands</dc:publisher>
       <dc:language>is</dc:language>
       <dc:rights xml:lang="is">Lýsigögn: Listasafn Íslands. Myndir af verkum eru háðar höfundarrétti listamanna.</dc:rights>

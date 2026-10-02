@@ -13,18 +13,18 @@ sýnisveitu og lesum inn í Alma. Ekkert þarf að breyta hjá Listasafni.
 | OAI-PMH | ekkert hjá Listasafni — **sýnisveita** á <https://oai.kann.is/listasafn> eftir næstu uppsetningu |
 | Tengiliður | Sigurður Gunnarsson, fagstjóri tækni og ljósmyndunar; þjónustuaðili vefsins er Kolibri |
 | Umbreyting | [`byggja_listasafn_dc.py`](byggja_listasafn_dc.py) — sækir, umbreytir, sannprófar |
-| Afurð | [`LISTASAFN-tryA.xml`](LISTASAFN-tryA.xml) — 128 færslur fyrir `Upload File/s` í Alma |
+| Afurð | [`LISTASAFN-tryA.xml`](LISTASAFN-tryA.xml) — 129 færslur fyrir `Upload File/s` í Alma |
 | Reglusett | [`LISTASAFN_XML_Processes.drl`](LISTASAFN_XML_Processes.drl) — 19 reglur |
 | Innlestur | [`PLAYBOOK-innlestur.md`](PLAYBOOK-innlestur.md) |
 
-Allar tölur mældar 1.10.2026.
+Allar tölur mældar 2.10.2026 (1.10: 128 færslur; Guðmunda Andrésdóttir bættist við 1.10 og síða Ásgríms var leiðrétt 2.10).
 
 ## Umfang
 
 | Prismic-tegund | Skjöl (is) | Í Sagnatroginu |
 |---|---:|---|
 | `exhibition` — sýning | 124 | ✅ ein færsla hver |
-| `art_artist_page` — listamannasíða | 4 | ✅ Ásgrímur Jónsson, Einar Jónsson, Jóhannes Kjarval, Valtýr Pétursson |
+| `art_artist_page` — listamannasíða | 5 | ✅ Ásgrímur Jónsson, Einar Jónsson, Guðmunda Andrésdóttir, Jóhannes Kjarval, Valtýr Pétursson |
 | `artwork` — verk | 1.139 | ❌ aðeins titill og stundum mynd (21 %); hvorki listamaður né ártal |
 | `event` — viðburður | 554 | ❌ viðburðir safnsins, ekki menningarefni í sjálfu sér |
 
@@ -33,7 +33,7 @@ Allar tölur mældar 1.10.2026.
 | Gullið DC | Sýning | Listamaður | Athugasemd |
 |---|---|---|---|
 | `dc:identifier` (slóð) | `https://www.listasafn.is/list/syningar/<uid>/` | `…/list/listamenn/<uid>/` | íslenskir stafir í auðkenni hlutfallskóðaðir |
-| `dc:identifier` (smámynd) | aðalmynd, 400 px frá myndþjónustu Prismic | sama | 128 af 128 |
+| `dc:identifier` (smámynd) | aðalmynd, 400 px frá myndþjónustu Prismic | sama | 129 af 129 |
 | `dc:title` | `title` | `title` (nafn) | |
 | `dcterms:alternative` | `artist` þegar hann er ekki nafn | — | 35 sýningar, t.d. „Samsýning“, „Íslensk grafík“ |
 | `dc:type` (par) | Sýning / Event | Einstaklingur / Person | |

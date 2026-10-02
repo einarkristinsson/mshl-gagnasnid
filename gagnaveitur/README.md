@@ -16,7 +16,7 @@ Allar tölur eru mældar á raungögnum og dagsettar.
 | [Tímarit.is](timarit/) | Landsbókasafn Íslands – Háskólabókasafn | 2.011 titlar | umbreytt, ekki lesið inn |
 | [Bækur.is](baekur/) | Landsbókasafn Íslands – Háskólabókasafn | 2.984 bækur | umbreytt, ekki lesið inn |
 | [Safn RÚV](RUV/) | Ríkisútvarpið | 312 sýnishorn | lesið inn (2.10.2026) |
-| [Listasafn Íslands](listasafn/) | Listasafn Íslands | 128 (124 sýningar, 4 listamenn) | umbreytt, ekki lesið inn |
+| [Listasafn Íslands](listasafn/) | Listasafn Íslands | 129 (124 sýningar, 5 listamenn) | lesið inn 2.10 (128); endurkeyrsla með réttum reglum eftir |
 
 ## Hvað hver síða svarar
 

@@ -1,6 +1,6 @@
 # Listasafn Íslands — innlestur í gegnir-psb
 
-124 sýningar og fjórar listamannasíður í Sagnatrogið. Sama leið og RÚV og
+124 sýningar og fimm listamannasíður í Sagnatrogið. Sama leið og RÚV og
 Tímarit.is: skrá upp í Alma, ekki OAI-uppskera. Allir smellir eru Einars.
 
 ## 0 · Áður en smellt er
@@ -60,7 +60,7 @@ líma [`LISTASAFN_XML_Processes.drl`](LISTASAFN_XML_Processes.drl) (19 reglur,
 
 ## 3 · Innlestur
 
-`Run` → [`LISTASAFN-tryA.xml`](LISTASAFN-tryA.xml) → Monitor Jobs: **128** færslur.
+`Run` → [`LISTASAFN-tryA.xml`](LISTASAFN-tryA.xml) → Monitor Jobs: **129** færslur (128 í fyrstu keyrslu 2.10; skráin endursmíðuð sama dag).
 
 🔴 **Fyrsta keyrsla er `Run` á virkum prófíl.** Engin gögn vistast fyrr en
 prófíllinn hefur keyrt einu sinni meðan hann er Active; `Reload` á undan því
@@ -70,7 +70,7 @@ les ekkert inn (mælt 2.10 með Listasafni).
 
 | Leit | Vænt |
 |---|---|
-| `lds05=LS_RVK` | 128 |
+| `lds05=LS_RVK` | 129 |
 | „Ásgrímur Jónsson“ | listamannasíða + sýningar hans, með „listamaður“ í hlutverkasíu |
 | „Ummyndlingar“ | sýning James Merry, með smámynd |
 | „Þjóðsögur í íslenskri myndlist“ | samleit við þjóðsögur í Ísmús |
