@@ -47,6 +47,15 @@ class ThjonnProf(unittest.TestCase):
         self.assertIn("image/svg", hausar.get("Content-Type"))
         self.assertIn("<svg", trog)
 
+    def test_favicon_gaegis_er_skraargatid(self):
+        # Gáttagægir á eigið tákn (skráargat); færslusíður Sagnatrogsins halda troginu
+        _, texti, _ = _get(self.b + "/")
+        self.assertIn('href="/vefur/favicon-gaegir.png"', texti)
+        with urllib.request.urlopen(self.b + "/vefur/favicon-gaegir.png", timeout=10) as r:
+            self.assertEqual(r.status, 200)
+            self.assertEqual(r.headers.get("Content-Type"), "image/png")
+            self.assertEqual(r.read()[:8], b"\x89PNG\r\n\x1a\n")
+
     def test_hvitlisti_lokar(self):
         with self.assertRaises(urllib.error.HTTPError) as c:
             _get(self.b + "/vefur/thjonn.py")

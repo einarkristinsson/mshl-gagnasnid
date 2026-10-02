@@ -100,6 +100,7 @@ _STATIC = {
     "trog.svg": "image/svg+xml",
     "sagnatrog.png": "image/png",
     "favicon.png": "image/png",
+    "favicon-gaegir.png": "image/png",
 }
 _SAMTIMIS = threading.BoundedSemaphore(2)
 

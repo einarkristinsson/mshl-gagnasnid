@@ -10,7 +10,8 @@ Tímarit.is: skrá upp í Alma, ekki OAI-uppskera. Allir smellir eru Einars.
   listamenn bera algeng heiti („Yfirlitssýning“, „Jón Stefánsson“) sem Primo
   gæti annars steypt saman við færslur annarra gagnaveitna.
 - **Leyfi:** Sigurður Gunnarsson (Listasafni) bað um tenginguna 16.9 og sendi
-  slóðirnar 28.9. Spurt hvort lesa megi beint úr vefþjónustu Prismic (drög 1.10).
+  slóðirnar 28.9. Vefþjónusta Prismic er opin og við lesum beint úr henni
+  (ákveðið 2.10).
 
 ## 1 · Regla
 

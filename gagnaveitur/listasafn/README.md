@@ -73,8 +73,11 @@ Munch“, „Jóhannes Kjarval“ og „Jóhannes S. Kjarval“, „Valgerður B
 „Valgerður Þorsteinsdóttir Briem“. Listamannasíðurnar bera Sarpsnúmer, sem er
 fast auðkenni til að tengja þessi afbrigði.
 
+## Ákveðið
+
+Vefþjónusta Prismic er opin og við lesum beint úr henni (Einar, 2.10.2026).
+
 ## Opið
 
-1. Má lesa sýningarnar beint úr vefþjónustu Prismic? Spurt 1.10.2026.
-2. Fá verkin listamann og ártal síðar? Þá væru þau mikils virði í samleit.
-3. Bætast fleiri listamannasíður við? Sigurður nefndi 28.9 að listamönnum fjölgi.
+1. Fá verkin listamann og ártal síðar? Þá væru þau mikils virði í samleit.
+2. Bætast fleiri listamannasíður við? Sigurður nefndi 28.9 að listamönnum fjölgi.
