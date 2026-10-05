@@ -25,11 +25,11 @@ hver sínar tvær skrár.
 | Bækur.is | `https://oai.kann.is/baekur` | 2.984 stafrænar bækur úr opinni OAI-gagnaveitu Bækur.is (edm), sótt 1.10.2026 |
 | Listasafn Íslands | `https://oai.kann.is/listasafn` | 124 sýningar og 5 listamannasíður úr opinni vefþjónustu Prismic á listasafn.is, sótt 2.10.2026 |
 | Ævir lærðra manna | `https://oai.kann.is/aevir` | 2.801 lærður maður úr skrám Þjóðskjalasafns Íslands, unnið 30.9.2026; 1.383 með beinni slóð á opnuna og smámynd |
-| Jarðaskrá | `https://oai.kann.is/jardir` | 7.866 bæir og 133 bækur úr opinni OAI-gagnaveitu jardir.skjalasafn.is, sótt 4.9.2026; bókarslóðir leiðréttar úr `/baer/` í `/bok/` |
+| Jarðaskrá | `https://oai.kann.is/jardir` | sýnishorn: 2.811 bæir í fimm sýslum og allar 133 bækur úr opinni OAI-gagnaveitu jardir.skjalasafn.is, sótt 4.9.2026; bókarslóðir leiðréttar úr `/baer/` í `/bok/` |
 | Handrit.is | `https://oai.kann.is/handrit` | 142 handrit, úrval 2.9.2026 úr heildarútflutningi Landsbókasafns (júlí 2026) |
 | Sögulegt mann- og bæjatal | `https://oai.kann.is/smb` | 40 einstaklingar úr opinni OAI-gagnaveitu smb.mshl.is, valdir 27.8.2026 |
 
 Ævir, Handrit.is og SMB eru afrit úr `leidarljos/dc-template/sources/`:
 `aevir/AEVIR-menn-v3-tryA.xml`, `handrit/HANDRIT-DEMO-2026-09-02-tryA.xml` og
 `smb/SMB-UNION-baer-folk-tryA.xml`. `jardir.xml` er `jardir/JARDIR-baer-ALL-tryA.xml`
-og `jardir/JARDIR-bok-ALL-bokslod-tryA.xml` í einu `ListRecords`.
+og `jardir/JARDIR-bok-ALL-bokslod-tryA.xml` í einu `ListRecords`. Bæjunum er fækkað í fimm sýslur (Árnes-, Eyjafjarðar-, Gullbringu-, Rangárvalla- og Skagafjarðarsýslu) svo allar sýnisveiturnar rúmist í 256 MiB minni Cloud Run (öll skráin: um 198 MiB í ræsingu).

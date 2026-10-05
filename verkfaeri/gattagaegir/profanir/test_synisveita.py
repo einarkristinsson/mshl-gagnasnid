@@ -204,6 +204,13 @@ class FaerslusiduProf(unittest.TestCase):
         self.assertEqual(self.v.faersla("BBB")["foreldri"], {"stutt": "AAA", "titill": "Platan"})
         self.assertEqual(self.v.faersla("AAA")["born"], [{"stutt": "BBB", "titill": "Fyrsta lag"}])
 
+    def test_tengd_faersla_er_ekki_barn(self):
+        # dc:relation sem vísar á aðra færslu (SMB: fólk á sama bæ) gerir hana ekki að barni
+        mynd = "      <dc:identifier>https://myndir.daemi.is/kyrrmynd.jpg</dc:identifier>\n"
+        xml = FORELDRI_BORN.replace(mynd, mynd + "      <dc:relation>oai:daemi.is:safn:AAA</dc:relation>\n")
+        v = Synisveita("daemi", xml, audkennisforskeyti="oai:daemi.is:safn:")
+        self.assertEqual(v.faersla("AAA")["born"], [{"stutt": "BBB", "titill": "Fyrsta lag"}])
+
     def test_othekkt_audkenni_er_none(self):
         self.assertIsNone(self.v.faersla("ZZZ"))
 

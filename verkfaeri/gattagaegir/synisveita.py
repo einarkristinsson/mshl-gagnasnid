@@ -239,7 +239,11 @@ class Synisveita:
                                         ("%>" + aud + "<%",)):
             if bid == aud:
                 continue
-            t = ET.fromstring(bmd).find(self._DC + "title")
+            bdc = ET.fromstring(bmd)
+            # barn aðeins ef það segist vera hluti af færslunni; dc:relation og annað nefna hana bara
+            if not any((e.text or "").strip() == aud for e in bdc if e.tag == self._DCT + "isPartOf"):
+                continue
+            t = bdc.find(self._DC + "title")
             born.append({"stutt": bid[len(self.audkennisforskeyti):],
                          "titill": " ".join((t.text or "").split()) if t is not None else bid})
         return {

@@ -1,8 +1,8 @@
 {
-  "heiti": "Jarðaskrá — bæir og bækur Þjóðskjalasafns",
+  "heiti": "Jarðaskrá — bæir og bækur Þjóðskjalasafns (sýnishorn)",
   "netfang": "einar@kann.is",
   "sidustaerd": 100,
-  "lysing": "Sýnisveita sem Kann ehf. smíðaði fyrir MSHL úr opinni OAI-gagnaveitu Þjóðskjalasafns Íslands á jardir.skjalasafn.is, sótt 4.9.2026: 7.999 færslur, 7.866 bæir og 133 bækur sem nefna þá, svo sem fasteignamöt og landamerkjabækur. Slóðir bókanna eru leiðréttar úr /baer/ í /bok/. Ekki opinber veita Þjóðskjalasafns; hún er á jardir.skjalasafn.is/oai/.",
+  "lysing": "Sýnisveita sem Kann ehf. smíðaði fyrir MSHL úr opinni OAI-gagnaveitu Þjóðskjalasafns Íslands á jardir.skjalasafn.is, sótt 4.9.2026. Sýnishorn: 2.944 af 7.999 færslum, allar 133 bækurnar sem nefna bæi (fasteignamöt, landamerkjabækur o.fl.) og 2.811 bæir í fimm sýslum: Árnessýslu, Eyjafjarðarsýslu, Gullbringusýslu, Rangárvallasýslu og Skagafjarðarsýslu. Slóðir bókanna eru leiðréttar úr /baer/ í /bok/. Öll Jarðaskráin er í Sagnatroginu í Leitum. Ekki opinber veita Þjóðskjalasafns; hún er á jardir.skjalasafn.is/oai/.",
   "audkennisforskeyti": "oai:jardir.skjalasafn.is:",
   "uppruni": "Þjóðskjalasafni Íslands",
   "adgangur": {
