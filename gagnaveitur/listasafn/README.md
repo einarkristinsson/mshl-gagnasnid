@@ -77,6 +77,10 @@ fast auðkenni til að tengja þessi afbrigði.
 
 Vefþjónusta Prismic er opin og við lesum beint úr henni (Einar, 2.10.2026).
 
+Fundur með Sigurði 5.10.2026: hann sendir frekari óskir. Notað er það sem komið er;
+aðeins smávægilegar breytingar á útliti eða öðru til að sýna það. Ekki er lagt í
+forritun að svo stöddu (verkin, 1.139, bíða).
+
 ## Opið
 
 1. Fá verkin listamann og ártal síðar? Þá væru þau mikils virði í samleit.
