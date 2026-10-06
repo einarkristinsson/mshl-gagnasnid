@@ -1,0 +1,12 @@
+{
+  "heiti": "Ísmús og Sagnagrunnur — úrval sagna, hljóðrita og fólks",
+  "netfang": "einar@kann.is",
+  "sidustaerd": 100,
+  "lysing": "Sýnisveita sem Kann ehf. smíðaði fyrir MSHL úr sagnatrog-sniði Ísmús (metadataPrefix=sagnatrog á ismus.is/oai_pmh, opnað 6.10.2026, 61.784 færslur): 1.000 sagnir, 1.000 hljóðrit og 1.000 einstaklingar sem koma fyrir í þeim, valin með jöfnu bili. Einstaklingar bera hlutverk, æviár og tengil á mannasíðu Ísmús. Ekki opinber veita Stofnunar Árna Magnússonar. Æviár fylgja aðeins látnu fólki.",
+  "audkennisforskeyti": "is.",
+  "uppruni": "Stofnun Árna Magnússonar í íslenskum fræðum",
+  "adgangur": {
+    "texti": "Opna á Ísmús",
+    "slod": "https://ismus.is/"
+  }
+}

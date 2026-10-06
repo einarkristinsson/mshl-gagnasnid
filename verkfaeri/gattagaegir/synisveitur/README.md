@@ -28,6 +28,10 @@ hver sínar tvær skrár.
 | Jarðaskrá | `https://oai.kann.is/jardir` | sýnishorn: 2.811 bæir í fimm sýslum og allar 133 bækur úr opinni OAI-gagnaveitu jardir.skjalasafn.is, sótt 4.9.2026; bókarslóðir leiðréttar úr `/baer/` í `/bok/` |
 | Handrit.is | `https://oai.kann.is/handrit` | 142 handrit, úrval 2.9.2026 úr heildarútflutningi Landsbókasafns (júlí 2026) |
 | Sögulegt mann- og bæjatal | `https://oai.kann.is/smb` | 40 einstaklingar úr opinni OAI-gagnaveitu smb.mshl.is, valdir 27.8.2026 |
+| Ísmús og Sagnagrunnur | `https://oai.kann.is/ismus` | úrval: 1.000 sagnir, 1.000 hljóðrit og 1.000 einstaklingar úr sagnatrog-sniði Ísmús (opið, ismus.is/oai_pmh), sótt 6.10.2026 |
+
+`ismus.xml` er `ismus/ISMUS-v2-SYNI-tryA.xml` úr `leidarljos/dc-template/sources/`,
+smíðað með `byggja_ismus_sagnatrog_dc.py --syni 2000`; æviár fylgja aðeins látnum.
 
 Ævir, Handrit.is og SMB eru afrit úr `leidarljos/dc-template/sources/`:
 `aevir/AEVIR-menn-v3-tryA.xml`, `handrit/HANDRIT-DEMO-2026-09-02-tryA.xml` og
