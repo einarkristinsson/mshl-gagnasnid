@@ -259,9 +259,39 @@ def E13(s):
         return nd.fell_(
             "from=%s (á morgun) skilaði samt færslum — from/until er "
             "hunsað. Þá verður hver uppfærsla full uppskera." % amorgun)
+    # (c) Beri allar færslur fyrstu síðu sama dag (kyrrar skrár, sýnisveitur)
+    # getur þröngt bil ekki lækkað töluna þótt síun virki. Þá er dagurinn á
+    # undan prófaður: hann á að skila færri færslum, eða engum.
+    sama_dagur = False
+    if laekkar is False and dsett:
+        dagar = {(h.dagstimpill or "").split("T", 1)[0] for h in s.hausar_p1}
+        if dagar == {dsett}:
+            sama_dagur = True
+            try:
+                d0 = (datetime.date.fromisoformat(dsett)
+                      - datetime.timedelta(days=1)).isoformat()
+            except ValueError:
+                d0 = None
+            if d0:
+                sc = s.saekjari.oai("ListIdentifiers", metadataPrefix="oai_dc",
+                                    **{"from": d0, "until": d0})
+                skc = xl.lesa(sc)
+                vc = xl.oai_villa(skc)
+                if vc and vc[0] == "noRecordsMatch":
+                    laekkar = True
+                else:
+                    _, clc, _ = xl.resumption(skc)
+                    hc = xl.hausar(skc)
+                    fjoldi_c = clc if clc is not None else len(hc)
+                    heild_c = s.completeListSize or len(s.hausar_p1)
+                    laekkar = fjoldi_c < heild_c
     if laekkar is False:
         return nd.fell_("Þröngt from/until (%s) lækkaði ekki töluna — síun "
                         "virkar ekki." % dsett)
+    if sama_dagur:
+        return nd.stodst_("from/until sía virðist virka (allar færslur fyrstu "
+                          "síðu bera sama dag, %s; prófað með deginum á undan)."
+                          % dsett)
     return nd.stodst_("from/until sía virðist virka.")
 
 
