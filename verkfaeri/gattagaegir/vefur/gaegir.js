@@ -264,7 +264,10 @@
       sidur: 3, syni: 10, sett: 0, slodaprof: true,
       athugasemd: "Stórt safn og aðeins isebel-snið (engin sett, " +
         "noSetHierarchy). ListRecords fellur á brotnum færslum uppruna " +
-        "megin; GetRecord-leiðin er notuð við uppskeru." },
+        "megin; GetRecord-leiðin er notuð við uppskeru. Frá 6.10.2026 " +
+        "líka metadataPrefix=sagnatrog (61.784 færslur), smíðað fyrir " +
+        "Sagnatrogið — ekki oai_dc, svo prófunin hér fellur á sniðinu. " +
+        "Gullið DC úr því: sýnisveitan Ísmús (oai.kann.is/ismus)." },
     { hopur: "Gagnaveitur", nafn: "Tímarit.is (Landsbókasafn)",
       slod: "https://timarit.is/oai",
       sidur: 2, syni: 5, sett: 0, slodaprof: true,

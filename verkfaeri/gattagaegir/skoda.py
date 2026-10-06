@@ -141,7 +141,7 @@ def _skoda(slod, verb, rok, bid, netfang, vorn, elta):
               "token": token, "completeListSize": cls, "cursor": cursor}
     else:  # ListRecords, GetRecord
         token, cls, cursor = xl.resumption(skjal)
-        th = {"faerslur": [_faersla(f) for f in xl.faerslur(skjal)],
+        th = {"faerslur": [_faersla(f) for f in xl.faerslur(skjal, oll_snid=True)],
               "token": token, "completeListSize": cls, "cursor": cursor}
     ut["thattad"] = th
     ut["domur"] = "ok"

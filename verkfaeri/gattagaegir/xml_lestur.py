@@ -14,10 +14,14 @@ DCTERMS = "http://purl.org/dc/terms/"
 XSI = "http://www.w3.org/2001/XMLSchema-instance"
 XML_NS = "http://www.w3.org/XML/1998/namespace"
 MSHL = "https://mshl.is/terms#"
+SAGNATROG = "http://www.gegnir.is/ns/sagnatrog"   # Ísmús, metadataPrefix=sagnatrog
+ISEBEL = "http://www.isebel.eu/ns/isebel"         # Ísmús, metadataPrefix=isebel
+DATACITE = "http://datacite.org/schema/kernel-4"
 
 _FORSKEYTI = {
     OAI: "oai", OAI_DC: "oai_dc", DC: "dc", DCTERMS: "dcterms",
     XSI: "xsi", MSHL: "mshl", XML_NS: "xml",
+    SAGNATROG: "sagnatrog", ISEBEL: "isebel", DATACITE: "datacite",
 }
 
 # Skrá forskeytin svo ET.tostring haldi læsilegum forskeytum (oai_dc:dc)
@@ -153,7 +157,36 @@ def _reitir_ur_dc(dc_el):
     return reitir
 
 
-def _faersla_ur_record(rec):
+def _reitir_ur_almennu(rot):
+    """Hvaða snið sem er (t.d. sagnatrog:story): hvert lauf verður reitur.
+    Beint barn rótar heldur nafni sínu (dc:title); hreiðrað lauf fær slóð
+    (sagnatrog:places/sagnatrog:place/dc:title) og eigindir forfeðra
+    (sagnatrog:place@id), svo sjá megi hvaða staður á hvaða hnit."""
+    reitir = []
+
+    def ganga(el, slod, forfedur):
+        for barn in el:
+            if not isinstance(barn.tag, str):
+                continue                      # athugasemdir
+            nafn, ns = _nafn(barn.tag)
+            eig = {}
+            for k, v in barn.attrib.items():
+                kn, _ = _nafn(k)
+                if kn not in ("xml:lang", "xsi:type"):
+                    eig[kn] = v
+            if len(barn):
+                ganga(barn, slod + [nafn],
+                      dict(forfedur, **{"%s@%s" % (nafn, k): v for k, v in eig.items()}))
+                continue
+            reitir.append(Reitur("/".join(slod + [nafn]), ns, (barn.text or "").strip(),
+                                 barn.get("{%s}lang" % XML_NS), barn.get("{%s}type" % XSI),
+                                 dict(forfedur, **eig)))
+
+    ganga(rot, [], {})
+    return reitir
+
+
+def _faersla_ur_record(rec, oll_snid=False):
     f = Faersla()
     try:
         f.hratt_xml = ET.tostring(rec, encoding="unicode")
@@ -176,14 +209,18 @@ def _faersla_ur_record(rec):
         dc_el = meta.find("{%s}dc" % OAI_DC)
         if dc_el is not None:
             f.reitir = _reitir_ur_dc(dc_el)
+        elif oll_snid and len(meta):
+            f.reitir = _reitir_ur_almennu(meta[0])
     return f
 
 
-def faerslur(skjal):
-    """Skilar öllum <record> í svari (ListRecords eða GetRecord)."""
+def faerslur(skjal, oll_snid=False):
+    """Skilar öllum <record> í svari (ListRecords eða GetRecord).
+    oll_snid=True: færsla á öðru sniði en oai_dc fær líka reiti
+    (samskiptaspjaldið). Staðlaprófunin les aðeins oai_dc."""
     if not skjal.gilt:
         return []
-    return [_faersla_ur_record(r)
+    return [_faersla_ur_record(r, oll_snid)
             for r in skjal.rot.iter("{%s}record" % OAI)]
 
 

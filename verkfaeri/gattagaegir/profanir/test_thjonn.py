@@ -460,6 +460,29 @@ class FaerslusidaTvipunkturProf(unittest.TestCase):
             self.assertIn("Stakt efni", r.read().decode("utf-8"))
 
 
+class FaerslusidaPunkturProf(unittest.TestCase):
+    """Auðkenni með punkti á eftir forskeytinu (Ísmús: is. + sagnagrunnur.SG_1073)."""
+
+    def setUp(self):
+        from ..synisveita import Synisveita
+        from .test_synisveita import FORELDRI_BORN
+        xml = FORELDRI_BORN.replace("oai:daemi.is:safn:CCC", "is.sagnagrunnur.SG_1073")
+        assert "is.sagnagrunnur.SG_1073" in xml
+        v = Synisveita("daemi", xml, audkennisforskeyti="is.")
+        self.thj = bua_thjon(0, veitur={"daemi": v})
+        threading.Thread(target=self.thj.serve_forever, daemon=True).start()
+        time.sleep(0.1)
+        self.b = "http://127.0.0.1:%d" % self.thj.server_address[1]
+
+    def tearDown(self):
+        self.thj.shutdown()
+
+    def test_faerslusida_med_punkti(self):
+        st, texti, _ = _get(self.b + "/daemi/sagnagrunnur.SG_1073")
+        self.assertEqual(st, 200)
+        self.assertIn("Stakt efni", texti)
+
+
 class HeimaslodProf(unittest.TestCase):
     """Hnappur eigandans vísar beint á færsluna hjá eigandanum þegar hún á slóð þar."""
 
