@@ -34,6 +34,28 @@ class VelinProf(unittest.TestCase):
         self.assertEqual(vantar, set(), "þessar áttu að falla: %s" % vantar)
         self.assertGreaterEqual(sk["samantekt"]["villur"], 10)
 
+    def test_sami_dagstimpill_a_ollum_er_ekki_villa(self):
+        # Sýnisveita þar sem allar færslur bera sama dagstimpil (Ævir, Jarðir,
+        # Handrit, SMB 5.10): þröngt from/until lækkar ekki töluna, en síun
+        # virkar — E13 á ekki að falla.
+        import threading
+        import time
+        from ..synisveita import Synisveita
+        from ..thjonn import bua_til as bua_thjon
+        from .test_synisveita import FORELDRI_BORN
+        xml = FORELDRI_BORN.replace("2024-01-01T00:00:00Z", "2026-09-04T07:15:04Z")
+        # síðustærð 2 svo svarið beri completeListSize eins og hjá stóru veitunum
+        v = Synisveita("daemi", xml, audkennisforskeyti="oai:daemi.is:safn:", sidustaerd=2)
+        thj = bua_thjon(0, veitur={"daemi": v})
+        threading.Thread(target=thj.serve_forever, daemon=True).start()
+        time.sleep(0.1)
+        try:
+            sk = velin.keyra_allt("http://127.0.0.1:%d/veitur/daemi/oai" % thj.server_address[1],
+                                  {"bid_ms": 0, "sidur": 2, "syni": 3})
+        finally:
+            thj.shutdown()
+        self.assertNotIn("E13", _fell_kenni(sk))
+
     def test_nidri_thjonn_fellur_ekki(self):
         sk = velin.keyra_allt("http://127.0.0.1:1/oai",
                               {"bid_ms": 0, "sidur": 1, "syni": 1})
