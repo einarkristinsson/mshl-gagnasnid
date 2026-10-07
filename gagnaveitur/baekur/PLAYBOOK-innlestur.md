@@ -3,6 +3,23 @@
 2.984 stafrænar bækur Landsbókasafns í Sagnatrogið. Sama leið og RÚV og
 Tímarit.is: skrá upp í Alma, ekki OAI-uppskera. Allir smellir eru Einars.
 
+## ✅ STAÐA 6.10.2026 — hvað er búið (vistað á Alma-þjóni, í gegnir-psb)
+
+Gert hands-on í Alma-vafra 6.10 (Claude in Chrome). **Allt vistað server-megin:**
+- Regla `BAEKUR_XML_Processes` (19 reglur, **Shared** — mundu: ný ME-regla er Private sjálfgefið, þarf Rule Actions → Properties → Access Level = Shared, annars sést hún ekki í Drools File Key).
+- Ferli `BAEKUR_XML_Processes` (Normalization Process Task) → Drools File Key = reglan.
+- Prófíll `MSHL_BAEKUR_FILE`: Active, kóði BAEKUR, Generic XML → Dublin Core, splitter rétt, Delivery (`$$LinkingParameter1`/`2`, Link Label „Bækur.is", LP1 regex `https://baekur\.is/bok/.*`, LP2 `https://baekur\.is/cover/tbn/.*`, báðir á dc:identifier, No normalization).
+- **Innlestur tókst: 2.984 / 2.984, 0 féllu** (job 17236604730006886, 58 sek).
+- FRBR-bælingarregla `BAEKUR` (External Data Source Equals Bækur.is, Dedup and FRBR).
+- Custom scope `MSHL_BAEKUR` (External data source Equals Bækur.is, My Institution) — eins og MSHL_RUV.
+
+## ⏳ EFTIR (vafravinna í Alma — ~5 mín, herma eftir MSHL_RUV)
+
+1. **Search Profile `MSHL_BAEKUR`** (Search Profiles → Add a Search Profile): Code `MSHL_BAEKUR`, Display Name „Bækur.is", type Local Data, bæta scope `MSHL_BAEKUR` í „List of Scopes included" (MSHL_RUV-leitarsniðið vefur bara scope MSHL_RUV — gera eins). Save.
+2. **View slot:** Configure Views → `MSHL_SAGNATROG_LIGHT_UNION` → Search Profile Slots → bæta `MSHL_BAEKUR` (eins og MSHL_RUV er þar), merki „Bækur.is". Save.
+3. **Publish view** (Einar sagði já 6.10). Án Publish sést ekkert (lært 29.9).
+4. Mæla í Leitum: `lds05=BAEKUR` → 2.984; tengill + smámynd; tegund „books"; staðarsía Ísland 1.376 / Danmörk 987.
+
 ## 0 · Áður en smellt er
 
 - **FRBR:** ný bælingarregla, `Discovery → Other → Suppress Dedup/FRBR`,
