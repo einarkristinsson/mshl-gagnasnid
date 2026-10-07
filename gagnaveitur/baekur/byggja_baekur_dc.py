@@ -113,6 +113,9 @@ _STOFNUN = re.compile(
     r"federation|association)", re.IGNORECASE)
 STOFNANIR = {"Ísland", "Danmörk", "Íslenskar kvennarannsóknir", "Det Stærke lys",
              "Islandsk farvespil", "Höggmyndir á þjóðhátíðarári"}
+# Lönd sem „höfundar“ laga og tilskipana fara ekki í dc:contributor — þau lentu í
+# Fólk-síunni í Leitum („Ísland“ 140). Ákvörðun Einars 7.10.2026: sleppa.
+LOND_SEM_HOFUNDAR = {"Ísland", "Danmörk"}
 # Verk (samræmdir titlar): sögur, þættir, kvæði, lögbækur, Biblían …
 _VERK = re.compile(
     r"(\bsaga\b|\bsögur\b|\bþáttur\b|kviða$|kvæði$|bók$|bókin$|lög$|ljóð$|mál$|"
@@ -429,7 +432,7 @@ def _ny_talning():
             "umfang_othekkt": collections.Counter(), "dags": collections.Counter(),
             "dags_othekkt": collections.Counter(), "mal": collections.Counter(),
             "titill_isbd": 0, "med_efni": 0, "slod_onnur": 0, "annad": collections.Counter(),
-            "folk_i_bok": collections.Counter()}
+            "folk_i_bok": collections.Counter(), "land_sem_hofundur_sleppt": collections.Counter()}
 
 
 def umbreyta(f, talning=None):
@@ -505,7 +508,9 @@ def umbreyta(f, talning=None):
                 tilvisanir.append("%s (%s)" % (fullt, HLUTVERK))
                 t["folk_i_bok"][fullt] += 1
         elif flokkur == "stofnun":
-            if hreint not in adrir:
+            if hreint in LOND_SEM_HOFUNDAR:
+                t["land_sem_hofundur_sleppt"][hreint] += 1
+            elif hreint not in adrir:
                 adrir.append(hreint)
         elif hreint not in verk:
             verk.append(hreint)

@@ -266,9 +266,11 @@ class Heild(unittest.TestCase):
         self.assertEqual(dc.findtext(DC + "language"), "da")
 
     def test_island_sem_hofundur_og_ekkert_land(self):
+        # land sem „höfundur“ tilskipunar fer EKKI í dc:contributor — það lenti í Fólk-síunni
+        # í Leitum (140 „Ísland“). Ákvörðun Einars 7.10.2026.
         dc = self._dc(AUGLYSING)
         self.assertIsNone(dc.find(DC + "creator"))
-        self.assertEqual(dc.findtext(DC + "contributor"), "Ísland")
+        self.assertIsNone(dc.find(DC + "contributor"))
         self.assertIsNone(dc.find(DCT + "bibliographicCitation"))
         self.assertIsNone(dc.find(DCT + "spatial"))
         self.assertEqual(dc.findtext(DCT + "extent"), "4 síður í stafrænu eintaki")

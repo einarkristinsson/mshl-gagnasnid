@@ -422,7 +422,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -1006,7 +1005,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">18 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -1274,7 +1272,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/02536bc4-38a9-4c10-9c09-1ada1daae918</identifier>
-      <datestamp>2023-09-03T03:04:09Z</datestamp>
+      <datestamp>2026-10-04T02:42:26Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -1601,7 +1599,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -2343,7 +2340,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>de</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -2996,7 +2992,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/064be3a0-e28a-46c6-a8dd-29221db8e2ab</identifier>
-      <datestamp>2026-09-27T02:21:26Z</datestamp>
+      <datestamp>2026-10-04T02:40:40Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -3371,7 +3367,6 @@
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
       <dc:creator mshl:role="höfundur">Magnús (Ólafsson) Stephensen (1762-1833)</dc:creator>
       <dc:creator mshl:role="höfundur">Helgi Helgason (1807-1862)</dc:creator>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:bibliographicCitation xml:lang="is">Magnús (Ólafsson) Stephensen (1762-1833) (höfundur)</dcterms:bibliographicCitation>
       <dcterms:bibliographicCitation xml:lang="is">Helgi Helgason (1807-1862) (höfundur)</dcterms:bibliographicCitation>
       <dcterms:extent xml:lang="is">58 síður í stafrænu eintaki</dcterms:extent>
@@ -4764,7 +4759,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -4894,7 +4888,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -5796,7 +5789,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -5919,7 +5911,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -6009,7 +6000,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">24 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -6385,7 +6375,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -7250,7 +7239,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -7678,7 +7666,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -7904,7 +7891,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -8156,7 +8142,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">34 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -8363,7 +8348,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -8531,7 +8515,6 @@
       <dc:subject xml:lang="is">Verðlag</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">248 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -8999,7 +8982,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/16017532-3e73-4532-beba-7ebbffb3d386</identifier>
-      <datestamp>2025-05-11T03:13:44Z</datestamp>
+      <datestamp>2026-10-04T02:43:26Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -9141,7 +9124,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">28 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -9391,7 +9373,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -9576,7 +9557,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">18 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -10625,7 +10605,6 @@
       <dc:date>1809</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -10845,7 +10824,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">32 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -11070,7 +11048,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">22 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -11247,7 +11224,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/1d03d448-5525-4db2-bf4f-e6e86176cb9b</identifier>
-      <datestamp>2023-10-15T03:16:40Z</datestamp>
+      <datestamp>2026-10-04T02:42:26Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -11361,7 +11338,6 @@
       <dc:subject xml:lang="is">Verslunarsaga</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -12103,7 +12079,6 @@
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
       <dc:creator mshl:role="höfundur">Magnús Móberg (1748-1806)</dc:creator>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:bibliographicCitation xml:lang="is">Magnús Móberg (1748-1806) (höfundur)</dcterms:bibliographicCitation>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
@@ -12133,7 +12108,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">22 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -12550,7 +12524,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -13411,7 +13384,6 @@
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
       <dc:creator mshl:role="höfundur">Eiríkur Guðmundsson Hoff (1738-1790)</dc:creator>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:bibliographicCitation xml:lang="is">Eiríkur Guðmundsson Hoff (1738-1790) (höfundur)</dcterms:bibliographicCitation>
       <dcterms:extent xml:lang="is">50 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
@@ -13537,7 +13509,6 @@
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
       <dc:creator mshl:role="höfundur">Guðmundur Ólafsson (1755-1826)</dc:creator>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:bibliographicCitation xml:lang="is">Guðmundur Ólafsson (1755-1826) (höfundur)</dcterms:bibliographicCitation>
       <dcterms:extent xml:lang="is">38 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
@@ -14537,7 +14508,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/271f0714-ee6d-40bc-96b3-746ddc9ad518</identifier>
-      <datestamp>2026-03-22T02:49:31Z</datestamp>
+      <datestamp>2026-10-04T02:43:21Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -15422,7 +15393,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -16055,7 +16025,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -16592,7 +16561,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -16636,7 +16604,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/2c1f987b-f829-4320-b712-9d99e062db48</identifier>
-      <datestamp>2026-03-22T02:49:32Z</datestamp>
+      <datestamp>2026-10-04T02:43:24Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -16890,7 +16858,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/2caa54ac-3735-47e2-937d-c0c845888018</identifier>
-      <datestamp>2023-09-03T02:04:36Z</datestamp>
+      <datestamp>2026-10-04T02:05:34Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -17257,7 +17225,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/2e4833ef-3c0f-4af6-96fb-5be516cc79ce</identifier>
-      <datestamp>2023-09-03T02:10:07Z</datestamp>
+      <datestamp>2026-10-04T02:08:10Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -17304,7 +17272,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -18122,7 +18089,6 @@
       <dc:date>1837</dc:date>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">18 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -18423,7 +18389,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -18551,7 +18516,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -18683,7 +18647,6 @@
       <dc:subject xml:lang="is">Viðeyjarprent</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">22 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -19467,7 +19430,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">26 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -19524,7 +19486,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -19708,7 +19669,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -20628,7 +20588,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">20 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -20750,7 +20709,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -21459,7 +21417,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/38ba31ec-26c9-47c9-a73e-7973e049bdaa</identifier>
-      <datestamp>2026-03-22T02:49:32Z</datestamp>
+      <datestamp>2026-10-04T02:43:24Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -21696,7 +21654,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -21907,7 +21864,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/39ed6987-8fe4-451a-bbf9-a9e81b7970f0</identifier>
-      <datestamp>2026-09-20T02:40:46Z</datestamp>
+      <datestamp>2026-10-04T02:30:55Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -22579,7 +22536,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/3c7277ef-3173-498c-8d50-cdbb7e88e2a8</identifier>
-      <datestamp>2026-03-22T02:27:57Z</datestamp>
+      <datestamp>2026-10-04T02:25:07Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -22998,7 +22955,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -23159,7 +23115,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/3dda8113-a511-4302-b537-b031b6164d3a</identifier>
-      <datestamp>2025-10-19T03:03:24Z</datestamp>
+      <datestamp>2026-10-04T02:42:26Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -24088,7 +24044,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -24619,7 +24574,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/42673a5d-392d-4c6c-b8bb-9013f6971920</identifier>
-      <datestamp>2026-07-26T02:04:53Z</datestamp>
+      <datestamp>2026-10-04T02:17:50Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -24717,7 +24672,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -25000,7 +24954,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">102 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -25754,7 +25707,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">22 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -25913,7 +25865,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -26901,7 +26852,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">26 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -27171,7 +27121,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/48e797f0-2c3d-412f-ba22-c6a9884fb3cf</identifier>
-      <datestamp>2026-01-29T11:18:59Z</datestamp>
+      <datestamp>2026-10-04T02:25:19Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -27374,7 +27324,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -27743,7 +27692,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -28075,7 +28023,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">40 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -28229,7 +28176,6 @@
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
       <dc:creator mshl:role="höfundur">Eiríkur Guðmundsson Hoff (1738-1790)</dc:creator>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:bibliographicCitation xml:lang="is">Eiríkur Guðmundsson Hoff (1738-1790) (höfundur)</dcterms:bibliographicCitation>
       <dcterms:extent xml:lang="is">26 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
@@ -28446,7 +28392,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/4cd2d0f6-208e-42cf-b759-f483e594463b</identifier>
-      <datestamp>2026-01-29T11:21:38Z</datestamp>
+      <datestamp>2026-10-04T02:36:06Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -28648,7 +28594,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">22 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -28706,7 +28651,6 @@
       <dc:date>1809</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -28898,7 +28842,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -29217,7 +29160,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -29736,7 +29678,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">16 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -29855,7 +29796,6 @@
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
       <dc:creator mshl:role="höfundur">Guðmundur Jónsson Skagfjörð (1758-1844)</dc:creator>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:bibliographicCitation xml:lang="is">Guðmundur Jónsson Skagfjörð (1758-1844) (höfundur)</dcterms:bibliographicCitation>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
@@ -30495,7 +30435,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -31262,7 +31201,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -32633,7 +32571,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>de</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -33752,7 +33689,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -34405,7 +34341,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -34909,7 +34844,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -35661,7 +35595,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -35750,7 +35683,6 @@
       <dc:date>1809</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -35913,7 +35845,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -35927,7 +35858,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/5feb3e5a-e4aa-469b-b464-2c9ec0f41f0c</identifier>
-      <datestamp>2023-09-03T03:04:09Z</datestamp>
+      <datestamp>2026-10-04T02:42:26Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -36205,7 +36136,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/60857eb6-89e4-434b-b125-bbf667b5b0a2</identifier>
-      <datestamp>2026-09-27T02:14:06Z</datestamp>
+      <datestamp>2026-10-04T02:24:37Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -36336,7 +36267,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -36922,7 +36852,6 @@
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
       <dc:creator mshl:role="höfundur">Helgi Helgason (1807-1862)</dc:creator>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:bibliographicCitation xml:lang="is">Helgi Helgason (1807-1862) (höfundur)</dcterms:bibliographicCitation>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
@@ -37918,7 +37847,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -38102,7 +38030,6 @@
       <dc:date>1809</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -38409,7 +38336,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -38633,7 +38559,6 @@
       <dc:date>1840</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">8 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -38817,7 +38742,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -39458,7 +39382,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -40262,7 +40185,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>de</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -40461,7 +40383,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -40555,7 +40476,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -40857,7 +40777,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/6c4dc0ec-ae18-4ca7-bc4c-9e59b41165b0</identifier>
-      <datestamp>2026-09-27T02:11:02Z</datestamp>
+      <datestamp>2026-10-04T02:19:36Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -42114,7 +42034,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -42295,7 +42214,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">30 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -42754,7 +42672,6 @@
       <dc:date>1800</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -42877,7 +42794,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -43199,7 +43115,6 @@
       <dc:creator mshl:role="höfundur">Hilmar Stephensen (1846-1889)</dc:creator>
       <dc:creator mshl:role="höfundur">Jón Sigurðsson (1811-1879)</dc:creator>
       <dc:creator mshl:role="höfundur">Oddgeir Stephensen (1812-1885)</dc:creator>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:bibliographicCitation xml:lang="is">Ólafur Halldórsson (1855-1930) (höfundur)</dcterms:bibliographicCitation>
       <dcterms:bibliographicCitation xml:lang="is">Hilmar Stephensen (1846-1889) (höfundur)</dcterms:bibliographicCitation>
       <dcterms:bibliographicCitation xml:lang="is">Jón Sigurðsson (1811-1879) (höfundur)</dcterms:bibliographicCitation>
@@ -43892,7 +43807,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -43970,7 +43884,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/75727ba8-1b6d-4def-8dcf-cd07d3b942d5</identifier>
-      <datestamp>2023-02-08T11:38:09Z</datestamp>
+      <datestamp>2026-10-04T02:43:27Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -44277,7 +44191,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">22 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -44547,7 +44460,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -45016,7 +44928,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -46939,7 +46850,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">18 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -47048,7 +46958,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -47778,7 +47687,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -47838,7 +47746,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -48324,7 +48231,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">18 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -49295,7 +49201,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/82dc0f10-5366-4081-aff5-147b692a3714</identifier>
-      <datestamp>2023-09-03T02:40:56Z</datestamp>
+      <datestamp>2026-10-04T02:31:51Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -49631,7 +49537,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -49879,7 +49784,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -50067,7 +49971,6 @@
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
       <dc:creator mshl:role="höfundur">Magnús Móberg (1748-1806)</dc:creator>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:bibliographicCitation xml:lang="is">Magnús Móberg (1748-1806) (höfundur)</dcterms:bibliographicCitation>
       <dcterms:extent xml:lang="is">28 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
@@ -50129,7 +50032,6 @@
       <dc:subject xml:lang="is">Hólaprent</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -50256,7 +50158,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -51283,7 +51184,6 @@
       <dc:date>1809</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -51344,7 +51244,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -51375,7 +51274,6 @@
       <dc:subject xml:lang="is">Verslunarsaga</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">60 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -51861,7 +51759,6 @@
       <dc:subject xml:lang="is">Réttarsaga</dc:subject>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">54 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -52524,7 +52421,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">38 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -53417,7 +53313,6 @@
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
       <dc:creator mshl:role="höfundur">Guðmundur Jónsson Skagfjörð (1758-1844)</dc:creator>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:bibliographicCitation xml:lang="is">Guðmundur Jónsson Skagfjörð (1758-1844) (höfundur)</dcterms:bibliographicCitation>
       <dcterms:extent xml:lang="is">12 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
@@ -53448,7 +53343,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">78 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -53541,7 +53435,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -53771,7 +53664,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -53938,7 +53830,6 @@
       <dc:date>1843</dc:date>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">8 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -54517,7 +54408,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -54546,7 +54436,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -55356,7 +55245,6 @@
       <dc:date>1791</dc:date>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -55505,7 +55393,6 @@
       <dc:subject xml:lang="is">Viðeyjarprent</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">278 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -55534,7 +55421,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -55754,7 +55640,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">20 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -56001,7 +55886,6 @@
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
       <dc:creator mshl:role="höfundur">Guðmundur Jónsson Skagfjörð (1758-1844)</dc:creator>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:bibliographicCitation xml:lang="is">Guðmundur Jónsson Skagfjörð (1758-1844) (höfundur)</dcterms:bibliographicCitation>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
@@ -56030,7 +55914,6 @@
       <dc:date>1809</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -56094,7 +55977,6 @@
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
       <dc:creator mshl:role="höfundur">Guðmundur Jónsson Skagfjörð (1758-1844)</dc:creator>
       <dc:creator mshl:role="höfundur">Magnús (Ólafsson) Stephensen (1762-1833)</dc:creator>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:bibliographicCitation xml:lang="is">Guðmundur Jónsson Skagfjörð (1758-1844) (höfundur)</dcterms:bibliographicCitation>
       <dcterms:bibliographicCitation xml:lang="is">Magnús (Ólafsson) Stephensen (1762-1833) (höfundur)</dcterms:bibliographicCitation>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
@@ -56349,7 +56231,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/95aaf5cc-0d73-4d99-a330-a332e042abd1</identifier>
-      <datestamp>2026-03-22T02:49:32Z</datestamp>
+      <datestamp>2026-10-04T02:43:26Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -56942,7 +56824,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -57854,7 +57735,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -58444,7 +58324,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -58505,7 +58384,6 @@
       <dc:subject xml:lang="is">Verslunarsaga</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">258 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -58936,7 +58814,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/9c1b0a4e-4eec-4eee-b690-6c0a62c13492</identifier>
-      <datestamp>2023-10-01T02:06:02Z</datestamp>
+      <datestamp>2026-10-04T02:06:01Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -59048,7 +58926,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -59107,7 +58984,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">22 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -59136,7 +59012,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -59759,7 +59634,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -59934,7 +59808,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/9ee69e4d-bbed-4874-ad85-3fc43b46a0d4</identifier>
-      <datestamp>2023-09-03T03:04:09Z</datestamp>
+      <datestamp>2026-10-04T02:42:26Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -59981,7 +59855,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -60075,7 +59948,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">22 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -60136,7 +60008,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">8 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -60663,7 +60534,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -60725,7 +60595,6 @@
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
       <dc:creator mshl:role="höfundur">Magnús Ketilsson (1732-1803)</dc:creator>
-      <dc:contributor>Danmörk</dc:contributor>
       <dcterms:bibliographicCitation xml:lang="is">Magnús Ketilsson (1732-1803) (höfundur)</dcterms:bibliographicCitation>
       <dcterms:extent xml:lang="is">1494 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
@@ -60945,7 +60814,6 @@
       <dc:subject xml:lang="is">Verslunarsaga</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">46 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -61382,7 +61250,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/a2626a66-3012-4c8d-bf16-6b72d30e1507</identifier>
-      <datestamp>2023-09-03T03:04:09Z</datestamp>
+      <datestamp>2026-10-04T02:42:26Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -61497,7 +61365,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -61968,7 +61835,6 @@
       <dc:date>1809</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -62278,7 +62144,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">12 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -62403,7 +62268,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -62624,7 +62488,6 @@
       <dc:date>1802</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -62812,7 +62675,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -63296,7 +63158,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">16 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -63899,7 +63760,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">30 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -64325,7 +64185,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -64918,7 +64777,6 @@
       <dc:creator mshl:role="höfundur">Coffin, Edward (1571-1626)</dc:creator>
       <dc:creator mshl:role="höfundur">Halldór Eiríksson (1707-1765)</dc:creator>
       <dc:creator mshl:role="höfundur">Halldór Brynjólfsson (1692-1752)</dc:creator>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:bibliographicCitation xml:lang="is">Coffin, Edward (1571-1626) (höfundur)</dcterms:bibliographicCitation>
       <dcterms:bibliographicCitation xml:lang="is">Halldór Eiríksson (1707-1765) (höfundur)</dcterms:bibliographicCitation>
       <dcterms:bibliographicCitation xml:lang="is">Halldór Brynjólfsson (1692-1752) (höfundur)</dcterms:bibliographicCitation>
@@ -65178,7 +65036,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -66299,7 +66156,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -66602,7 +66458,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>de</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -66999,7 +66854,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/b16a49c6-d18e-4114-b047-13e67b6d2e8e</identifier>
-      <datestamp>2026-03-22T02:36:01Z</datestamp>
+      <datestamp>2026-10-04T02:31:51Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -68064,7 +67919,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -68455,7 +68309,6 @@
       <dc:date>1743</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -68889,7 +68742,6 @@
       <dc:date>1776</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">26 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -69242,7 +69094,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -69604,7 +69455,6 @@
       <dc:date>1825</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>de</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -69789,7 +69639,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -70786,7 +70635,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -71056,7 +70904,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -71678,7 +71525,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/bd7dfc47-145c-40c9-8c78-e0d8dcf10ff5</identifier>
-      <datestamp>2023-09-03T02:25:55Z</datestamp>
+      <datestamp>2026-10-04T02:22:40Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -71948,7 +71795,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -72977,7 +72823,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -73104,7 +72949,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -73810,7 +73654,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/c2db4cec-7920-4671-b6fa-0934f91ae920</identifier>
-      <datestamp>2026-03-15T02:08:46Z</datestamp>
+      <datestamp>2026-10-04T02:06:00Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -74032,7 +73876,6 @@
       <dc:date>1809</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -74061,7 +73904,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -74167,7 +74009,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -75507,7 +75348,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">38 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -75595,7 +75435,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -75655,7 +75494,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -75842,7 +75680,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">50 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -75988,7 +75825,6 @@
       <dc:date>1784</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -76071,7 +75907,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/c8ea2417-3646-4025-92b3-bed284695035</identifier>
-      <datestamp>2026-03-22T02:33:14Z</datestamp>
+      <datestamp>2026-10-04T02:28:42Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -76482,7 +76318,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">36 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -76511,7 +76346,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -76925,7 +76759,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">12 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -77535,7 +77368,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -78096,7 +77928,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>de</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -78291,7 +78122,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -79323,7 +79153,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -79384,7 +79213,6 @@
       <dc:date>1809</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -79849,7 +79677,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -80731,7 +80558,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/d5d664e4-8ab4-452b-b9c9-3a3b6e44b5d5</identifier>
-      <datestamp>2023-02-08T12:40:25Z</datestamp>
+      <datestamp>2026-10-04T02:46:37Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -81391,7 +81218,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -81661,7 +81487,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -82095,7 +81920,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -82213,7 +82037,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/da088780-ac5b-4718-97b4-0b1b6515401e</identifier>
-      <datestamp>2024-12-08T02:25:01Z</datestamp>
+      <datestamp>2026-10-04T02:17:33Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -83164,7 +82988,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -83231,7 +83054,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">72 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -83754,7 +83576,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -84494,7 +84315,6 @@
       <dc:date>1840</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -84523,7 +84343,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -84999,7 +84818,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -85090,7 +84908,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -85603,7 +85420,6 @@
       <dc:date>1809</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -88326,7 +88142,6 @@
       <dc:date>1809</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">4 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -88688,7 +88503,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -89021,7 +88835,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -89330,7 +89143,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/ef1d033c-6865-4dba-b56a-062f53dd12f5</identifier>
-      <datestamp>2026-01-29T11:17:13Z</datestamp>
+      <datestamp>2026-10-04T02:17:34Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -90666,7 +90479,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -90861,7 +90673,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -90947,7 +90758,6 @@
       <dc:date>1834</dc:date>
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">12 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -91996,7 +91806,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -92055,7 +91864,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -92245,7 +92053,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -92955,7 +92762,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -92998,7 +92804,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/f7101a9a-3ffe-43a5-989d-7cf39a913db1</identifier>
-      <datestamp>2026-01-29T11:19:05Z</datestamp>
+      <datestamp>2026-10-04T02:25:29Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -93137,7 +92943,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">24 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -93320,7 +93125,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">14 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -94221,7 +94025,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -95087,7 +94890,7 @@
   <record>
     <header>
       <identifier>oai:baekur.is:books/fe0304bc-7930-4008-afbb-fba8e31ccc66</identifier>
-      <datestamp>2023-09-03T02:13:03Z</datestamp>
+      <datestamp>2026-10-04T02:11:27Z</datestamp>
       <setSpec>source:baekur</setSpec>
     </header>
     <metadata>
@@ -95513,7 +95316,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Ísland</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">10 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>is</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
@@ -95644,7 +95446,6 @@
       <dc:subject xml:lang="is">Tilskipanir</dc:subject>
       <dc:subject xml:lang="is">Bækur</dc:subject>
       <dcterms:spatial xsi:type="mshl:land" mshl:role="útgáfustaður" xml:lang="is">Danmörk</dcterms:spatial>
-      <dc:contributor>Ísland</dc:contributor>
       <dcterms:extent xml:lang="is">6 síður í stafrænu eintaki</dcterms:extent>
       <dc:language>da</dc:language>
       <dc:publisher xml:lang="is">Landsbókasafn Íslands – Háskólabókasafn</dc:publisher>
