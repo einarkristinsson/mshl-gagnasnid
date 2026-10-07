@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  sagnatrog.xsd — upprunasnið Ísmús fyrir Sagnatrogið (metadataPrefix=sagnatrog)
+  Hýst af MSHL / Kann ehf. á https://oai.kann.is/ns/sagnatrog.xsd (7.10.2026, DEMO).
+
+  Lýsir sniðinu eins og ismus.is/oai_pmh skilar því 6.10.2026 (61.707 færslur
+  sannprófaðar), auk valkvæða elementsins <birthPlace> sem lagt var til 7.10.
+  Nafnasvæðið http://www.gegnir.is/ns/sagnatrog er auðkenni og helst óbreytt.
+
+  Dublin Core og DataCite-elementin eru skilgreind í tveimur litlum hjálparskemum
+  við hliðina (sagnatrog-dc.xsd, sagnatrog-datacite.xsd) svo sannprófun þurfi
+  ekkert af netinu.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:s="http://www.gegnir.is/ns/sagnatrog"
+           xmlns:dc="http://purl.org/dc/elements/1.1/"
+           xmlns:datacite="http://datacite.org/schema/kernel-4"
+           targetNamespace="http://www.gegnir.is/ns/sagnatrog"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified"
+           version="1.0">
+
+  <xs:import namespace="http://purl.org/dc/elements/1.1/" schemaLocation="sagnatrog-dc.xsd"/>
+  <xs:import namespace="http://datacite.org/schema/kernel-4" schemaLocation="sagnatrog-datacite.xsd"/>
+
+  <!-- ===== rót: ein sögn eða eitt hljóðrit ===== -->
+  <xs:element name="story">
+    <xs:annotation><xs:documentation>
+      Ein færsla Ísmús: sögn (purl …/tjodfraedi/sagnir/N) eða hljóðrit (…/tjodfraedi/hljodrit/N).
+      xml:id = sama og dc:identifier; xml:lang = „is“.
+    </xs:documentation></xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="dc:identifier"/>                         <!-- is.sagnagrunnur.SG_N / is.ismus.ISMUS_N -->
+        <xs:element name="purl" type="xs:anyURI"/>                <!-- varanleg slóð á ismus.is -->
+        <xs:element ref="dc:title"/>                              <!-- sögn: heiti; hljóðrit: safnmark (SÁM …) — má vera tómt -->
+        <xs:element ref="dc:source" minOccurs="0"/>               <!-- prentuð heimild eða hljóðritasafn -->
+        <xs:element ref="dc:date" minOccurs="0"/>                 <!-- upptökudagur, sjá s:dagsetning -->
+        <xs:element name="contents" type="s:Contents"/>
+        <xs:element name="places" type="s:Places" minOccurs="0"/>
+        <xs:element name="persons" type="s:Persons" minOccurs="0"/>
+        <xs:element name="keywords" type="s:Keywords" minOccurs="0"/>
+      </xs:sequence>
+      <xs:anyAttribute namespace="http://www.w3.org/XML/1998/namespace http://www.w3.org/2001/XMLSchema-instance" processContents="lax"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ===== texti ===== -->
+  <xs:complexType name="Contents">
+    <xs:sequence>
+      <xs:element name="content" maxOccurs="unbounded">
+        <xs:annotation><xs:documentation>Heildartexti sagnar eða efnislýsing hljóðrits (CDATA leyfilegt).</xs:documentation></xs:annotation>
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:anyAttribute namespace="http://www.w3.org/XML/1998/namespace" processContents="lax"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ===== staðir ===== -->
+  <xs:complexType name="Places">
+    <xs:sequence>
+      <xs:element name="place" type="s:Place" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Place">
+    <xs:annotation><xs:documentation>
+      Staður tengdur færslunni. id = auðkenni í staðaskrá Ísmús (ismus.is/stadir/&lt;id&gt;).
+      Staðanafn í nefnifalli.
+    </xs:documentation></xs:annotation>
+    <xs:sequence>
+      <xs:element ref="dc:title"/>
+      <xs:element name="point" type="s:Point" minOccurs="0"/>
+      <xs:element name="role" type="s:PlaceRole"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:simpleType name="PlaceRole">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="narration"/>   <!-- sögustaður -->
+      <xs:enumeration value="recording"/>   <!-- upptökustaður -->
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="Point">
+    <xs:sequence>
+      <xs:element ref="datacite:pointLatitude"/>
+      <xs:element ref="datacite:pointLongitude"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ===== fólk ===== -->
+  <xs:complexType name="Persons">
+    <xs:sequence>
+      <xs:element name="person" type="s:Person" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Person">
+    <xs:annotation><xs:documentation>
+      Manneskja tengd færslunni. id = auðkenni í mannaskrá Ísmús
+      (síða: https://ismus.is/einstaklingar/&lt;id&gt;).
+    </xs:documentation></xs:annotation>
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="role" type="s:PersonRole" minOccurs="0"/>
+      <xs:element name="birthDate" type="s:Dagsetning" minOccurs="0"/>
+      <xs:element name="deathDate" type="s:Dagsetning" minOccurs="0"/>
+      <xs:element name="birthPlace" type="s:BirthPlace" minOccurs="0">
+        <xs:annotation><xs:documentation>
+          Fæðingarstaður (tillaga 7.10.2026). Úr „origin“ í mannaskrá Ísmús.
+          Notað til að para fólk við Sögulegt mann- og bæjatal: bær + hreppur + fæðingarár.
+        </xs:documentation></xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:simpleType name="PersonRole">
+    <xs:annotation><xs:documentation>
+      Hlutverk í færslunni. Í gögnum 6.10 eru bæði ensk og íslensk heiti — mælt með að samræma.
+    </xs:documentation></xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="informant"/>
+      <xs:enumeration value="heimildarmadur"/>
+      <xs:enumeration value="collector"/>
+      <xs:enumeration value="skrasetjari"/>
+      <xs:enumeration value="sendandi"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="BirthPlace">
+    <xs:sequence>
+      <xs:element ref="dc:title"/>                                   <!-- bær, í nefnifalli -->
+      <xs:element name="parent" minOccurs="0" maxOccurs="unbounded">  <!-- hreppur, sýsla … -->
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="type" type="s:ParentType" use="required"/>
+              <xs:attribute name="id" type="xs:string"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="point" type="s:Point" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required"/>      <!-- ismus.is/stadir/<id> -->
+  </xs:complexType>
+
+  <xs:simpleType name="ParentType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="sókn"/>
+      <xs:enumeration value="hreppur"/>
+      <xs:enumeration value="sýsla"/>
+      <xs:enumeration value="land"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ===== efnisorð ===== -->
+  <xs:complexType name="Keywords">
+    <xs:sequence>
+      <xs:element name="keyword" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="id" type="xs:string" use="required"/>
+              <xs:attribute name="type" type="xs:string"/>          <!-- „general term“ -->
+              <xs:anyAttribute namespace="http://www.w3.org/XML/1998/namespace" processContents="lax"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ===== dagsetning: ár, ár-mánuður eða fullur dagur; ?? eða xx = óþekkt ===== -->
+  <xs:simpleType name="Dagsetning">
+    <xs:annotation><xs:documentation>1890-06-07 · 1939-??-?? · 1975-05-xx · 1939</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{4}(-(\d{2}|\?\?|xx)(-(\d{2}|\?\?|xx))?)?"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

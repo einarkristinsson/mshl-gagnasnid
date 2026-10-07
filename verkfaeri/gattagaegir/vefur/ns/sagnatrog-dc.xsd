@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hjálparskema fyrir sagnatrog.xsd: þau fjögur Dublin Core-element sem sniðið notar,
+     svo sannprófun þurfi ekki að sækja dublincore.org. Ekki fullt DC-skema. -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://purl.org/dc/elements/1.1/"
+           elementFormDefault="qualified">
+  <xs:element name="identifier" type="xs:string"/>
+  <xs:element name="title" type="xs:string"/>
+  <xs:element name="source" type="xs:string"/>
+  <xs:element name="date" type="xs:string"/>
+</xs:schema>
